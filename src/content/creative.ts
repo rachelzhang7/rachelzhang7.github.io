@@ -1,5 +1,5 @@
 /**
- * Creative AI — taste and curiosity.
+ * Creative AI – taste and curiosity.
  *
  * This page is a small gallery, not a portfolio. The organising question is not
  * "what business impact did this have" but "what happens when AI becomes a
@@ -22,7 +22,7 @@ export type Work = {
   visual: "spectrum" | "bloom" | "strata" | "weave" | "orbit" | "grain";
   /** Path under /public once a real asset exists. Overrides `visual`. */
   image?: string;
-  /** Controls the masonry rhythm — the gallery is deliberately irregular. */
+  /** Controls the masonry rhythm – the gallery is deliberately irregular. */
   span: "tall" | "wide" | "square";
   published: boolean;
 };
@@ -32,7 +32,7 @@ export const creativeIntro = {
   headline: "AI is not only a tool. It's becoming a medium.",
   body: [
     "What happens when AI becomes a medium for human expression rather than a way to produce more content faster?",
-    "These are experiments in music, image, and story — made to find out what an individual can now express alone.",
+    "These are experiments in music, image, and story – made to find out what an individual can now express alone.",
   ],
 };
 

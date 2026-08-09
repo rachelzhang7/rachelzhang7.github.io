@@ -28,7 +28,7 @@ export function useScrollProgress(trackSections = false): ScrollState {
       let section = "";
       if (trackSections) {
         // The active section is the last one whose top has passed the upper
-        // third of the viewport — the region a reader is actually looking at.
+        // third of the viewport – the region a reader is actually looking at.
         const marks = document.querySelectorAll<HTMLElement>("[data-section]");
         const line = window.innerHeight * 0.33;
         for (const mark of marks) {

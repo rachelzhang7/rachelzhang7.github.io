@@ -1,7 +1,7 @@
 import { systemStages } from "@/content/adtech";
 
 /**
- * The system spine — a diagram made of rules and type, nothing else.
+ * The system spine – a diagram made of rules and type, nothing else.
  *
  * Desktop: five stages hung off one continuous horizontal hairline, each node
  * marked by a 5px square on the rule, the way a chart axis carries ticks.
@@ -19,7 +19,7 @@ export function SystemSpine() {
           key={stage.name}
           className="relative border-l border-hair pb-9 pl-5 last:pb-0 lg:border-l-0 lg:border-t lg:pb-0 lg:pl-0"
         >
-          {/* The node, 5×5. Only the first one carries the accent — it marks
+          {/* The node, 5×5. Only the first one carries the accent – it marks
               where the chain starts. The rest are neutral ticks, so the whole
               diagram spends the same accent budget as a single indicator. */}
           <span

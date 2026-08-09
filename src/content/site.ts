@@ -18,10 +18,10 @@ export const site = {
 
   /**
    * The meta description. Written for a human reading a search result, not for
-   * keyword density — this is often the first sentence an investor ever reads.
+   * keyword density – this is often the first sentence an investor ever reads.
    */
   description:
-    "Rachel Zhang builds at the intersection of advertising, AI, and creativity — products across advertising data, commerce, creative and automation, alongside hands-on AI experiments and generative creative work.",
+    "Rachel Zhang builds at the intersection of advertising, AI, and creativity – products across advertising data, commerce, creative and automation, alongside hands-on AI experiments and generative creative work.",
 } as const;
 
 export type NavItem = {
@@ -34,7 +34,7 @@ export type NavItem = {
 /**
  * Four items, deliberately. The three pillars plus home.
  *
- * About is not a primary destination — it lives at the bottom of the homepage.
+ * About is not a primary destination – it lives at the bottom of the homepage.
  * Future Ventures is not part of this architecture.
  */
 export const navItems: NavItem[] = [

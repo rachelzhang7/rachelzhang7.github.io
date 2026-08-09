@@ -1,5 +1,5 @@
 /**
- * About — deliberately outside the primary information architecture.
+ * About – deliberately outside the primary information architecture.
  *
  * The four territories carry the argument. This page exists for the visitor who
  * has already decided they're interested and wants the person behind it, plus a
@@ -11,14 +11,14 @@ export const aboutIntro = {
   headline:
     "I'm interested in what happens when understanding and making get closer together.",
   body: [
-    "For most of my career, my job was deciding what should be built and working with teams to make it real. I spent those years inside advertising — signals, catalogs, creative, delivery, and the interfaces advertisers actually use. It's an industry that rewards understanding systems, because almost nothing in it works in isolation.",
+    "For most of my career, my job was deciding what should be built and working with teams to make it real. I spent those years inside advertising – signals, catalogs, creative, delivery, and the interfaces advertisers actually use. It's an industry that rewards understanding systems, because almost nothing in it works in isolation.",
     "AI is changing where that boundary sits. A product person can now move much further across the stack: from an observation to a prototype, from a prototype to an experience, and sometimes from an experience to a business. I've spent the last few years finding out how far I can take that myself.",
     "So I build. Hackathon weekends, late-night prototypes, music, and now something of my own. The work on this site is the evidence, arranged by what it demonstrates rather than by who I worked for.",
   ],
 };
 
 /**
- * Principles, not values. Each should be arguable — if nobody could disagree
+ * Principles, not values. Each should be arguable – if nobody could disagree
  * with it, it isn't telling a visitor anything.
  */
 export const principles = [
@@ -42,7 +42,7 @@ export const principles = [
 
 export const connect = {
   headline: "Let's connect.",
-  body: "Always glad to meet builders, thinkers, and curious people — especially anyone working on AI, advertising infrastructure, or the messy space between creativity and systems.",
+  body: "Always glad to meet builders, thinkers, and curious people – especially anyone working on AI, advertising infrastructure, or the messy space between creativity and systems.",
 };
 
 /**

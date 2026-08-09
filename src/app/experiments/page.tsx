@@ -11,16 +11,16 @@ import { experimentsIntro, publishedExperiments } from "@/content/experiments";
 import { territoryByKey } from "@/content/territories";
 
 /**
- * Experiments — builder evidence.
+ * Experiments – builder evidence.
  *
  * This page has one job: make it obvious that things actually got built. So it
- * is deliberately the least polished page on the site — a laboratory notebook
+ * is deliberately the least polished page on the site – a laboratory notebook
  * rather than a case-study deck. Two devices carry that:
  *
  *   1. Every rule here is 1px DASHED. It is the only page where the rule style
  *      changes, and it is what makes the page read as working notes.
  *   2. The entries sit on the shared 12-column grid at different spans and
- *      different vertical offsets, so nothing baseline-aligns across the page —
+ *      different vertical offsets, so nothing baseline-aligns across the page –
  *      but every left edge still lands on a column line, so the irregularity
  *      reads as a notebook, not as a broken layout.
  *
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
  * Placement on the 12-column grid. Left edges snap to column lines; spans and
  * vertical offsets differ so no two entries share a baseline. The cycle is
  * four long so a growing list keeps varying, but the first two values are the
- * ones actually tuned — they are what a visitor sees today.
+ * ones actually tuned – they are what a visitor sees today.
  *
  * Everything is `lg:` prefixed: below the rail breakpoint the offsets collapse
  * to zero and each entry is simply full width.
@@ -85,7 +85,7 @@ export default function ExperimentsPage() {
   return (
     <PageShell territory="experiments">
       {/* ---------------------------------------------------------------
-          HEADER — what this page is, and the index of what's in it.
+          HEADER – what this page is, and the index of what's in it.
           --------------------------------------------------------------- */}
       <Section mark="01 · Experiments" className="pt-16 sm:pt-24">
         <p className="label beat beat-1 text-accent">{experimentsIntro.eyebrow}</p>
@@ -132,7 +132,7 @@ export default function ExperimentsPage() {
       </Section>
 
       {/* ---------------------------------------------------------------
-          THE LOG — each entry as a module of dashed rules and labelled
+          THE LOG – each entry as a module of dashed rules and labelled
           fields. Four fields, always in the same order, so the page can be
           scanned vertically by field rather than read end to end.
           --------------------------------------------------------------- */}
@@ -190,7 +190,7 @@ export default function ExperimentsPage() {
                       )}
                     </div>
 
-                    {/* The four fields. Mono label left, argument right — a
+                    {/* The four fields. Mono label left, argument right – a
                         notebook field list, not a card. */}
                     <dl className="mt-10">
                       {fieldsOf(e).map((f) => (
@@ -233,7 +233,7 @@ export default function ExperimentsPage() {
       </Section>
 
       {/* ---------------------------------------------------------------
-          ONWARD — where the experiments are heading.
+          ONWARD – where the experiments are heading.
           --------------------------------------------------------------- */}
       <Section mark="03 · Onward" className="mt-32 sm:mt-44">
         <SectionHead

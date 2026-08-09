@@ -7,7 +7,7 @@ type PageShellProps = {
   children: React.ReactNode;
   /**
    * Sets the live accent for the whole route. Exactly one accent exists per
-   * page — no component below this line may reference a territory colour
+   * page – no component below this line may reference a territory colour
    * directly, which is what mechanically enforces the 85–90% neutral rule.
    */
   territory?: TerritoryKey;

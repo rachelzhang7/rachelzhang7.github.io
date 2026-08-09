@@ -1,5 +1,5 @@
 /**
- * Future Ventures — entrepreneurial evidence.
+ * Future Ventures – entrepreneurial evidence.
  *
  * The discipline of this page is what it *excludes*. Startup ideas are cheap,
  * so nothing appears here without evidence attached: a prototype, user
@@ -15,7 +15,7 @@ export type Venture = {
   stage: VentureStage;
   /** The one-line thesis. */
   thesis: string;
-  /** The longer argument — why this, why now. */
+  /** The longer argument – why this, why now. */
   body: string[];
   /**
    * The evidence that earns this venture a place on the page. Without at least
@@ -36,7 +36,7 @@ export const venturesIntro = {
   headline: "From building products to building possibilities.",
   body: [
     "For most of my career I built products inside companies. This is the part where I find out what I'd build on my own.",
-    "Ideas are cheap, so nothing appears on this page without evidence behind it — a prototype, research, a thesis I've tested, or something shipped. This section will stay short until that's no longer true.",
+    "Ideas are cheap, so nothing appears on this page without evidence behind it – a prototype, research, a thesis I've tested, or something shipped. This section will stay short until that's no longer true.",
   ],
 };
 
@@ -48,7 +48,7 @@ export const ventures: Venture[] = [
     thesis:
       "Infrastructure for verifiable, trustworthy AI in advertising.",
     body: [
-      "Advertising is becoming a system where AI makes an increasing share of the decisions — what to make, who to show it to, what to spend. The industry has no shared way to verify what those systems did or why.",
+      "Advertising is becoming a system where AI makes an increasing share of the decisions – what to make, who to show it to, what to spend. The industry has no shared way to verify what those systems did or why.",
       "Aubric is my attempt at that missing layer: making AI-driven advertising decisions inspectable, attributable, and accountable to the businesses paying for them.",
     ],
     evidence: [

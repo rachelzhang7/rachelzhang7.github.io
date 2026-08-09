@@ -8,7 +8,7 @@ import { cn } from "@/lib/cn";
 
 /**
  * The header is the only place the five territory accents are allowed to
- * appear on the same screen outside the homepage index — and even here they
+ * appear on the same screen outside the homepage index – and even here they
  * appear one at a time, on hover, as a 1px underline.
  */
 export function SiteHeader() {
@@ -24,7 +24,7 @@ export function SiteHeader() {
         <Link
           href="/"
           className="group flex shrink-0 items-center gap-2"
-          aria-label={`${site.name} — home`}
+          aria-label={`${site.name} – home`}
         >
           <span className="font-mono text-[0.8125rem] font-medium uppercase tracking-[0.18em] text-primary">
             {site.shortName}
@@ -51,7 +51,7 @@ export function SiteHeader() {
               )}
             >
               {item.label}
-              {/* 1px underline in the destination's own accent — the nav is
+              {/* 1px underline in the destination's own accent – the nav is
                   where a visitor learns the colour system without being told. */}
               <span
                 aria-hidden="true"

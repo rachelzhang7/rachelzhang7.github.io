@@ -29,13 +29,13 @@ published: false  // kept in the file, filtered out of the page
 
 This is deliberate. It lets you keep a stub for work you've done but haven't
 written up, without the page showing an obviously empty slot. A short page of
-real work is stronger than a full grid of placeholders — that principle is
+real work is stronger than a full grid of placeholders – that principle is
 baked into the data layer.
 
 ## What still needs your input
 
 These are the only places the site is not yet saying something true and
-specific. Nothing here is invented — the fields are simply empty and filtered
+specific. Nothing here is invented – the fields are simply empty and filtered
 out until you fill them.
 
 | Where | What's needed |
@@ -55,10 +55,10 @@ once the URL is real and the link appears.
 
 `home.ts` ships with both hero lines written out:
 
-- `hero.headline` — *"I build products at the intersection of technology,
+- `hero.headline` – *"I build products at the intersection of technology,
   creativity, and human behavior."* This is the one currently rendering. It's
   broader and ages better as your work moves past advertising.
-- `hero.headlineAlt` — *"I understand systems. Now I build them."* Shorter and
+- `hero.headlineAlt` – *"I understand systems. Now I build them."* Shorter and
   more declarative, and it states the operator → builder arc directly.
 
 To swap, pass `headlineAlt` where the homepage reads `headline`.
@@ -75,5 +75,5 @@ feel slow.
 ## Confidentiality
 
 The AdTech copy is written at the level of problems and system design, with no
-metrics, internal names, or roadmap. If you add to it, keep that bar — assume
+metrics, internal names, or roadmap. If you add to it, keep that bar – assume
 anything on this page will be read by someone at a company you've worked for.

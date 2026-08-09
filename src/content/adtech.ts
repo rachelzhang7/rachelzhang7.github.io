@@ -1,5 +1,5 @@
 /**
- * AdTech — expertise.
+ * AdTech – expertise.
  *
  * Case studies are written as *problems*, not résumé bullets, and every
  * outcome is deliberately qualitative. Nothing here should require a
@@ -17,7 +17,7 @@ export type CaseStudy = {
   title: string;
   /** What was built or led. */
   summary: string;
-  /** The part that shows how she thinks — the non-obvious difficulty. */
+  /** The part that shows how she thinks – the non-obvious difficulty. */
   insight: string;
   tags: string[];
 };
@@ -26,7 +26,7 @@ export const adtechIntro = {
   eyebrow: "AdTech · Commerce · AI",
   headline: "Building products inside the machinery of digital advertising.",
   body: [
-    "I've spent much of my product career working on advertising — from signals and measurement to creative AI, commerce integrations, and advertiser experiences.",
+    "I've spent much of my product career working on advertising – from signals and measurement to creative AI, commerce integrations, and advertiser experiences.",
     "What keeps the space interesting isn't any single feature. It's the system underneath: how data becomes understanding, understanding becomes a prediction, and a prediction becomes an action that creates value for a business.",
   ],
 };
@@ -82,7 +82,7 @@ export const caseStudies: CaseStudy[] = [
     summary:
       "Worked on products that use generative AI to help advertisers produce and adapt creative for advertising.",
     insight:
-      "The deeper product question was not whether AI could generate more content. It was how generation could become part of an advertising system — connected to advertiser intent, platform intelligence, creative quality, and eventually performance.",
+      "The deeper product question was not whether AI could generate more content. It was how generation could become part of an advertising system – connected to advertiser intent, platform intelligence, creative quality, and eventually performance.",
     tags: ["Generative AI", "Creative", "Advertising"],
   },
   {
@@ -94,7 +94,7 @@ export const caseStudies: CaseStudy[] = [
     summary:
       "Worked on products that help advertisers send higher-quality conversion and customer signals into advertising systems.",
     insight:
-      "Signals are mostly invisible to the person seeing an ad, but they determine much of what happens downstream — measurement, optimization, attribution, and ultimately how effectively an advertiser can spend.",
+      "Signals are mostly invisible to the person seeing an ad, but they determine much of what happens downstream – measurement, optimization, attribution, and ultimately how effectively an advertiser can spend.",
     tags: ["Signals", "Measurement", "Data Infrastructure"],
   },
   {
@@ -106,7 +106,7 @@ export const caseStudies: CaseStudy[] = [
     summary:
       "Worked across merchant catalog ingestion, synchronization, market configuration, diagnostics, and the connection between commerce data and advertising products.",
     insight:
-      "What looks like “sync my products” from the merchant side becomes a distributed systems problem underneath — identity, availability, variants, markets, freshness, errors, and downstream eligibility all have to remain coherent.",
+      "What looks like “sync my products” from the merchant side becomes a distributed systems problem underneath – identity, availability, variants, markets, freshness, errors, and downstream eligibility all have to remain coherent.",
     tags: ["Catalog", "Commerce", "Platform Infrastructure"],
   },
   {
@@ -116,7 +116,7 @@ export const caseStudies: CaseStudy[] = [
     problem: "Reducing the expertise required to advertise",
     title: "Automated Advertising Experiences",
     summary:
-      "Worked on products that progressively move complexity away from advertisers — using platform intelligence to simplify setup, creative decisions, targeting, optimization, and campaign management.",
+      "Worked on products that progressively move complexity away from advertisers – using platform intelligence to simplify setup, creative decisions, targeting, optimization, and campaign management.",
     insight:
       "The product tension is fundamental: automation can create enormous leverage, but every decision removed from the advertiser also changes their sense of understanding and control.",
     tags: ["Automation", "Optimization", "Advertiser UX"],
@@ -130,7 +130,7 @@ export const howIThink = {
     "Over time, I've become less interested in individual advertising features and more interested in the interfaces between systems.",
     "A merchant shouldn't need to understand event schemas to send good signals. They shouldn't need to understand catalog architecture to advertise their products. And increasingly, they shouldn't need to understand every campaign primitive to make a good advertising decision.",
     "But abstraction has a cost. Hide too little and the product remains complicated. Hide too much and advertisers lose understanding, agency, and trust.",
-    "AI makes this tradeoff more interesting. For the first time, we can build interfaces that don't merely remove complexity — they can potentially explain it, reason through it, and help people make better decisions.",
+    "AI makes this tradeoff more interesting. For the first time, we can build interfaces that don't merely remove complexity – they can potentially explain it, reason through it, and help people make better decisions.",
     "That's the part of advertising I'm most interested in building now.",
   ],
 };
@@ -140,7 +140,7 @@ export const whatsNext = {
   headline: "From advertising automation to advertising intelligence.",
   body: [
     "The previous generation of advertising products automated tasks.",
-    "I think the next generation will increasingly automate reasoning — understanding a business, diagnosing what is limiting performance, generating possible actions, predicting their consequences, and helping an advertiser decide what to do next.",
+    "I think the next generation will increasingly automate reasoning – understanding a business, diagnosing what is limiting performance, generating possible actions, predicting their consequences, and helping an advertiser decide what to do next.",
   ],
   /** Rendered as a progression, with the final term emphasised. */
   progression: ["configuration", "automation", "conversation", "intelligence"],

@@ -4,7 +4,7 @@ import { site } from "@/content/site";
 /**
  * Emitted as a static sitemap.xml during `next build` with output: 'export'.
  *
- * Priorities are relative, not absolute — the homepage carries the positioning
+ * Priorities are relative, not absolute – the homepage carries the positioning
  * and AdTech carries the depth, so those lead.
  */
 export const dynamic = "force-static";

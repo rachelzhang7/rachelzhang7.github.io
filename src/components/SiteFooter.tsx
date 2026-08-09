@@ -3,7 +3,7 @@ import { navItems, site, socials } from "@/content/site";
 
 /**
  * Links still carrying a REPLACE-ME URL are filtered out rather than shipped
- * as dead links. See CONTENT.md — filling them in makes them appear.
+ * as dead links. See CONTENT.md – filling them in makes them appear.
  */
 const liveSocials = socials.filter((s) => !s.placeholder);
 
@@ -72,7 +72,7 @@ export function SiteFooter() {
           <p className="label">
             © {year} {site.name}
           </p>
-          {/* Not `text-quiet` — at 11px that token is 3.69:1, which fails
+          {/* Not `text-quiet` – at 11px that token is 3.69:1, which fails
               WCAG AA and breaks the token's own rule (non-text, or >=24px).
               `.label`'s default tertiary is 4.71:1 and passes at any size. */}
           <p className="label">

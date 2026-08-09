@@ -3,7 +3,7 @@ import type { TerritoryKey } from "./site";
 /**
  * The four threads that structure the site.
  *
- * These are not categories of work — they are dimensions of one person, in a
+ * These are not categories of work – they are dimensions of one person, in a
  * deliberate order: depth, then making, then taste, then ownership. The
  * homepage renders them as editorial panels; the nav and page headers reuse the
  * same accent + numbering so a visitor always knows which territory they're in.
@@ -31,7 +31,7 @@ export const territories: Territory[] = [
     dimension: "Depth",
     href: "/adtech/",
     headline: "I know a domain deeply.",
-    body: "Years spent building inside the machinery of digital advertising — across the systems that connect data, intelligence, creative, and automation.",
+    body: "Years spent building inside the machinery of digital advertising – across the systems that connect data, intelligence, creative, and automation.",
     cta: "Explore AdTech",
   },
   {
@@ -41,7 +41,7 @@ export const territories: Territory[] = [
     dimension: "Building",
     href: "/experiments/",
     headline: "I build. Repeatedly.",
-    body: "Hackathons and rapid experiments where I turn ideas into working products — often under extreme time constraints.",
+    body: "Hackathons and rapid experiments where I turn ideas into working products – often under extreme time constraints.",
     cta: "Explore Experiments",
   },
   {
@@ -51,7 +51,7 @@ export const territories: Territory[] = [
     dimension: "Taste",
     href: "/creative-ai/",
     headline: "I explore and develop taste.",
-    body: "Music, video, visual storytelling, and design — exploring AI not only as a tool, but as a new creative medium.",
+    body: "Music, video, visual storytelling, and design – exploring AI not only as a tool, but as a new creative medium.",
     cta: "Explore Creative AI",
   },
 ];

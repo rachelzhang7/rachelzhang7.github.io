@@ -4,8 +4,8 @@ import { territories } from "@/content/territories";
 /**
  * The homepage hero: a single trace on a graticule.
  *
- * The concept the client's mockup carried — many signals converging into
- * understanding, then into expression — rebuilt as an instrument readout
+ * The concept the client's mockup carried – many signals converging into
+ * understanding, then into expression – rebuilt as an instrument readout
  * rather than the AI-generated particle-network image, which is both
  * unusable and the single most tired visual in this genre.
  *
@@ -16,7 +16,7 @@ import { territories } from "@/content/territories";
  *  2. The path is deterministic and computed at build time, so it serialises
  *     into the HTML as a static `d` string. No runtime maths, no canvas, no
  *     requestAnimationFrame, no layout shift.
- *  3. It sweeps once on load and then stops. No idle shimmer — that restraint
+ *  3. It sweeps once on load and then stops. No idle shimmer – that restraint
  *     is most of what separates this from a crypto dashboard.
  *
  * All type lives in HTML rather than inside the SVG. Text set in viewBox units
@@ -30,7 +30,7 @@ const H = 300;
 const MID = H / 2;
 
 /**
- * Deterministic waveform. Four sine components — no Math.random, so every build
+ * Deterministic waveform. Four sine components – no Math.random, so every build
  * produces a byte-identical path and the diff stays clean.
  */
 function traceY(x: number): number {
@@ -54,7 +54,7 @@ const tracePath = (() => {
 
 /**
  * Markers sit at the centre of each quarter, which is exactly where the four
- * columns of the label grid below centre — so the drawing and the type line up
+ * columns of the label grid below centre – so the drawing and the type line up
  * without any absolute positioning.
  */
 const markers = territories.map((territory, i) => {
@@ -117,7 +117,7 @@ export function HeroTrace() {
           <line x1={0} y1={MID} x2={W} y2={MID} stroke="var(--line-strong)" />
         </g>
 
-        {/* Phosphor bloom — applied once, never animated. */}
+        {/* Phosphor bloom – applied once, never animated. */}
         <path
           d={tracePath}
           pathLength={1}
@@ -153,7 +153,7 @@ export function HeroTrace() {
               stroke="var(--line-hair)"
             />
             {/* Neutral at rest. Rendering all four territory accents at once
-                turns this into a colour-coded navigation menu — the exact
+                turns this into a colour-coded navigation menu – the exact
                 "beautiful navigation dashboard" this site is trying not to be.
                 The accent appears on interaction instead, so a visitor still
                 learns the colour system, one territory at a time. */}
@@ -173,7 +173,7 @@ export function HeroTrace() {
       </svg>
 
       {/* The four markers as real links. On phones they fall to two columns and
-          stop tracking the marker positions, which is the honest trade — the
+          stop tracking the marker positions, which is the honest trade – the
           labels stay legible instead of staying aligned. */}
       <ul className="grid grid-cols-2 border-t border-hair sm:grid-cols-4">
         {territories.map((t) => (

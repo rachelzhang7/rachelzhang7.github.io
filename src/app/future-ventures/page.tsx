@@ -11,13 +11,13 @@ import {
 } from "@/content/ventures";
 
 /**
- * Future Ventures — entrepreneurial evidence.
+ * Future Ventures – entrepreneurial evidence.
  *
  * The design problem here is that exactly one venture is published, and that is
  * deliberate. So the page is built as a *ledger*, not a grid: three stage bands
  * in a fixed order, each opened by a full-width rule and a mono stage label with
  * its count. A stage with nothing in it still prints its label and states, in
- * one mono line, that it is empty — which reads as a taxonomy being kept honest
+ * one mono line, that it is empty – which reads as a taxonomy being kept honest
  * rather than as a section that failed to load. Six speculative entries would
  * fill more pixels and prove less.
  *
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   openGraph: { url: "/future-ventures/" },
 };
 
-/** Fixed order — the ledger's columns never reshuffle based on what's in it. */
+/** Fixed order – the ledger's columns never reshuffle based on what's in it. */
 const stageOrder: VentureStage[] = ["building", "exploring", "past"];
 
 const pad = (n: number) => String(n).padStart(2, "0");
@@ -41,7 +41,7 @@ export default function FutureVentures() {
   return (
     <PageShell territory="ventures">
       {/* ---------------------------------------------------------------
-          HEADER — a long silence before the first line, on purpose.
+          HEADER – a long silence before the first line, on purpose.
           --------------------------------------------------------------- */}
       <Section mark="01 · Ventures" className="pt-24 sm:pt-40 lg:pt-52">
         <div className="beat beat-1 flex items-baseline justify-between gap-6">
@@ -68,7 +68,7 @@ export default function FutureVentures() {
       </Section>
 
       {/* ---------------------------------------------------------------
-          STAGE BANDS — building / exploring / past, always in that order.
+          STAGE BANDS – building / exploring / past, always in that order.
           --------------------------------------------------------------- */}
       {stageOrder.map((stage, i) => {
         const entries = venturesByStage(stage);
@@ -129,7 +129,7 @@ export default function FutureVentures() {
                       ))}
                     </div>
 
-                    {/* EVIDENCE — the whole credibility argument, so it is
+                    {/* EVIDENCE – the whole credibility argument, so it is
                         typeset at body scale on the primary colour rather than
                         demoted to fine print. */}
                     {venture.evidence.length > 0 && (
@@ -140,7 +140,7 @@ export default function FutureVentures() {
                         </div>
 
                         {/* Each row is `display: grid`, which strips the
-                            implicit list-item role in WebKit — so the list
+                            implicit list-item role in WebKit – so the list
                             semantics are stated explicitly. */}
                         <ul role="list" className="mt-6 border-t border-hair">
                           {venture.evidence.map((item, k) => (
@@ -161,7 +161,7 @@ export default function FutureVentures() {
                 </Reveal>
               ))
             ) : (
-              /* Not a placeholder for something missing — a statement that the
+              /* Not a placeholder for something missing – a statement that the
                  bar has not been met yet. One line, mono, nothing else. */
               <Reveal delay={80}>
                 <p className="label mt-10 sm:mt-14">Nothing at this stage yet</p>

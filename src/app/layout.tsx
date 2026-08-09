@@ -14,7 +14,7 @@ import "./globals.css";
 /**
  * Explicit static weights throughout. The variable cuts of Archivo and
  * Newsreader are 128KB and 85KB respectively because they carry every weight
- * (and, for Archivo, a width axis) — this site uses four weights total, so
+ * (and, for Archivo, a width axis) – this site uses four weights total, so
  * static files are roughly a third of the bytes over the wire. On a site whose
  * main job is loading fast on a phone from a search result, that trade is
  * worth more than optical sizing.
@@ -33,7 +33,7 @@ const archivo = Archivo({
   display: "swap",
 });
 
-// Not variable — ship only the two weights actually used.
+// Not variable – ship only the two weights actually used.
 const plexMono = IBM_Plex_Mono({
   subsets: ["latin"],
   variable: "--font-plex-mono",
@@ -44,8 +44,8 @@ const plexMono = IBM_Plex_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} — ${site.role}`,
-    template: `%s — ${site.name}`,
+    default: `${site.name} – ${site.role}`,
+    template: `%s – ${site.name}`,
   },
   description: site.description,
   keywords: [
@@ -88,7 +88,7 @@ export const viewport: Viewport = {
 
 /**
  * Person schema. This is what makes a Google result for "Rachel Zhang" show
- * something structured rather than a stray sentence — the whole reason the
+ * something structured rather than a stray sentence – the whole reason the
  * site exists is to be found before a meeting.
  */
 const personSchema = {
@@ -131,7 +131,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         />
         <script
           type="application/ld+json"
-          // Static, author-controlled content — no user input reaches this.
+          // Static, author-controlled content – no user input reaches this.
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
         />
         {children}

@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 /**
  * Links still carrying a REPLACE-ME URL are filtered out rather than shipped as
- * dead links — and the string itself must never reach the exported HTML.
+ * dead links – and the string itself must never reach the exported HTML.
  */
 const liveSocials = socials.filter((s) => !s.placeholder);
 
@@ -22,7 +22,7 @@ export default function About() {
   return (
     <PageShell territory="identity">
       {/* ---------------------------------------------------------------
-          HEADER — the most personal writing on the site. One column, one
+          HEADER – the most personal writing on the site. One column, one
           measure, nothing competing with it.
           --------------------------------------------------------------- */}
       <Section mark="01 · About" className="pt-16 sm:pt-24">
@@ -47,13 +47,13 @@ export default function About() {
           ))}
         </div>
 
-        {/* Terminating rule for the header. `beat` is deliberately absent —
+        {/* Terminating rule for the header. `beat` is deliberately absent –
             it sets the same `animation` property that `rule-draw` needs. */}
         <div className="hairline rule-draw mt-16" />
       </Section>
 
       {/* ---------------------------------------------------------------
-          PRINCIPLES — four arguable claims, separated by rules. Each title
+          PRINCIPLES – four arguable claims, separated by rules. Each title
           is the section's heading; there is no invented framing above them.
           --------------------------------------------------------------- */}
       <Section mark="02 · Principles" className="mt-24 sm:mt-32">
@@ -86,7 +86,7 @@ export default function About() {
       </Section>
 
       {/* ---------------------------------------------------------------
-          CONNECT — the id is a contract: the header button and the homepage
+          CONNECT – the id is a contract: the header button and the homepage
           both deep-link to /about/#connect.
           --------------------------------------------------------------- */}
       <Section id="connect" mark="03 · Connect" className="mt-24 sm:mt-32">
@@ -146,7 +146,7 @@ export default function About() {
       </Section>
 
       {/* ---------------------------------------------------------------
-          RÉSUMÉ — the conventional path, kept honest: no link until the file
+          RÉSUMÉ – the conventional path, kept honest: no link until the file
           actually exists.
           --------------------------------------------------------------- */}
       <Section mark="04 · Résumé" className="mt-24 sm:mt-32">
@@ -165,7 +165,7 @@ export default function About() {
                 className="group inline-flex items-center gap-3 border border-strong px-5 py-3 text-sm text-secondary transition-colors duration-150 hover:border-line-hover hover:text-primary"
               >
                 Download the résumé
-                {/* Hover is colour and a 1px rule only — the glyph points
+                {/* Hover is colour and a 1px rule only – the glyph points
                     down, so the site's horizontal arrow nudge does not
                     apply here. */}
                 <span

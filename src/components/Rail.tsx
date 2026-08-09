@@ -3,7 +3,7 @@
 import { useScrollProgress } from "@/lib/useScrollProgress";
 
 /**
- * The calibration rail — the site's structural signature.
+ * The calibration rail – the site's structural signature.
  *
  * A persistent 72px column pinned to the left edge that acts as ruler,
  * progress indicator and section index at once. It is the one element present
@@ -65,7 +65,7 @@ export function Rail() {
       )}
 
       {/* Calibrated scroll readout. This is a genuine measurement of scroll
-          position — never a decorative statistic. Nothing inside the
+          position – never a decorative statistic. Nothing inside the
           instrument chrome on this site is allowed to look like a claim
           without being true. */}
       <div className="label absolute bottom-8 left-1/2 -translate-x-1/2">

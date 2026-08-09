@@ -1,6 +1,6 @@
 # rachelzhang7.github.io
 
-Personal site for Rachel Zhang — AI · AdTech · Creative AI.
+Personal site for Rachel Zhang – AI · AdTech · Creative AI.
 
 Live at **https://rachelzhang7.github.io**
 
@@ -18,7 +18,7 @@ npm run dev          # http://localhost:3000
 | `npm run dev` | Development server |
 | `npm run build` | Production static export into `out/` |
 | `npm run verify` | Asserts the export is sound (run after `build`) |
-| `npm run preview` | Serves the built `out/` on :3001 — a faithful preview of production |
+| `npm run preview` | Serves the built `out/` on :3001 – a faithful preview of production |
 | `npm run lint` | ESLint |
 | `npm run typecheck` | `tsc --noEmit` |
 
@@ -37,7 +37,7 @@ things that still need your input.
 
 Next.js 16 App Router, statically exported, deployed to GitHub Pages by GitHub
 Actions. Tailwind CSS v4 over a CSS custom-property token system. No animation
-library — every effect is CSS plus one `IntersectionObserver`.
+library – every effect is CSS plus one `IntersectionObserver`.
 
 **→ See [BUILD_PLAN.md](./BUILD_PLAN.md)** for the architecture, the design
 system, and why Next.js rather than Jekyll.

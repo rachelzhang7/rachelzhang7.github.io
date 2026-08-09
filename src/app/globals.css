@@ -23,17 +23,17 @@
   --line-hover: #2a303a;
 
   /* --- type ------------------------------------------------------------ */
-  --text-primary: #ede9e1; /* warm white, deliberately not #FFF — 16.3:1 */
-  --text-secondary: #9aa0aa; /* body support — 7.5:1 */
-  --text-tertiary: #767c86; /* mono metadata — 4.7:1, AA at any size */
-  --text-quiet: #656b75; /* 3.7:1 — non-text only, or >=24px */
+  --text-primary: #ede9e1; /* warm white, deliberately not #FFF – 16.3:1 */
+  --text-secondary: #9aa0aa; /* body support – 7.5:1 */
+  --text-tertiary: #767c86; /* mono metadata – 4.7:1, AA at any size */
+  --text-quiet: #656b75; /* 3.7:1 – non-text only, or >=24px */
 
   /* --- territory accents ----------------------------------------------
      Desaturated one to two steps below the default Tailwind ramps on
      purpose: the saturated versions are exactly the hues that read as
      AI-startup. Every value clears 4.5:1 so an accent is legal as small
      mono text without an exception. */
-  --acc-identity: #9b8cff; /* violet — home            7.2:1 */
+  --acc-identity: #9b8cff; /* violet – home            7.2:1 */
   --acc-adtech: #4da8ff; /* electric blue            7.9:1 */
   --acc-experiments: #a6c93c; /* acid lime, olive-shifted 10.4:1 */
   --acc-creative: #ec6a9c; /* magenta-rose             6.7:1 */
@@ -165,7 +165,7 @@
     color: var(--text-primary);
   }
 
-  /* Focus must be instant — never transitioned. */
+  /* Focus must be instant – never transitioned. */
   :focus-visible {
     outline: 2px solid var(--accent);
     outline-offset: 2px;
@@ -192,7 +192,7 @@
    COMPONENT CLASSES
 
    These MUST live in `components`, not `utilities`. They set defaults that a
-   utility is expected to override at the call site — `.label` sets a colour,
+   utility is expected to override at the call site – `.label` sets a colour,
    `.display` sets a line-height, `.measure` sets a max-width. Tailwind sorts
    `components` before `utilities`, so `text-accent`, `leading-*` and `max-w-*`
    win as intended.

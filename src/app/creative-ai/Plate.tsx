@@ -37,7 +37,7 @@ const FRAME: Record<Span, { w: number; h: number }> = {
   tall: { w: 900, h: 1200 },
 };
 
-/** Mono terminus for the plate rule — a real measurement of the plate. */
+/** Mono terminus for the plate rule – a real measurement of the plate. */
 export const plateFormat: Record<Span, string> = {
   wide: "16 : 9",
   square: "1 : 1",
@@ -152,7 +152,7 @@ const artwork: Record<Visual, (w: number, h: number) => React.ReactNode> = {
     );
   },
 
-  /** Concentric arcs whose centres drift — a bloom, not a bullseye. */
+  /** Concentric arcs whose centres drift – a bloom, not a bullseye. */
   bloom: (w, h) => {
     const cx = w * 0.5;
     const cy = h * 0.5;
@@ -195,7 +195,7 @@ const artwork: Record<Visual, (w: number, h: number) => React.ReactNode> = {
     );
   },
 
-  /** Layered horizontal bands — sediment, read bottom to top. */
+  /** Layered horizontal bands – sediment, read bottom to top. */
   strata: (w, h) => {
     const px = w * 0.07;
     const py = h * 0.1;

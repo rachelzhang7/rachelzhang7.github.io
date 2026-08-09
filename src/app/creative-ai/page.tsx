@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 };
 
 /**
- * Creative AI — the gallery.
+ * Creative AI – the gallery.
  *
  * Every other page argues. This one shows, and then gets out of the way: a
  * three-line header, then plates with a rule, a title and two sentences. The
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
  * span, so the page is read as a hang rather than scanned as a grid.
  *
  * Plates carry roughly twice the vertical air of any other page on the site.
- * That is the point — space is what tells a visitor this is work being shown,
+ * That is the point – space is what tells a visitor this is work being shown,
  * not work being sold.
  */
 
@@ -38,7 +38,7 @@ export default function CreativeAI() {
   return (
     <PageShell territory="creative">
       {/* ---------------------------------------------------------------
-          HEADER — three lines and a rule. Deliberately the smallest
+          HEADER – three lines and a rule. Deliberately the smallest
           header on the site.
           --------------------------------------------------------------- */}
       <Section mark="01 · Creative AI" className="pt-16 sm:pt-24">
@@ -67,7 +67,7 @@ export default function CreativeAI() {
       </Section>
 
       {/* ---------------------------------------------------------------
-          PLATES — one section each, so the rail indexes the hang.
+          PLATES – one section each, so the rail indexes the hang.
           --------------------------------------------------------------- */}
       {publishedWorks.map((work, i) => {
         const n = String(i + 1).padStart(2, "0");

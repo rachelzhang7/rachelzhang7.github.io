@@ -1,7 +1,7 @@
 import type { TerritoryKey } from "./site";
 
 /**
- * Homepage — identity.
+ * Homepage – identity.
  *
  * The job of this page is positioning, answered in 10–15 seconds: a product
  * builder working across AI, AdTech and Creative AI, with unusual depth in
@@ -22,7 +22,7 @@ export const hero = {
   },
   /** One paragraph. No company names, no skill lists, no years. */
   body: [
-    "I've built products across advertising data, commerce, creative, and automation — alongside hands-on experiments with AI products and generative creativity.",
+    "I've built products across advertising data, commerce, creative, and automation – alongside hands-on experiments with AI products and generative creativity.",
   ],
   actions: [
     { label: "Explore my work", href: "/adtech/", primary: true },
@@ -82,7 +82,7 @@ export const selectedWork: SelectedWork[] = [
     territory: "adtech",
     tags: ["AdTech", "AI", "Commerce"],
     blurb:
-      "Bringing conversational intelligence into the workflow of millions of merchants — turning complex campaign systems into something navigable in plain language.",
+      "Bringing conversational intelligence into the workflow of millions of merchants – turning complex campaign systems into something navigable in plain language.",
     href: "/adtech/",
     cta: "View case study",
     visual: "conversation",
@@ -93,7 +93,7 @@ export const selectedWork: SelectedWork[] = [
     territory: "experiments",
     tags: ["Experiment", "Trust"],
     blurb:
-      "Making AI outputs inspectable — what was checked, what supports them, and what remains uncertain.",
+      "Making AI outputs inspectable – what was checked, what supports them, and what remains uncertain.",
     href: "/experiments/",
     cta: "View project",
     visual: "receipt",
@@ -131,7 +131,7 @@ export const closing = {
   quote: "AI is shrinking the distance between having an idea and making it real.",
   body: [
     "For most of my career, my job was deciding what should be built and working with teams to make it real.",
-    "A product person can now move much further across the stack — from an observation to a prototype, from a prototype to an experience, and sometimes from an experience to a business.",
+    "A product person can now move much further across the stack – from an observation to a prototype, from a prototype to an experience, and sometimes from an experience to a business.",
     "That's the direction I'm exploring now.",
   ],
   actions: [

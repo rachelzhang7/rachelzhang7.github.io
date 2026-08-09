@@ -33,7 +33,7 @@ function htmlFiles(dir, acc = []) {
 }
 
 if (!existsSync(OUT)) {
-  console.error(`✗ ${OUT}/ does not exist — did the build run?`);
+  console.error(`✗ ${OUT}/ does not exist – did the build run?`);
   process.exit(1);
 }
 
@@ -46,10 +46,10 @@ for (const route of ROUTES) {
 }
 
 // 2. The 404 page. Next has regressed on this before with trailingSlash:true,
-//    and the upstream issues were closed as stale rather than fixed — so this
+//    and the upstream issues were closed as stale rather than fixed – so this
 //    stays asserted rather than trusted.
 if (!existsSync(join(OUT, "404.html"))) {
-  fail("out/404.html is missing — GitHub Pages needs this for unmatched paths");
+  fail("out/404.html is missing – GitHub Pages needs this for unmatched paths");
 }
 
 // 3. SEO surface.
@@ -66,7 +66,7 @@ for (const page of pages) {
   //    images.unoptimized, next/image emits /_next/image?url=… which has no
   //    handler in a static export. Every image 404s, and CI stays green.
   if (html.includes("/_next/image")) {
-    fail(`${page} references /_next/image — that route does not exist in a static export`);
+    fail(`${page} references /_next/image – that route does not exist in a static export`);
   }
 
   // 5. Placeholder links must never reach production.
@@ -75,7 +75,7 @@ for (const page of pages) {
   }
 }
 
-// 6. Source guard. `bg-base` is not a utility — the page ground is `bg-canvas`
+// 6. Source guard. `bg-base` is not a utility – the page ground is `bg-canvas`
 //    (see the naming constraint in globals.css). A dead utility class produces
 //    no CSS at all, so the element silently falls back to transparent and the
 //    bug is invisible in review. Catch it in source rather than in production.
@@ -92,7 +92,17 @@ for (const file of sourceFiles("src")) {
   const src = readFileSync(file, "utf8");
   // Match the utility, never the raw `--bg-base` custom property.
   if (/(?<!-)bg-base\b/.test(src)) {
-    fail(`${file} uses \`bg-base\`, which is not a utility — use \`bg-canvas\``);
+    fail(`${file} uses \`bg-base\`, which is not a utility – use \`bg-canvas\``);
+  }
+
+  // 7. House style: en dash (–), never em dash (—). Asserted rather than
+  //    trusted, because an em dash is trivial to reintroduce by pasting copy
+  //    and the two are near-indistinguishable in review at this size.
+  const emDashes = src.match(/—/g);
+  if (emDashes) {
+    fail(
+      `${file} contains ${emDashes.length} em dash(es) – this site uses en dashes`,
+    );
   }
 }
 
@@ -103,4 +113,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log(`✓ Static export verified — ${pages.length} pages, all routes present.`);
+console.log(`✓ Static export verified – ${pages.length} pages, all routes present.`);

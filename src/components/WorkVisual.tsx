@@ -4,7 +4,7 @@ import type { SelectedWork } from "@/content/home";
  * Generated schematics standing in for screenshots that don't exist yet.
  *
  * These deliberately encode the actual mechanic of each project rather than
- * being abstract line art — an investor who knows the space reads decorative
+ * being abstract line art – an investor who knows the space reads decorative
  * diagrams as filler and quietly discounts the page.
  *
  * Every one is wrapped in a fixed aspect ratio, so dropping in a real capture
@@ -115,7 +115,7 @@ const shapes: Record<SelectedWork["visual"], React.ReactNode> = {
     </g>
   ),
 
-  /** A spectrum — sound as a visual medium. */
+  /** A spectrum – sound as a visual medium. */
   gallery: (
     <g fill="none" strokeWidth={1}>
       {Array.from({ length: 34 }, (_, i) => {
@@ -139,7 +139,7 @@ const shapes: Record<SelectedWork["visual"], React.ReactNode> = {
     </g>
   ),
 
-  /** A verification lattice — structure you can inspect from any face. */
+  /** A verification lattice – structure you can inspect from any face. */
   lattice: (
     <g fill="none" strokeWidth={1}>
       <path d="M160 40 L232 82 L232 160 L160 202 L88 160 L88 82 Z" stroke={faint} />

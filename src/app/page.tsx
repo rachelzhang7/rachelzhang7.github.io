@@ -39,7 +39,7 @@ export default function Home() {
   return (
     <PageShell territory="identity">
       {/* ---------------------------------------------------------------
-          HERO — positioning, answered in 10–15 seconds.
+          HERO – positioning, answered in 10–15 seconds.
           --------------------------------------------------------------- */}
       <Section mark="01 · Identity" className="pt-16 sm:pt-24">
         <p className="label beat beat-1 text-accent">{hero.eyebrow}</p>
@@ -109,7 +109,7 @@ export default function Home() {
       </Section>
 
       {/* ---------------------------------------------------------------
-          THE WORK — four editorial panels, not a card grid.
+          THE WORK – four editorial panels, not a card grid.
           --------------------------------------------------------------- */}
       <Section mark="02 · The work" className="mt-32 sm:mt-44">
         <SectionHead
@@ -129,7 +129,7 @@ export default function Home() {
                 <div className="grid gap-6 lg:grid-cols-[6rem_1fr_auto] lg:items-baseline lg:gap-10">
                   {/* The dimension is the thing to remember, so it is set
                       larger than the site's standard mono label and carries
-                      the accent — it is the framework, not metadata. */}
+                      the accent – it is the framework, not metadata. */}
                   <div className="flex items-baseline gap-4 lg:block">
                     <span className="font-mono text-2xl leading-none text-tertiary transition-colors duration-150 group-hover:text-accent">
                       {t.index}
@@ -144,7 +144,7 @@ export default function Home() {
                       {t.title}
                     </h3>
                     {/* The claim, on its own line rather than trailing the
-                        title inline — one idea per line reads faster and the
+                        title inline – one idea per line reads faster and the
                         accessible name stays clean. */}
                     <p className="mt-3 text-base text-tertiary sm:text-lg">
                       {t.headline}
@@ -172,7 +172,7 @@ export default function Home() {
       </Section>
 
       {/* ---------------------------------------------------------------
-          SELECTED WORK — proof, without becoming a catalogue.
+          SELECTED WORK – proof, without becoming a catalogue.
           --------------------------------------------------------------- */}
       <Section mark="03 · Selected work" className="mt-32 sm:mt-44">
         <SectionHead
@@ -224,7 +224,7 @@ export default function Home() {
       </Section>
 
       {/* ---------------------------------------------------------------
-          CLOSING — the reason the other four pages cohere.
+          CLOSING – the reason the other four pages cohere.
           --------------------------------------------------------------- */}
       <Section mark="04 · Closing" className="mt-32 sm:mt-44">
         <div className="hairline rule-draw" />

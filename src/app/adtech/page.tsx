@@ -36,7 +36,7 @@ export default function AdTech() {
   return (
     <PageShell territory="adtech">
       {/* ---------------------------------------------------------------
-          HEADER — the claim, then the two paragraphs that qualify it.
+          HEADER – the claim, then the two paragraphs that qualify it.
           --------------------------------------------------------------- */}
       <Section mark="01 · AdTech" className="pt-16 sm:pt-24">
         <p className="label beat beat-1 text-accent">{adtechIntro.eyebrow}</p>
@@ -80,7 +80,7 @@ export default function AdTech() {
       </Section>
 
       {/* ---------------------------------------------------------------
-          THE SYSTEM — five stages on one rule. Rules and type, no boxes.
+          THE SYSTEM – five stages on one rule. Rules and type, no boxes.
           --------------------------------------------------------------- */}
       <Section id="system" mark="02 · The system" className="mt-28 sm:mt-40">
         <SectionHead
@@ -99,7 +99,7 @@ export default function AdTech() {
       </Section>
 
       {/* ---------------------------------------------------------------
-          SELECTED WORK — a ledger with fixed column stops, not a card grid.
+          SELECTED WORK – a ledger with fixed column stops, not a card grid.
           Each row is one problem, read left to right: index, what it was,
           what was built, what was hard, what it touched.
           --------------------------------------------------------------- */}
@@ -147,7 +147,7 @@ export default function AdTech() {
                   {/* Tags, stacked in the right margin like a spec sheet.
                       Each carries a 1px keyline: longer tags wrap to two lines
                       in this column, and without it "Ads Infrastructure" reads
-                      as two separate tags. Neutral rather than accent — three
+                      as two separate tags. Neutral rather than accent – three
                       keylines across six studies would spend the page's whole
                       accent budget on decoration. */}
                   <ul className="flex flex-wrap gap-x-4 gap-y-2 lg:block lg:space-y-2">
@@ -169,7 +169,7 @@ export default function AdTech() {
       </Section>
 
       {/* ---------------------------------------------------------------
-          HOW I THINK — the one place on the site that asks to be read
+          HOW I THINK – the one place on the site that asks to be read
           rather than scanned: one narrow measure, generous leading.
           --------------------------------------------------------------- */}
       <Section id="thinking" mark="04 · How I think" className="mt-28 sm:mt-40">
@@ -198,7 +198,7 @@ export default function AdTech() {
       </Section>
 
       {/* ---------------------------------------------------------------
-          WHAT'S NEXT — the progression, with the last term carrying the
+          WHAT'S NEXT – the progression, with the last term carrying the
           accent as a 1px underline rather than as coloured display type.
           --------------------------------------------------------------- */}
       <Section id="next" mark="05 · What's next" className="mt-28 sm:mt-40">

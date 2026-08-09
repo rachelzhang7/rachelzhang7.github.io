@@ -3,7 +3,7 @@ import { Reveal } from "./Reveal";
 
 /**
  * Content is grouped by rules and whitespace, never by cards. A section is a
- * region bounded by a labelled hairline — the way a chart axis is labelled —
+ * region bounded by a labelled hairline – the way a chart axis is labelled –
  * which is what stops the site reading as a dashboard.
  */
 
@@ -28,7 +28,7 @@ export function Section({ children, mark, className, id }: SectionProps) {
 }
 
 type SectionHeadProps = {
-  /** Mono eyebrow — always a measurement or a category, never a claim. */
+  /** Mono eyebrow – always a measurement or a category, never a claim. */
   eyebrow: string;
   /** The claim. Set in the serif. */
   headline?: string;
