@@ -30,17 +30,6 @@ export const hero = {
   ],
 };
 
-/**
- * The three states the hero visual argues for, labelled beneath it. These are
- * the conceptual spine of the whole site: many signals become understanding,
- * understanding becomes expression.
- */
-export const heroStates = [
-  { label: "Systems", note: "Complexity at scale" },
-  { label: "Intelligence", note: "Signals into understanding" },
-  { label: "Creation", note: "Ideas expressed, value created" },
-];
-
 /** Small credibility strip under the hero. Kept to three, kept factual. */
 export const credentials = [
   { value: "Ex-TikTok", label: "Product leadership" },
