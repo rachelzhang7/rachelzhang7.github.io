@@ -1,258 +1,266 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageShell } from "@/components/PageShell";
-import { Section, SectionHead } from "@/components/Section";
+import { Section } from "@/components/Section";
 import { Reveal } from "@/components/Reveal";
-import { WorkVisual } from "@/components/WorkVisual";
 import { cn } from "@/lib/cn";
-import type { SelectedWork } from "@/content/home";
-import type { Experiment } from "@/content/experiments";
-import { experimentsIntro, publishedExperiments } from "@/content/experiments";
+import {
+  creativeWarRoomThesis,
+  experimentsIntro,
+  years,
+  type Experiment,
+} from "@/content/experiments";
 import { territoryByKey } from "@/content/territories";
-
-/**
- * Experiments – builder evidence.
- *
- * This page has one job: make it obvious that things actually got built. So it
- * is deliberately the least polished page on the site – a laboratory notebook
- * rather than a case-study deck. Two devices carry that:
- *
- *   1. Every rule here is 1px DASHED. It is the only page where the rule style
- *      changes, and it is what makes the page read as working notes.
- *   2. The entries sit on the shared 12-column grid at different spans and
- *      different vertical offsets, so nothing baseline-aligns across the page –
- *      but every left edge still lands on a column line, so the irregularity
- *      reads as a notebook, not as a broken layout.
- *
- * Only published entries render (`publishedExperiments`), which today is two.
- * The layout is tuned for a short list: a full-width log with an index at the
- * top, not a grid that needs six items before it looks finished.
- */
 
 export const metadata: Metadata = {
   title: "Experiments",
-  description: territoryByKey.experiments.body,
+  description: experimentsIntro.body,
   alternates: { canonical: "/experiments/" },
   openGraph: { url: "/experiments/" },
 };
 
 /**
- * Placement on the 12-column grid. Left edges snap to column lines; spans and
- * vertical offsets differ so no two entries share a baseline. The cycle is
- * four long so a growing list keeps varying, but the first two values are the
- * ones actually tuned – they are what a visitor sees today.
- *
- * Everything is `lg:` prefixed: below the rail breakpoint the offsets collapse
- * to zero and each entry is simply full width.
+ * Intrinsic dimensions of the real assets, so every image reserves its space
+ * before it loads and the page never shifts.
  */
-const PLACEMENTS = [
-  { col: "lg:col-start-1 lg:col-end-10", offset: "" },
-  { col: "lg:col-start-4 lg:col-end-13", offset: "lg:mt-44" },
-  { col: "lg:col-start-2 lg:col-end-11", offset: "lg:mt-32" },
-  { col: "lg:col-start-5 lg:col-end-13", offset: "lg:mt-48" },
-];
-
-/**
- * Schematics are only drawn where one exists that encodes the real mechanic of
- * that build. An unmapped entry renders no figure rather than decorative line
- * art standing in for evidence.
- */
-const FIGURES: Record<string, SelectedWork["visual"]> = {
-  "trust-receipt": "receipt",
-  "ad-ai-pulse": "pulse",
+const DIMS: Record<string, [number, number]> = {
+  "/media/experiments/ad-ai-pulse.jpg": [1600, 828],
+  "/media/experiments/beam.jpg": [1600, 1066],
+  "/media/experiments/creative-war-room.jpg": [1440, 810],
+  "/media/experiments/anchor.jpg": [1440, 960],
+  "/media/experiments/trust-receipt.jpg": [1440, 960],
+  "/media/experiments/cortex.jpg": [1440, 960],
 };
 
-/** The four questions the page exists to answer, in reading order. */
-function fieldsOf(e: Experiment) {
-  return [
-    { label: "Problem", value: e.problem, payload: false },
-    { label: "Built", value: e.built, payload: false },
-    { label: "My contribution", value: e.contribution, payload: false },
-    { label: "What it taught", value: e.learning, payload: true },
-  ].filter((f) => f.value);
+function Artifact({
+  experiment,
+  priority = false,
+  className,
+}: {
+  experiment: Experiment;
+  priority?: boolean;
+  className?: string;
+}) {
+  const [w, h] = DIMS[experiment.image] ?? [1440, 960];
+  return (
+    <figure className={cn("overflow-hidden bg-sunken", className)}>
+      {/* Plain <img>: the image optimizer has no server to run on in a static
+          export. Each artifact keeps its own visual identity – no tint, no
+          filter, nothing imposed by the site's palette. */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={experiment.image}
+        alt={`${experiment.name} – product visual`}
+        width={w}
+        height={h}
+        loading={priority ? "eager" : "lazy"}
+        decoding="async"
+        className="block h-auto w-full transition-transform duration-700 ease-[var(--ease-instrument)] group-hover:scale-[1.015]"
+      />
+    </figure>
+  );
 }
 
-/** Two-digit typeset figure. Every number on this page is a measurement. */
-const pad = (n: number) => String(n).padStart(2, "0");
-/** Zero-based position → its printed entry number. */
-const idx = (i: number) => pad(i + 1);
-
 export default function ExperimentsPage() {
-  const entries = publishedExperiments;
-  // The next pillar in the Depth -> Building -> Taste progression.
-  const nextPillar = territoryByKey.creative;
+  const creative = territoryByKey.creative;
+  // A year with no entries is not rendered, so the section numbering has to be
+  // derived from what actually ships – otherwise removing a year leaves a gap.
+  const shown = years.filter((y) => y.featured.length > 0 || y.more.length > 0);
 
   return (
     <PageShell territory="experiments">
       {/* ---------------------------------------------------------------
-          HEADER – what this page is, and the index of what's in it.
+          HERO – deliberately short. The work starts almost immediately.
           --------------------------------------------------------------- */}
-      <Section mark="01 · Experiments" className="pt-16 sm:pt-24">
+      <Section mark="01 · Experiments" className="pt-14 sm:pt-20">
         <p className="label beat beat-1 text-accent">{experimentsIntro.eyebrow}</p>
 
-        <h1 className="display beat beat-2 mt-8 text-[clamp(2.25rem,6vw,4rem)] leading-[1.06] text-primary">
+        <h1 className="display beat beat-2 mt-6 text-[clamp(2.5rem,6vw,4.5rem)] leading-[1.06] text-primary">
           {experimentsIntro.headline}
         </h1>
 
-        <div className="beat beat-3 mt-10 max-w-[36rem]">
-          {experimentsIntro.body.map((line) => (
-            <p key={line} className="mt-4 text-base leading-relaxed text-secondary">
-              {line}
-            </p>
-          ))}
+        <div className="beat beat-3 mt-8 grid gap-6 lg:grid-cols-[1.3fr_1fr] lg:gap-16">
+          <p className="measure text-base leading-relaxed text-secondary sm:text-lg">
+            {experimentsIntro.body}
+          </p>
+          <p className="measure-tight text-base leading-relaxed text-tertiary">
+            {experimentsIntro.note}
+          </p>
         </div>
-
-        {/* The index. With a short list this is what makes the page feel like a
-            notebook with contents rather than a page that ran out of items. */}
-        <nav aria-label="Index of experiments" className="beat beat-4 mt-14">
-          <div className="flex items-baseline justify-between gap-6">
-            <p className="label">Index</p>
-          </div>
-          <div className="rule-draw mt-3 border-t border-dashed border-strong" />
-          <ol>
-            {entries.map((e, i) => (
-              <li key={e.slug} className="border-b border-dashed border-hair">
-                <a
-                  href={`#${e.slug}`}
-                  className="group flex flex-wrap items-baseline gap-x-6 gap-y-1 py-4"
-                >
-                  <span className="label w-8 shrink-0 text-accent">{idx(i)}</span>
-                  <span className="text-sm text-primary transition-colors duration-150 group-hover:text-accent-2">
-                    {e.title}
-                  </span>
-                  <span className="label ml-auto transition-colors duration-150 group-hover:text-primary">
-                    {e.category}
-                  </span>
-                </a>
-              </li>
-            ))}
-          </ol>
-        </nav>
       </Section>
 
       {/* ---------------------------------------------------------------
-          THE LOG – each entry as a module of dashed rules and labelled
-          fields. Four fields, always in the same order, so the page can be
-          scanned vertically by field rather than read end to end.
+          YEARS – newest first. Each year is a chapter: a marker, the
+          featured work, then a compact index of everything else.
           --------------------------------------------------------------- */}
-      <Section mark="02 · Build log" className="mt-28 sm:mt-36">
-        <SectionHead eyebrow="Build log" />
-        <div className="mt-16 lg:mt-20">
-          {entries.map((e, i) => {
-            const place = PLACEMENTS[i % PLACEMENTS.length];
-            const figure = FIGURES[e.slug];
+      {shown.map((year, yi) => (
+          <Section
+            key={year.year}
+            id={year.year}
+            mark={`${String(yi + 2).padStart(2, "0")} · ${year.year}`}
+            className={yi === 0 ? "mt-20 sm:mt-28" : "mt-24 sm:mt-32"}
+          >
+            {/* Year marker. Large, quiet, structural – it carries the
+                chronology so no heading has to say "featured work". */}
+            <Reveal>
+              <div className="flex items-baseline gap-6 border-t border-hair pt-6">
+                <h2 className="font-mono text-[2.5rem] leading-none text-quiet sm:text-[3.25rem]">
+                  {year.year}
+                </h2>
+                <p className="label">
+                  {year.featured.length + year.more.length} experiments
+                </p>
+              </div>
+            </Reveal>
 
-            return (
-              <div
-                key={e.slug}
-                className={cn(
-                  "lg:grid lg:grid-cols-12 lg:gap-x-6",
-                  i > 0 && "mt-24 sm:mt-32",
-                  i > 0 && place.offset,
-                )}
-              >
-                <Reveal className={place.col}>
-                  <article id={e.slug} className="scroll-mt-28">
-                    {/* Module head: category, and the entry's own number. */}
-                    <div className="flex items-baseline justify-between gap-6 border-t border-dashed border-strong pt-5">
-                      <p className="label text-accent">{e.category}</p>
-                      {e.meta && <p className="label">{e.meta}</p>}
-                    </div>
+            {/* --- Featured: editorial alternating compositions ----------- */}
+            {year.featured.map((exp, i) => {
+              const flipped = i % 2 === 1;
+              return (
+                <Reveal key={exp.slug} className="mt-16 sm:mt-24">
+                  <article id={exp.slug} className="group scroll-mt-28">
+                    {/* The column widths swap with the order. Swapping order
+                        alone would put the visual in the narrow column on every
+                        flipped row, which inverts the intended 40/60. */}
+                    <div
+                      className={cn(
+                        "grid items-center gap-8 lg:gap-14",
+                        flipped
+                          ? "lg:grid-cols-[1.6fr_1fr]"
+                          : "lg:grid-cols-[1fr_1.6fr]",
+                      )}
+                    >
+                      {/* Text always precedes the visual in the DOM, so mobile
+                          stacks identically for every project. Only desktop
+                          alternates. */}
+                      <div className={flipped ? "lg:order-2" : undefined}>
+                        <p className="label">
+                          <span className="text-accent">
+                            {String(i + 1).padStart(2, "0")}
+                          </span>{" "}
+                          {year.year}
+                        </p>
 
-                    <div className="mt-6 flex flex-col gap-8 md:flex-row md:items-start md:justify-between md:gap-10">
-                      <div className="flex items-baseline gap-4">
-                        <span className="font-mono text-2xl leading-none text-tertiary">
-                          {idx(i)}
-                        </span>
-                        {/* h2: the build-log section head carries no headline
-                            of its own, so each entry is a top-level subsection
-                            and the heading order stays h1 → h2. */}
-                        <h2 className="display text-2xl text-primary sm:text-3xl">
-                          {e.title}
-                        </h2>
+                        <h3 className="display mt-4 text-[1.75rem] text-primary sm:text-[2.125rem]">
+                          {exp.name}
+                        </h3>
+
+                        <p className="mt-4 text-base leading-relaxed text-tertiary sm:text-lg">
+                          {exp.headline}
+                        </p>
+
+                        <p className="measure-tight mt-6 text-sm leading-relaxed text-secondary sm:text-base">
+                          {exp.description}
+                        </p>
+
+                        {/* Surfaced quietly, not given a section of its own. */}
+                        {exp.slug === "creative-war-room" && (
+                          <p className="mt-6 border-l border-accent-rule pl-4 text-sm leading-relaxed text-tertiary">
+                            {creativeWarRoomThesis}
+                          </p>
+                        )}
+
+                        <p className="label mt-7 normal-case leading-[1.6] tracking-[0.08em] text-quiet">
+                          {exp.footer}
+                        </p>
                       </div>
 
-                      {figure && (
-                        <figure
-                          aria-hidden="true"
-                          className="w-full max-w-[15rem] shrink-0"
-                        >
-                          <WorkVisual
-                            variant={figure}
-                            className="w-full border border-dashed border-hair bg-sunken"
-                          />
-                          <figcaption className="label mt-2">
-                            Fig. {idx(i)}
-                          </figcaption>
-                        </figure>
-                      )}
+                      <div className={flipped ? "lg:order-1" : undefined}>
+                        <Artifact experiment={exp} priority={yi === 0 && i === 0} />
+                      </div>
                     </div>
-
-                    {/* The four fields. Mono label left, argument right – a
-                        notebook field list, not a card. */}
-                    <dl className="mt-10">
-                      {fieldsOf(e).map((f) => (
-                        <div
-                          key={f.label}
-                          className="grid gap-2 border-t border-dashed border-hair py-5 sm:grid-cols-[9rem_1fr] sm:gap-6"
-                        >
-                          <dt className="label flex items-center gap-2 sm:pt-1">
-                            {f.payload && (
-                              <span
-                                aria-hidden="true"
-                                className="inline-block h-[5px] w-[5px] shrink-0 bg-accent"
-                              />
-                            )}
-                            {f.label}
-                          </dt>
-                          <dd
-                            className={cn(
-                              "measure text-sm leading-relaxed sm:text-base",
-                              f.payload ? "text-primary" : "text-secondary",
-                            )}
-                          >
-                            {f.value}
-                          </dd>
-                        </div>
-                      ))}
-                    </dl>
-
-                    {e.stack.length > 0 && (
-                      <p className="label border-t border-dashed border-hair pt-5">
-                        {e.stack.join(" · ")}
-                      </p>
-                    )}
                   </article>
                 </Reveal>
-              </div>
-            );
-          })}
-        </div>
-      </Section>
+              );
+            })}
+
+            {/* --- More: a compact index. Native <details>, so it works with
+                zero JavaScript and gets keyboard behaviour for free. ------ */}
+            {year.more.length > 0 && (
+              <Reveal className="mt-20 sm:mt-28">
+                <p className="label border-t border-hair pt-6">
+                  More from {year.year}
+                </p>
+
+                <div className="mt-2">
+                  {year.more.map((exp) => (
+                    <details
+                      key={exp.slug}
+                      id={exp.slug}
+                      className="group scroll-mt-28 border-b border-hair"
+                    >
+                      <summary className="flex cursor-pointer list-none items-baseline gap-4 py-6 marker:hidden [&::-webkit-details-marker]:hidden">
+                        <span className="display flex-1 text-[1.25rem] text-primary transition-colors duration-150 group-hover:text-accent-2 sm:text-[1.5rem]">
+                          {exp.name}
+                        </span>
+                        <span className="label hidden normal-case tracking-[0.08em] text-quiet sm:block">
+                          {exp.footer}
+                        </span>
+                        <span
+                          aria-hidden="true"
+                          className="ml-2 font-mono text-lg leading-none text-tertiary transition-transform duration-200 group-open:rotate-45"
+                        >
+                          +
+                        </span>
+                      </summary>
+
+                      <div className="grid gap-8 pb-10 lg:grid-cols-[1fr_1.4fr] lg:gap-12">
+                        <div>
+                          <p className="text-base leading-relaxed text-tertiary">
+                            {exp.headline}
+                          </p>
+                          <p className="measure-tight mt-4 text-sm leading-relaxed text-secondary">
+                            {exp.description}
+                          </p>
+                          {exp.award && (
+                            <p className="label mt-6 flex items-center gap-2 normal-case leading-[1.6] tracking-[0.08em] text-tertiary">
+                              <span
+                                aria-hidden="true"
+                                className="h-[5px] w-[5px] shrink-0 bg-accent-hi"
+                              />
+                              {exp.award}
+                            </p>
+                          )}
+                          <p className="label mt-5 normal-case leading-[1.6] tracking-[0.08em] text-quiet sm:hidden">
+                            {exp.footer}
+                          </p>
+                        </div>
+                        <Artifact experiment={exp} />
+                      </div>
+                    </details>
+                  ))}
+                </div>
+              </Reveal>
+            )}
+          </Section>
+        ))}
 
       {/* ---------------------------------------------------------------
-          ONWARD – where the experiments are heading.
+          ONWARD – one directional line toward Creative AI.
           --------------------------------------------------------------- */}
-      <Section mark="03 · Onward" className="mt-32 sm:mt-44">
-        <SectionHead
-          eyebrow="Next"
-        >
-          <p className="measure mt-6 text-base leading-relaxed text-secondary">
-            {nextPillar.body}
-          </p>
+      <Section
+        mark={`${String(shown.length + 2).padStart(2, "0")} · Onward`}
+        className="mt-24 sm:mt-32"
+      >
+        <Reveal>
           <Link
-            href={nextPillar.href}
-            className="group mt-8 inline-flex items-center gap-3 border border-dashed border-strong px-5 py-3 text-sm text-secondary transition-colors duration-150 hover:border-accent-2-rule hover:text-primary"
+            href={creative.href}
+            className="group flex flex-wrap items-baseline justify-between gap-6 border-t border-hair pt-10"
           >
-            {nextPillar.cta}
-            <span
-              aria-hidden="true"
-              className="transition-transform duration-200 group-hover:translate-x-1"
-            >
-              →
+            <span className="display text-[1.75rem] text-primary sm:text-[2.25rem]">
+              See what I&rsquo;m making with Creative AI
+            </span>
+            <span className="label inline-flex items-center gap-2 text-tertiary transition-colors duration-150 group-hover:text-accent-2">
+              {creative.dimension}
+              <span
+                aria-hidden="true"
+                className="transition-transform duration-200 group-hover:translate-x-1"
+              >
+                →
+              </span>
             </span>
           </Link>
-        </SectionHead>
+        </Reveal>
       </Section>
     </PageShell>
   );

@@ -1,106 +1,133 @@
-import type { TerritoryKey } from "./site";
-
 /**
- * Experiments – builder evidence.
+ * Experiments – a curated builder journal, organised by year.
  *
- * This page answers one skeptical question: does she actually make things?
- * So the unit here is a *build*, described as problem → thing built →
- * contribution → what it changed. Awards are metadata, never the headline.
+ * Not a résumé and not a hackathon archive. Each entry is a real thing that was
+ * built, carried by its real artifact.
  *
- * `published: false` entries are scaffolding for work Rachel has done but
- * hasn't written up yet. They are filtered out of the render, so the page
- * always shows a short list of real things rather than a grid of empty slots.
- * Flip the flag once the copy is real.
+ * Rules for anything added here: no invented screenshots, capabilities, metrics,
+ * awards, links or status labels. An award appears only where one was actually
+ * given. A `href` appears only where a real link exists.
  */
 
 export type Experiment = {
   slug: string;
-  title: string;
-  /** Mono eyebrow: the domain this experiment probes. */
-  category: string;
-  /** What was wrong or unknown before the build. */
-  problem: string;
-  /** The artifact itself. */
-  built: string;
-  /** Her specific contribution – matters most when the build was a team one. */
-  contribution: string;
-  /** What the build taught, which is the real output of an experiment. */
-  learning: string;
-  stack: string[];
-  /** Context like "Hackathon, 2025" – deliberately small in the layout. */
-  meta?: string;
-  published: boolean;
+  name: string;
+  /** The idea in one line. */
+  headline: string;
+  /** What it actually does. One paragraph, not a case study. */
+  description: string;
+  /** Understated category footer. Not a tag list. */
+  footer: string;
+  /** Real asset under /public/media/experiments. */
+  image: string;
+  /** Only where one was actually awarded. */
+  award?: string;
+  /** Only where a real link exists. */
+  href?: string;
+};
+
+export type Year = {
+  year: string;
+  /** Given the editorial alternating treatment. */
+  featured: Experiment[];
+  /** Subordinate, revealed on interaction. */
+  more: Experiment[];
 };
 
 export const experimentsIntro = {
   eyebrow: "Experiments · Prototypes · Hackathons",
-  headline: "Ideas become clearer when you build them.",
-  body: [
-    "I use prototypes as a way of thinking. Writing a spec forces you to describe a thing; building it forces you to find out whether the thing actually works.",
-    "These are weekend builds, hackathon projects, and technical experiments. Some are rough. That's the point – they exist to answer a question, and the answer is usually not the one I expected.",
-  ],
+  headline: "I build to understand.",
+  body: "I use hackathons and prototypes to explore new technologies by turning ideas into working products – quickly, repeatedly, and often under tight constraints.",
+  note: "Some experiments become products. Others become lessons. Both shape what I build next.",
 };
 
-export const experiments: Experiment[] = [
+/**
+ * Years render newest first. Adding a year means adding an entry here – the
+ * page reads this array and needs no structural change. A year with no entries
+ * is filtered out rather than rendered as an empty marker.
+ */
+export const years: Year[] = [
   {
-    slug: "trust-receipt",
-    title: "Trust Receipt",
-    category: "Trustworthy AI",
-    problem:
-      "AI systems produce confident answers with no way to see what was actually checked. A user is asked to either trust the whole output or none of it.",
-    built:
-      "A prototype that makes an AI output inspectable – surfacing which sources were consulted, which claims were verified against them, which were human-reviewed, and which remain uncertain.",
-    contribution:
-      "Designed the provenance model and the receipt interface, and built the prototype end to end.",
-    learning:
-      "Showing uncertainty made people trust the system more, not less. The failure mode of AI interfaces isn't being wrong – it's being unfalsifiable.",
-    stack: ["Provenance", "Evaluation", "AI Interfaces"],
-    published: true,
-  },
-  {
-    slug: "ad-ai-pulse",
-    title: "Ad AI Pulse",
-    category: "Agentic AI",
-    problem:
-      "Changes in advertising and AI arrive as a firehose of fragmented announcements. Knowing what happened is easy; knowing what it means for your particular role is the hard part.",
-    built:
-      "An AI-native intelligence system that ingests changes across the advertising and AI landscape and turns them into role-specific interpretation – what shifted, why it matters to you, and what decision it implies.",
-    contribution:
-      "Defined the agent architecture and the role-conditioning model, and built the ingestion and synthesis pipeline.",
-    learning:
-      "Summarisation was never the bottleneck. Relevance was. The useful unit of output is a decision, not a digest.",
-    stack: ["Agents", "Synthesis", "AdTech Intelligence"],
-    published: true,
-  },
-
-  // ---------------------------------------------------------------------
-  // Scaffolding below. Real builds, copy not yet written – see CONTENT.md.
-  // Set `published: true` once each is filled in.
-  // ---------------------------------------------------------------------
-  {
-    slug: "placeholder-multimodal",
-    title: "",
-    category: "Multimodal AI",
-    problem: "",
-    built: "",
-    contribution: "",
-    learning: "",
-    stack: [],
-    published: false,
-  },
-  {
-    slug: "placeholder-eval",
-    title: "",
-    category: "Evaluation",
-    problem: "",
-    built: "",
-    contribution: "",
-    learning: "",
-    stack: [],
-    published: false,
+    year: "2026",
+    featured: [
+      {
+        slug: "ad-ai-pulse",
+        name: "Ad AI Pulse",
+        headline:
+          "Personalized intelligence for people navigating AI × advertising.",
+        description:
+          "Ad AI Pulse turns a noisy stream of AI and advertising signals into role-aware, project-aware intelligence – helping practitioners understand what changed, why it matters to their work, and what to do next.",
+        footer: "AI Intelligence · AdTech",
+        image: "/media/experiments/ad-ai-pulse.jpg",
+      },
+      {
+        slug: "beam",
+        name: "Beam",
+        headline:
+          "Turn an idea into something people can react to – before building the product.",
+        description:
+          "Beam turns early product ideas into audience-specific narrative and video artifacts, puts them in front of real people, captures their feedback, and uses that feedback to generate a better next version.",
+        footer: "AI Storytelling · Feedback Loops",
+        image: "/media/experiments/beam.jpg",
+      },
+      {
+        slug: "creative-war-room",
+        name: "Creative War Room",
+        headline:
+          "What if AI didn't just generate creative – but argued about what was worth making?",
+        description:
+          "Creative War Room puts specialized AI agents – strategist, creative director, copywriter, performance marketer, brand guardian, and legal reviewer – into a shared campaign room where they debate, challenge, veto, score, and refine ideas before they ship.",
+        footer: "Multi-Agent Systems · Creative AI",
+        image: "/media/experiments/creative-war-room.jpg",
+      },
+    ],
+    more: [
+      {
+        slug: "anchor",
+        name: "Anchor",
+        headline: "Catch the moment when intention starts to drift.",
+        description:
+          "An ambient agent for smart glasses that detects likely behavioral drift during a focus session and intervenes with one deliberately simple question – “On purpose?”",
+        footer: "Ambient AI · Smart Glasses",
+        image: "/media/experiments/anchor.jpg",
+        award: "AGI House · Best G2 Glass Integration",
+      },
+      {
+        slug: "trust-receipt",
+        name: "Trust Receipt",
+        headline: "Proof behind every AI action.",
+        description:
+          "A runtime trust layer that verifies identity, authority, intent, policy and provenance as AI agents act – then generates a persistent receipt explaining why an outcome can be trusted.",
+        footer: "Agent Infrastructure · AI Trust",
+        image: "/media/experiments/trust-receipt.jpg",
+      },
+      {
+        slug: "cortex",
+        name: "Cortex",
+        headline: "Find where understanding breaks – before trying to teach.",
+        description:
+          "An AI learning diagnostic that reconstructs a learner's reasoning, identifies the first point of divergence, tests the suspected misconception through adaptive questioning, and prescribes the smallest next learning step.",
+        footer: "AI Learning · Reasoning Systems",
+        image: "/media/experiments/cortex.jpg",
+      },
+    ],
   },
 ];
 
-export const publishedExperiments = experiments.filter((e) => e.published);
+/**
+ * The thesis behind Creative War Room. Surfaced quietly beside the project
+ * rather than given a section of its own.
+ */
+export const creativeWarRoomThesis =
+  "Generation is becoming cheap. Judgment is the bottleneck.";
 
-export const experimentsTerritory: TerritoryKey = "experiments";
+/**
+ * Further real assets, kept for deeper project pages later. Deliberately not
+ * rendered here – the composition is stronger with one image per project.
+ */
+export const archivedAssets: Record<string, string[]> = {
+  "ad-ai-pulse": ["/media/experiments/ad-ai-pulse-full.jpg"],
+  beam: ["/media/experiments/beam-workflow.jpg"],
+  "creative-war-room": ["/media/experiments/creative-war-room-ui.jpg"],
+  anchor: ["/media/experiments/anchor-flow.jpg"],
+};
