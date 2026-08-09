@@ -85,8 +85,6 @@ export default function AdTech() {
       <Section id="system" mark="02 · The system" className="mt-28 sm:mt-40">
         <SectionHead
           eyebrow="The system"
-          headline={systemIntro.headline}
-          terminus={`${systemStages.length} stages`}
         >
           <p className="measure mt-6 text-base leading-relaxed text-secondary">
             {systemIntro.body}
@@ -105,11 +103,7 @@ export default function AdTech() {
           --------------------------------------------------------------- */}
       <Section id="work" mark="03 · Selected work" className="mt-28 sm:mt-40">
         <SectionHead
-          eyebrow="Selected work"
-          headline="Case studies"
-          terminus={`${caseStudies.length} entries`}
-        />
-
+          eyebrow="Selected work" />
         <div className="mt-14">
           {caseStudies.map((study, i) => (
             <Reveal key={study.slug} delay={Math.min(i, 4) * 60}>
@@ -176,7 +170,6 @@ export default function AdTech() {
         <SectionHead
           eyebrow={howIThink.eyebrow}
           headline={howIThink.headline}
-          terminus="Essay"
         />
 
         <Reveal className="mt-12">
@@ -203,11 +196,7 @@ export default function AdTech() {
           --------------------------------------------------------------- */}
       <Section id="next" mark="05 · What's next" className="mt-28 sm:mt-40">
         <SectionHead
-          eyebrow={whatsNext.eyebrow}
-          headline={whatsNext.headline}
-          terminus={`${whatsNext.progression.length} steps`}
-        />
-
+          eyebrow={whatsNext.eyebrow} />
         <div className="mt-12 grid gap-12 lg:grid-cols-[1fr_1fr] lg:gap-20">
           <Reveal>
             {whatsNext.body.map((line) => (

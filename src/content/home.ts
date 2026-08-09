@@ -61,66 +61,65 @@ export const workIntro = {
   headline: "Depth × Building × Taste.",
 };
 
+/**
+ * Exactly three, one per pillar.
+ *
+ * The homepage shows evidence, not an inventory – the three destination pages
+ * carry the full body of work. Each entry should say what the artifact is and
+ * why it matters, in one sentence. Anything longer belongs on its own page.
+ */
 export type SelectedWork = {
   title: string;
+  /** Which pillar this is evidence for. Drives the mono tag on the artifact. */
   territory: TerritoryKey;
-  tags: string[];
+  /** What kind of thing it is – not a skill list. */
+  kind: string;
   blurb: string;
   href: string;
   cta: string;
-  /** Drives which generated visual the card renders. */
+  /** Drives which generated schematic stands in until a real capture exists. */
   visual: "conversation" | "receipt" | "pulse" | "gallery" | "lattice";
-  /** The lead card gets a larger cell in the asymmetric grid. */
-  feature?: boolean;
-  /** Rendered as a small status chip when present. */
-  status?: string;
+  /**
+   * Path under /public once a real screenshot, still or mockup exists.
+   * A real artifact should always replace the schematic – see CONTENT.md.
+   */
+  image?: string;
 };
 
 export const selectedWork: SelectedWork[] = [
   {
     title: "AI Copilot × Commerce",
     territory: "adtech",
-    tags: ["AdTech", "AI", "Commerce"],
+    kind: "Product · Shipped",
     blurb:
-      "Bringing conversational intelligence into the workflow of millions of merchants – turning complex campaign systems into something navigable in plain language.",
+      "Conversational intelligence inside the merchant workflow, turning a complex campaign system into something navigable in plain language.",
     href: "/adtech/",
-    cta: "View case study",
+    cta: "See the work",
     visual: "conversation",
-    feature: true,
   },
   {
     title: "Trust Receipt",
     territory: "experiments",
-    tags: ["Experiment", "Trust"],
+    kind: "Prototype",
     blurb:
-      "Making AI outputs inspectable – what was checked, what supports them, and what remains uncertain.",
+      "A way to make an AI answer inspectable: what was checked, what supports it, and what is still uncertain.",
     href: "/experiments/",
-    cta: "View project",
+    cta: "See the build",
     visual: "receipt",
   },
   {
-    title: "Ad AI Pulse",
-    territory: "experiments",
-    tags: ["Experiment", "Agentic AI"],
-    blurb:
-      "Turning fragmented changes in AI and advertising into decisions that matter to a specific role.",
-    href: "/experiments/",
-    cta: "View project",
-    visual: "pulse",
-  },
-  {
-    title: "Creative AI / Music",
+    title: "Original Music",
     territory: "creative",
-    tags: ["Creative AI"],
+    kind: "Sound · Composition",
     blurb:
-      "Exploring AI as a creative collaborator across music, visuals, and storytelling.",
+      "Writing with AI as a collaborator rather than a generator, and keeping the parts neither of us would have reached alone.",
     href: "/creative-ai/",
-    cta: "Explore work",
+    cta: "See the work",
     visual: "gallery",
   },
-  // Aubric is deliberately absent: Future Ventures is not part of this
-  // architecture. The entry is preserved in src/content/ventures.ts and can
-  // return once there is external evidence to link to.
+  // One per pillar, deliberately. Ad AI Pulse and the rest live on their own
+  // pages; Aubric is absent because Future Ventures is not part of this
+  // architecture, and its entry is preserved in src/content/ventures.ts.
 ];
 
 export const closing = {

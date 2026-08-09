@@ -44,9 +44,6 @@ export default function CreativeAI() {
       <Section mark="01 · Creative AI" className="pt-16 sm:pt-24">
         <div className="beat beat-1 flex items-baseline justify-between gap-6">
           <p className="label text-accent">{creativeIntro.eyebrow}</p>
-          <p className="label">
-            {String(publishedWorks.length).padStart(2, "0")} plates
-          </p>
         </div>
         <div className="hairline rule-draw mt-3" />
 
@@ -126,7 +123,6 @@ export default function CreativeAI() {
             {last && (
               <>
                 <div className="hairline mt-24 sm:mt-32" />
-                <p className="label mt-3">End of plates</p>
               </>
             )}
           </Section>

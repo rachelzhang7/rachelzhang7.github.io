@@ -107,7 +107,6 @@ export default function ExperimentsPage() {
         <nav aria-label="Index of experiments" className="beat beat-4 mt-14">
           <div className="flex items-baseline justify-between gap-6">
             <p className="label">Index</p>
-            <p className="label">{pad(entries.length)} entries</p>
           </div>
           <div className="rule-draw mt-3 border-t border-dashed border-strong" />
           <ol>
@@ -137,8 +136,7 @@ export default function ExperimentsPage() {
           scanned vertically by field rather than read end to end.
           --------------------------------------------------------------- */}
       <Section mark="02 · Build log" className="mt-28 sm:mt-36">
-        <SectionHead eyebrow="Build log" terminus={`${pad(entries.length)} written up`} />
-
+        <SectionHead eyebrow="Build log" />
         <div className="mt-16 lg:mt-20">
           {entries.map((e, i) => {
             const place = PLACEMENTS[i % PLACEMENTS.length];
@@ -238,8 +236,6 @@ export default function ExperimentsPage() {
       <Section mark="03 · Onward" className="mt-32 sm:mt-44">
         <SectionHead
           eyebrow="Next"
-          headline={nextPillar.headline}
-          terminus={`${nextPillar.index} · ${nextPillar.dimension}`}
         >
           <p className="measure mt-6 text-base leading-relaxed text-secondary">
             {nextPillar.body}

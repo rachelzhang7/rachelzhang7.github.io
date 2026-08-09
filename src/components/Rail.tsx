@@ -25,22 +25,9 @@ export function Rail() {
       aria-hidden="true"
       className="pointer-events-none fixed inset-y-0 left-0 z-30 hidden w-[var(--rail-w)] lg:block"
     >
-      {/* Tick marks, drawn as two repeating gradients rather than hundreds of
-          DOM nodes: a 1px mark every 8px, and a longer one every fifth. */}
-      <div
-        className="absolute inset-y-0 right-3 w-1"
-        style={{
-          backgroundImage:
-            "repeating-linear-gradient(to bottom, var(--line-hair) 0 1px, transparent 1px 8px)",
-        }}
-      />
-      <div
-        className="absolute inset-y-0 right-3 w-2"
-        style={{
-          backgroundImage:
-            "repeating-linear-gradient(to bottom, var(--line-strong) 0 1px, transparent 1px 40px)",
-        }}
-      />
+      {/* No ruler ticks. A measurement scale that measures nothing is
+          decoration pretending to be instrumentation – the spine, the position
+          and the section name are the parts that carry real information. */}
 
       {/* The spine. */}
       <div className="absolute inset-y-0 right-0 w-px bg-hair" />
@@ -64,13 +51,6 @@ export function Rail() {
         </div>
       )}
 
-      {/* Calibrated scroll readout. This is a genuine measurement of scroll
-          position – never a decorative statistic. Nothing inside the
-          instrument chrome on this site is allowed to look like a claim
-          without being true. */}
-      <div className="label absolute bottom-8 left-1/2 -translate-x-1/2">
-        {progress.toFixed(3).slice(1)}
-      </div>
     </aside>
   );
 }

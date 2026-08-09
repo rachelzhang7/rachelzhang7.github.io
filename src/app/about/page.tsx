@@ -58,10 +58,7 @@ export default function About() {
           --------------------------------------------------------------- */}
       <Section mark="02 · Principles" className="mt-24 sm:mt-32">
         <SectionHead
-          eyebrow="Principles"
-          terminus={`${String(principles.length).padStart(2, "0")} claims`}
-        />
-
+          eyebrow="Principles" />
         <div className="mt-12">
           {principles.map((principle, i) => (
             <Reveal key={principle.title} delay={i * 60}>
@@ -91,10 +88,7 @@ export default function About() {
           --------------------------------------------------------------- */}
       <Section id="connect" mark="03 · Connect" className="mt-24 sm:mt-32">
         <SectionHead
-          eyebrow="Connect"
-          terminus={`${String(liveSocials.length).padStart(2, "0")} channels`}
-        />
-
+          eyebrow="Connect" />
         <div className="mt-12 grid gap-12 lg:grid-cols-[1.1fr_1fr] lg:gap-20">
           <Reveal>
             <h2 className="display text-3xl text-primary sm:text-4xl">
@@ -152,7 +146,6 @@ export default function About() {
       <Section mark="04 · Résumé" className="mt-24 sm:mt-32">
         <SectionHead
           eyebrow="Résumé"
-          terminus={resume.available ? "PDF" : "On request"}
         >
           <div className="mt-10 border-t border-hair py-9">
             {/* The mono eyebrow already names this region; repeating the word

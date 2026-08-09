@@ -2,33 +2,11 @@ import Link from "next/link";
 import { PageShell } from "@/components/PageShell";
 import { Section, SectionHead } from "@/components/Section";
 import { Reveal } from "@/components/Reveal";
+import { cn } from "@/lib/cn";
 import { HeroTrace } from "@/components/HeroTrace";
 import { WorkVisual } from "@/components/WorkVisual";
-import { territories } from "@/content/territories";
+import { territories, territoryByKey } from "@/content/territories";
 import { closing, credentials, hero, selectedWork, workIntro } from "@/content/home";
-
-/**
- * Close the trailing gap in the Selected Work grid.
- *
- * The feature card occupies 2×2 of the three-column grid, so the last row only
- * fills exactly when (4 + the remaining cards) is a multiple of three. With the
- * current five items it lands on eight, leaving one visibly empty cell. Rather
- * than hard-coding a span that breaks the next time a project is added or
- * removed, stretch the final card by whatever the shortfall happens to be.
- *
- * Class names are written out in full because Tailwind cannot see the output of
- * a template literal.
- */
-const lgCells = 4 + Math.max(selectedWork.length - 1, 0);
-const lgGap = (3 - (lgCells % 3)) % 3;
-const mdGap = selectedWork.length % 2 === 0 ? 0 : 1;
-
-const trailingFill = [
-  ["", "md:col-span-2"][mdGap],
-  ["", "lg:col-span-2", "lg:col-span-3"][lgGap],
-]
-  .filter(Boolean)
-  .join(" ");
 
 export const metadata = {
   alternates: { canonical: "/" },
@@ -41,69 +19,65 @@ export default function Home() {
       {/* ---------------------------------------------------------------
           HERO – positioning, answered in 10–15 seconds.
           --------------------------------------------------------------- */}
-      <Section mark="01 · Identity" className="relative pt-16 sm:pt-24">
-        {/* The page's single atmospheric moment, sitting in the empty upper
-            right and never behind text. It gives the ground depth; it should
-            not be identifiable as a gradient. */}
-        <div className="atmosphere" aria-hidden="true" />
+      <Section mark="01 · Identity" className="pt-14 sm:pt-20">
+        {/* Opposing composition: textual weight on one side, visual weight on
+            the other. On phones it stacks in reading order, type first. */}
+        <div className="grid items-center gap-12 lg:grid-cols-[58fr_42fr] lg:gap-14">
+          <div>
+            <p className="label beat beat-1 text-accent">{hero.eyebrow}</p>
 
-        <p className="label beat beat-1 text-accent">{hero.eyebrow}</p>
+            <h1 className="display beat beat-2 mt-7 text-[clamp(2.25rem,4.6vw,4rem)] leading-[1.08] text-primary">
+              {hero.headline.lead}{" "}
+              {/* Accent as a 1px rule, never as coloured display type. Real
+                  text-decoration rather than a positioned bar, so it skips the
+                  descenders and never collides with the following line. */}
+              <span className="[text-decoration-line:underline] [text-decoration-color:var(--accent)] [text-decoration-thickness:1px] [text-underline-offset:0.14em]">
+                {hero.headline.emphasis}
+              </span>{" "}
+              {hero.headline.trail}
+            </h1>
 
-        <h1 className="display beat beat-2 mt-8 text-[clamp(2.5rem,7vw,4.75rem)] leading-[1.08] text-primary">
-          {hero.headline.lead}{" "}
-          {/* Accent as a 1px rule, never as coloured display type. Real
-              text-decoration rather than a positioned bar, so it skips the
-              descenders and never collides with the following line. */}
-          <span className="[text-decoration-line:underline] [text-decoration-color:var(--accent)] [text-decoration-thickness:1px] [text-underline-offset:0.14em]">
-            {hero.headline.emphasis}
-          </span>{" "}
-          {hero.headline.trail}
-        </h1>
-
-        <div className="beat beat-3 mt-10 flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between lg:gap-16">
-          <div className="max-w-[34rem]">
             {hero.body.map((line) => (
               <p
                 key={line}
-                className="mt-4 text-base leading-relaxed text-secondary sm:text-lg"
+                className="beat beat-3 measure mt-8 text-base leading-relaxed text-secondary sm:text-lg"
               >
                 {line}
               </p>
             ))}
-          </div>
 
-          <div className="flex flex-wrap items-center gap-3">
-            {hero.actions.map((action) => (
-              <Link
-                key={action.href}
-                href={action.href}
-                className={
-                  action.primary
-                    ? "group inline-flex items-center gap-3 border border-accent px-5 py-3 text-sm text-primary transition-colors duration-150 hover:bg-accent-ring"
-                    : "group inline-flex items-center gap-3 border border-strong px-5 py-3 text-sm text-secondary transition-colors duration-150 hover:border-line-hover hover:text-primary"
-                }
-              >
-                {action.label}
-                <span
-                  aria-hidden="true"
-                  className="transition-transform duration-200 group-hover:translate-x-1"
+            <div className="beat beat-4 mt-10 flex flex-wrap items-center gap-3">
+              {hero.actions.map((action) => (
+                <Link
+                  key={action.href}
+                  href={action.href}
+                  className={
+                    action.primary
+                      ? "group inline-flex items-center gap-3 border border-accent px-5 py-3 text-sm text-primary transition-colors duration-150 hover:bg-accent-ring"
+                      : "group inline-flex items-center gap-3 border border-strong px-5 py-3 text-sm text-secondary transition-colors duration-150 hover:border-line-hover hover:text-primary"
+                  }
                 >
-                  →
-                </span>
-              </Link>
-            ))}
+                  {action.label}
+                  <span
+                    aria-hidden="true"
+                    className="transition-transform duration-200 group-hover:translate-x-1"
+                  >
+                    →
+                  </span>
+                </Link>
+              ))}
+            </div>
           </div>
-        </div>
 
-        {/* The visual counterweight to the headline: one rising line, marked
-            at the three pillars. Wide and thin so it gives the hero energy
-            without competing with the type above it. */}
-        <div className="beat beat-4 mt-14">
-          <HeroTrace />
+          {/* The counterweight. Given real height so it reads as a field the
+              line moves through, rather than a graphic sitting under the copy. */}
+          <div className="beat beat-5 h-[18rem] sm:h-[22rem] lg:h-[min(74vh,38rem)]">
+            <HeroTrace />
+          </div>
         </div>
 
         {/* Credibility strip, hung on the rule that closes the hero. */}
-        <dl className="beat beat-5 grid grid-cols-1 gap-px border-y border-hair bg-hair sm:grid-cols-3">
+        <dl className="beat beat-5 mt-16 grid grid-cols-1 gap-px border-y border-hair bg-hair sm:mt-24 sm:grid-cols-3">
           {credentials.map((c) => (
             <div key={c.value} className="flex items-baseline gap-3 bg-canvas px-1 py-4">
               <dt className="text-sm text-primary">{c.value}</dt>
@@ -118,11 +92,7 @@ export default function Home() {
           --------------------------------------------------------------- */}
       <Section mark="02 · The work" className="mt-32 sm:mt-44">
         <SectionHead
-          eyebrow={workIntro.eyebrow}
-          headline={workIntro.headline}
-          terminus={`${territories.length} pillars`}
-        />
-
+          eyebrow={workIntro.eyebrow} />
         <div className="mt-16">
           {territories.map((t, i) => (
             <Reveal key={t.key} delay={i * 60}>
@@ -184,48 +154,79 @@ export default function Home() {
         <SectionHead
           eyebrow="Selected work"
           headline="A few things I've been building."
-          terminus={`${selectedWork.length} projects`}
         />
 
-        <div className="mt-14 grid gap-px border border-hair bg-hair md:grid-cols-2 lg:grid-cols-3">
-          {selectedWork.map((work, i) => (
-            <Link
-              key={work.title}
-              href={work.href}
-              data-territory={work.territory}
-              className={`group flex flex-col bg-canvas p-6 transition-colors duration-150 hover:bg-raised ${
-                work.feature ? "lg:col-span-2 lg:row-span-2" : ""
-              } ${i === selectedWork.length - 1 ? trailingFill : ""}`}
-            >
-              <WorkVisual
-                variant={work.visual}
-                className="mb-6 w-full border border-hair bg-sunken"
-              />
-
-              <div className="flex items-baseline justify-between gap-4">
-                <h3 className="display text-xl text-primary sm:text-2xl">
-                  {work.title}
-                </h3>
-                {work.status && <span className="label text-accent">{work.status}</span>}
-              </div>
-
-              <p className="label mt-3">{work.tags.join(" · ")}</p>
-
-              <p className="mt-4 flex-1 text-sm leading-relaxed text-secondary">
-                {work.blurb}
-              </p>
-
-              <span className="label mt-6 inline-flex items-center gap-2 text-tertiary transition-colors duration-150 group-hover:text-accent-2">
-                {work.cta}
-                <span
-                  aria-hidden="true"
-                  className="transition-transform duration-200 group-hover:translate-x-1"
+        {/* Artifact-led, not a card grid. The work occupies most of the row and
+            the writing does one job: say what the thing is and why it matters.
+            Rows alternate so the page has rhythm rather than a repeated module. */}
+        <div className="mt-16 flex flex-col gap-24 sm:gap-32">
+          {selectedWork.map((work, i) => {
+            const pillar = territoryByKey[work.territory as keyof typeof territoryByKey];
+            const flipped = i % 2 === 1;
+            return (
+              <Reveal key={work.title}>
+                <article
+                  className={cn(
+                    "grid items-center gap-8 lg:gap-16",
+                    flipped
+                      ? "lg:grid-cols-[1fr_1.35fr]"
+                      : "lg:grid-cols-[1.35fr_1fr]",
+                  )}
                 >
-                  →
-                </span>
-              </span>
-            </Link>
-          ))}
+                  <figure
+                    className={cn(
+                      "bg-sunken",
+                      flipped ? "lg:order-2" : undefined,
+                    )}
+                  >
+                    {work.image ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={work.image}
+                        alt=""
+                        className="block w-full"
+                        style={{ aspectRatio: "16 / 10" }}
+                      />
+                    ) : (
+                      <WorkVisual variant={work.visual} className="w-full" />
+                    )}
+                  </figure>
+
+                  <div>
+                    {pillar && (
+                      <p className="label">
+                        <span className="text-accent">{pillar.index}</span>{" "}
+                        {pillar.dimension}
+                      </p>
+                    )}
+
+                    <h3 className="display mt-5 text-[1.75rem] text-primary sm:text-[2.25rem]">
+                      {work.title}
+                    </h3>
+
+                    <p className="mt-3 text-sm text-tertiary">{work.kind}</p>
+
+                    <p className="measure mt-6 text-base leading-relaxed text-secondary">
+                      {work.blurb}
+                    </p>
+
+                    <Link
+                      href={work.href}
+                      className="label group mt-8 inline-flex items-center gap-2 text-tertiary transition-colors duration-150 hover:text-accent-2"
+                    >
+                      {work.cta}
+                      <span
+                        aria-hidden="true"
+                        className="transition-transform duration-200 group-hover:translate-x-1"
+                      >
+                        →
+                      </span>
+                    </Link>
+                  </div>
+                </article>
+              </Reveal>
+            );
+          })}
         </div>
       </Section>
 
