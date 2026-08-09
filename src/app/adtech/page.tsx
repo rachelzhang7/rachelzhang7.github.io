@@ -8,7 +8,6 @@ import {
   caseStudies,
   howIThink,
   systemIntro,
-  systemStages,
   whatsNext,
 } from "@/content/adtech";
 import { SystemSpine } from "./SystemSpine";
