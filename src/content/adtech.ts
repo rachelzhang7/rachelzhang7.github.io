@@ -1,148 +1,166 @@
 /**
- * AdTech – expertise.
+ * AdTech – depth.
  *
- * Case studies are written as *problems*, not résumé bullets, and every
- * outcome is deliberately qualitative. Nothing here should require a
- * confidentiality review: no metrics, no internal names, no roadmap.
+ * One thesis, six proofs, one forward-looking question.
+ *
+ * The whole page turns on a single mental model: DATA to INTELLIGENCE to
+ * AUTOMATION. That is not a map of the advertising stack – it is the set of
+ * layers this work actually touched, and the model that came out of it.
+ *
+ * Disclosure rules for anything added here: no internal metrics, no unreleased
+ * features, no roadmap, no proprietary implementation detail, no customer names.
+ * Describe product contribution and system understanding; never imply authorship
+ * of underlying models or infrastructure where the role was product leadership.
  */
-
-export type CaseStudy = {
-  slug: string;
-  index: string;
-  /** The lens this problem sits under, shown as a mono eyebrow. */
-  category: string;
-  /** The problem, phrased as the thing that was hard. */
-  problem: string;
-  /** The project name. */
-  title: string;
-  /** What was built or led. */
-  summary: string;
-  /** The part that shows how she thinks – the non-obvious difficulty. */
-  insight: string;
-  tags: string[];
-};
 
 export const adtechIntro = {
   eyebrow: "AdTech · Commerce · AI",
-  headline: "Building products inside the machinery of digital advertising.",
-  body: [
-    "I've spent much of my product career working on advertising – from signals and measurement to creative AI, commerce integrations, and advertiser experiences.",
-    "What keeps the space interesting isn't any single feature. It's the system underneath: how data becomes understanding, understanding becomes a prediction, and a prediction becomes an action that creates value for a business.",
-  ],
+  headline: "From data to intelligence to automation.",
+  body: "I've worked across multiple layers of advertising systems – from signals and data infrastructure to Creative AI and increasingly automated commerce advertising. Across these systems, I've become interested in one question: how do we give machines enough context, intelligence, and trust to take on more of the work?",
 };
 
 /**
- * The system diagram's stages. Rendered as a horizontal spine on desktop and a
- * vertical one on mobile, with each stage's constraint stated plainly.
+ * Exactly three. Conceptual clarity, not completeness – auction, ranking,
+ * billing and delivery are deliberately absent, because this describes where
+ * the work happened rather than diagramming the industry.
  */
-export const systemStages = [
-  { name: "Signals", claim: "determine what the system can understand." },
-  { name: "Commerce", claim: "determines what it can sell." },
-  { name: "Creative", claim: "determines what people see." },
-  { name: "Delivery", claim: "determines who sees it, and when." },
-  { name: "Experience", claim: "determines whether an advertiser can work any of this." },
-];
-
-export const systemIntro = {
-  headline: "Advertising is a connected system.",
-  body: "A better ad rarely comes from improving one surface in isolation. Most of my work has lived somewhere inside these connections.",
+export type Layer = {
+  index: string;
+  name: string;
+  claim: string;
+  scope: string;
 };
 
-export const caseStudies: CaseStudy[] = [
+export const layers: Layer[] = [
   {
-    slug: "sidekick",
     index: "01",
-    category: "Commerce × AI",
-    problem: "Bringing AI assistance into the merchant workflow",
-    title: "TikTok × Shopify Sidekick",
-    summary:
-      "Exploring how an AI copilot can help merchants understand and operate advertising without forcing them to learn the underlying complexity of an ads platform.",
-    insight:
-      "The interesting problem wasn't simply connecting two AI systems. It was deciding what an assistant should know, what it should be allowed to do, and how to make useful advertising intelligence available inside the workflow where merchants already operate.",
-    tags: ["AI Interfaces", "Commerce", "Agent Systems"],
+    name: "Data",
+    claim: "Give the system better context.",
+    scope: "Signals · Measurement · Infrastructure",
   },
   {
-    slug: "ad-creation",
     index: "02",
-    category: "Advertiser Experience",
-    problem: "Making the first ad dramatically easier to create",
-    title: "Shopify Ad Creation",
-    summary:
-      "Redesigned the advertising creation experience inside the Shopify channel to remove friction between store setup and actually launching an ad.",
-    insight:
-      "The work required thinking across UI, asynchronous platform dependencies, creative inputs, catalog readiness, and campaign systems rather than treating ad creation as an isolated form.",
-    tags: ["Product Design", "Commerce", "Ads Infrastructure"],
+    name: "Intelligence",
+    claim: "Turn context into better decisions and creative.",
+    scope: "Generation · Evaluation · Decisioning",
   },
   {
-    slug: "creative-ai",
     index: "03",
-    category: "Creative AI",
-    problem: "Moving creative generation closer to performance",
-    title: "AI-Powered Advertising Creative",
-    summary:
-      "Worked on products that use generative AI to help advertisers produce and adapt creative for advertising.",
-    insight:
-      "The deeper product question was not whether AI could generate more content. It was how generation could become part of an advertising system – connected to advertiser intent, platform intelligence, creative quality, and eventually performance.",
-    tags: ["Generative AI", "Creative", "Advertising"],
-  },
-  {
-    slug: "signals",
-    index: "04",
-    category: "Signals",
-    problem: "Improving what an advertising system can understand",
-    title: "Advertiser Signal Infrastructure",
-    summary:
-      "Worked on products that help advertisers send higher-quality conversion and customer signals into advertising systems.",
-    insight:
-      "Signals are mostly invisible to the person seeing an ad, but they determine much of what happens downstream – measurement, optimization, attribution, and ultimately how effectively an advertiser can spend.",
-    tags: ["Signals", "Measurement", "Data Infrastructure"],
-  },
-  {
-    slug: "catalog",
-    index: "05",
-    category: "Commerce Infrastructure",
-    problem: "Turning a store catalog into advertising infrastructure",
-    title: "Commerce Catalog Systems",
-    summary:
-      "Worked across merchant catalog ingestion, synchronization, market configuration, diagnostics, and the connection between commerce data and advertising products.",
-    insight:
-      "What looks like “sync my products” from the merchant side becomes a distributed systems problem underneath – identity, availability, variants, markets, freshness, errors, and downstream eligibility all have to remain coherent.",
-    tags: ["Catalog", "Commerce", "Platform Infrastructure"],
-  },
-  {
-    slug: "automation",
-    index: "06",
-    category: "Automation",
-    problem: "Reducing the expertise required to advertise",
-    title: "Automated Advertising Experiences",
-    summary:
-      "Worked on products that progressively move complexity away from advertisers – using platform intelligence to simplify setup, creative decisions, targeting, optimization, and campaign management.",
-    insight:
-      "The product tension is fundamental: automation can create enormous leverage, but every decision removed from the advertiser also changes their sense of understanding and control.",
-    tags: ["Automation", "Optimization", "Advertiser UX"],
+    name: "Automation",
+    claim: "Turn those decisions into actions.",
+    scope: "Commerce Systems · AI Copilots · Agentic Workflows",
   },
 ];
 
-export const howIThink = {
-  eyebrow: "How I think about AdTech",
-  headline: "The best advertising products hide complexity without hiding intelligence.",
-  body: [
-    "Over time, I've become less interested in individual advertising features and more interested in the interfaces between systems.",
-    "A merchant shouldn't need to understand event schemas to send good signals. They shouldn't need to understand catalog architecture to advertise their products. And increasingly, they shouldn't need to understand every campaign primitive to make a good advertising decision.",
-    "But abstraction has a cost. Hide too little and the product remains complicated. Hide too much and advertisers lose understanding, agency, and trust.",
-    "AI makes this tradeoff more interesting. For the first time, we can build interfaces that don't merely remove complexity – they can potentially explain it, reason through it, and help people make better decisions.",
-    "That's the part of advertising I'm most interested in building now.",
-  ],
+/** The one explicit lesson on the page. The six projects supply the rest. */
+export const thesis = {
+  statement: "Better automation rarely starts with automation.",
+  body: "It starts with better data, better intelligence, and clearer boundaries for what machines should decide.",
 };
+
+export type Project = {
+  slug: string;
+  /** Which layer of the model this is evidence for. Drives the grid column. */
+  layer: "Data" | "Intelligence" | "Automation";
+  title: string;
+  /** One substantive description. Depth comes from specificity, not length. */
+  description: string;
+  /** Small footer metadata. Not a tag list. */
+  meta: string;
+  /** Present only where the work is ongoing. */
+  status?: string;
+  /** Names the asset that will eventually replace the placeholder. */
+  media: string;
+  /** Path under /public once a real capture exists. */
+  image?: string;
+};
+
+/**
+ * Ordered for a three-column grid filling row by row, so the columns read
+ * Data | Intelligence | Automation and the layout reinforces the model instead
+ * of the copy restating it.
+ *
+ * Each project answers a different product question, and they must not collapse
+ * back into generic capability buckets:
+ *   Server-Side Signals   – how does stronger signal infrastructure reach more
+ *                           advertisers through ecosystem distribution?
+ *   Events API Gateway    – what is the right tradeoff between implementation
+ *                           ease and reliability, transparency and control?
+ *   AI Creative Generation– how little input can become enough context?
+ *   AI Evaluation Systems – how do we align machine evaluation with human
+ *                           judgment and real outcomes?
+ *   AI Copilot × Ads      – how does richer context move an LLM from retrieval
+ *                           toward reasoning?
+ *   Commerce Ads Automation – how much decision-making can the system absorb?
+ */
+export const projects: Project[] = [
+  {
+    slug: "server-side-signals",
+    layer: "Data",
+    title: "Server-Side Signals",
+    description:
+      "Making signal sharing more reliable and controllable through server-side integrations – while lowering adoption barriers through partner integrations such as Shopify and Google Tag Manager.",
+    meta: "Server-Side Signals · Partner Integrations",
+    media: "Signal flow",
+  },
+  {
+    slug: "ai-creative-generation",
+    layer: "Intelligence",
+    title: "AI Creative Generation",
+    description:
+      "Generating multiple ad-ready creative variants from a single merchant URL – using business context and platform intelligence to reduce the creative expertise, production resources, and manual work required to start advertising.",
+    meta: "Creative AI · Generation Systems",
+    media: "URL to variants",
+  },
+  {
+    slug: "ai-copilot-ads",
+    layer: "Automation",
+    title: "AI Copilot × Ads",
+    description:
+      "Giving an AI copilot richer context from merchant business data and advertising performance – evolving from natural-language retrieval and Q&A toward an intelligence layer that can reason about how a merchant grows.",
+    meta: "AI Copilot · Context & Reasoning",
+    status: "Now",
+    media: "Copilot interface",
+  },
+  {
+    slug: "events-api-gateway",
+    layer: "Data",
+    title: "Events API Gateway",
+    description:
+      "Creating a middle path between browser pixels and full server-to-server integrations – combining easier cloud deployment with greater reliability, transparency, and control over what data is shared.",
+    meta: "Cloud Signals · Partner Infrastructure",
+    media: "Architecture tradeoff",
+  },
+  {
+    slug: "ai-evaluation-systems",
+    layer: "Intelligence",
+    title: "AI Evaluation Systems",
+    description:
+      "Building evaluation systems that combine granular quality dimensions, human ratings, automated scorers, and real-world performance signals – improving human–machine alignment and feeding better evaluation back into model learning.",
+    meta: "AI Evaluation · Human–Machine Alignment",
+    media: "Evaluation loop",
+  },
+  {
+    slug: "commerce-ads-automation",
+    layer: "Automation",
+    title: "Commerce Ads Automation",
+    description:
+      "Generating ready-to-review ads directly from merchant catalog data – creating creative and selecting key setup decisions automatically, while preserving the option to customize before submission.",
+    meta: "Commerce Ads · Automated Creation",
+    status: "Now",
+    media: "Catalog to review",
+  },
+];
 
 export const whatsNext = {
   eyebrow: "What I'm exploring next",
-  headline: "From advertising automation to advertising intelligence.",
-  body: [
-    "The previous generation of advertising products automated tasks.",
-    "I think the next generation will increasingly automate reasoning – understanding a business, diagnosing what is limiting performance, generating possible actions, predicting their consequences, and helping an advertiser decide what to do next.",
-  ],
-  /** Rendered as a progression, with the final term emphasised. */
-  progression: ["configuration", "automation", "conversation", "intelligence"],
-  closing: "And it changes what an advertising product can be.",
+  headline: "From automating tasks to automating reasoning.",
+  body: "The previous generation of advertising products automated tasks. I'm interested in what happens as they begin to automate reasoning – understanding a business, diagnosing constraints, considering possible actions, and helping decide what should happen next.",
+  /** The page ends on the question. Nothing follows it. */
+  question: {
+    lead: "The question becomes less",
+    less: "What can we automate?",
+    join: "and more",
+    more: "What should the system understand, decide, and act on – and what should remain with the human?",
+  },
 };
