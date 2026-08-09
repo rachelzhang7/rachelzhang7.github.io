@@ -67,7 +67,11 @@ export function HeroTrace() {
     <div>
       {/* Corner readouts, in the positions scope UI puts them. */}
       <div className="flex items-baseline justify-between">
-        <span className="label">CH.01–04</span>
+        {/* Derived, not hard-coded: this is a readout, and a readout that
+            disagrees with what is on screen is worse than no readout. */}
+        <span className="label">
+          CH.01–{String(territories.length).padStart(2, "0")}
+        </span>
         <span className="label">Sweep: auto</span>
       </div>
 

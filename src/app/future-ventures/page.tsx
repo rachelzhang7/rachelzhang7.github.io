@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { PageShell } from "@/components/PageShell";
 import { Section } from "@/components/Section";
 import { Reveal } from "@/components/Reveal";
-import { territoryByKey } from "@/content/territories";
 import {
   publishedVentures,
   stageLabels,
@@ -28,7 +27,7 @@ import {
 
 export const metadata: Metadata = {
   title: "Future Ventures",
-  description: territoryByKey.ventures.body,
+  description: venturesIntro.body[0],
   alternates: { canonical: "/future-ventures/" },
   openGraph: { url: "/future-ventures/" },
 };

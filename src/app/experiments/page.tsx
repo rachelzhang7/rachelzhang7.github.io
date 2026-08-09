@@ -79,7 +79,8 @@ const idx = (i: number) => pad(i + 1);
 
 export default function ExperimentsPage() {
   const entries = publishedExperiments;
-  const ventures = territoryByKey.ventures;
+  // The next pillar in the Depth -> Building -> Taste progression.
+  const nextPillar = territoryByKey.creative;
 
   return (
     <PageShell territory="experiments">
@@ -237,17 +238,17 @@ export default function ExperimentsPage() {
       <Section mark="03 · Onward" className="mt-32 sm:mt-44">
         <SectionHead
           eyebrow="Next"
-          headline={ventures.headline}
-          terminus={`${ventures.index} · ${ventures.dimension}`}
+          headline={nextPillar.headline}
+          terminus={`${nextPillar.index} · ${nextPillar.dimension}`}
         >
           <p className="measure mt-6 text-base leading-relaxed text-secondary">
-            {ventures.body}
+            {nextPillar.body}
           </p>
           <Link
-            href={ventures.href}
+            href={nextPillar.href}
             className="group mt-8 inline-flex items-center gap-3 border border-dashed border-strong px-5 py-3 text-sm text-secondary transition-colors duration-150 hover:border-accent-rule hover:text-primary"
           >
-            {ventures.cta}
+            {nextPillar.cta}
             <span
               aria-hidden="true"
               className="transition-transform duration-200 group-hover:translate-x-1"

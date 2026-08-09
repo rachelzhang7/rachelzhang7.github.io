@@ -9,33 +9,24 @@ import type { TerritoryKey } from "./site";
  */
 
 export const hero = {
-  eyebrow: "AI · AdTech · Creative AI",
+  /** Where she operates. The pillars below say what makes it distinctive. */
+  eyebrow: "Advertising × AI × Creativity",
   /**
-   * The headline is split so the display type can break exactly where it
-   * should, and so one phrase can carry the accent.
+   * Split so the display type breaks exactly where it should, and so one
+   * phrase can carry the accent underline.
    */
   headline: {
-    lead: "I build products at the intersection of",
-    emphasis: "technology, creativity,",
-    trail: "and human behavior.",
+    lead: "I build at the intersection of",
+    emphasis: "advertising, AI,",
+    trail: "and creativity.",
   },
-  /**
-   * Alternate headline from the original mockup. Shorter and more declarative;
-   * swap it in by using this in place of `headline` if the arc reads better
-   * than the breadth.
-   */
-  headlineAlt: {
-    lead: "I understand systems.",
-    emphasis: "Now I build them.",
-    trail: "",
-  },
+  /** One paragraph. No company names, no skill lists, no years. */
   body: [
-    "I'm Rachel — a product leader and hands-on builder exploring how AI changes the way we create, decide, and connect.",
-    "My work spans advertising systems used at scale, AI prototypes built from scratch, creative experiments, and early-stage ventures.",
+    "I've built products across advertising data, commerce, creative, and automation — alongside hands-on experiments with AI products and generative creativity.",
   ],
   actions: [
     { label: "Explore my work", href: "/adtech/", primary: true },
-    { label: "About me", href: "/about/", primary: false },
+    { label: "Let's connect", href: "/about/#connect", primary: false },
   ],
 };
 
@@ -57,10 +48,17 @@ export const credentials = [
   { value: "Builder", label: "Prototypes to products" },
 ];
 
+/**
+ * The three pillars are the site's mental model. The heading states it as the
+ * framework rather than describing it, because the thing a visitor should
+ * remember is the framework itself.
+ *
+ * No intro paragraph: these exist for orientation, not explanation. The
+ * evidence lives on the three destination pages.
+ */
 export const workIntro = {
   eyebrow: "The work",
-  headline: "Four threads shape my work.",
-  body: "I've spent years building products inside large technology platforms. More recently I've been going deeper into AI — not only thinking about what should be built, but prototyping, experimenting, and creating things myself.",
+  headline: "Depth × Building × Taste.",
 };
 
 export type SelectedWork = {
@@ -120,17 +118,9 @@ export const selectedWork: SelectedWork[] = [
     cta: "Explore work",
     visual: "gallery",
   },
-  {
-    title: "Aubric",
-    territory: "ventures",
-    tags: ["Venture", "AI Trust"],
-    blurb:
-      "Building the infrastructure for verifiable, trustworthy AI in advertising.",
-    href: "/future-ventures/",
-    cta: "Learn more",
-    visual: "lattice",
-    status: "In progress",
-  },
+  // Aubric is deliberately absent: Future Ventures is not part of this
+  // architecture. The entry is preserved in src/content/ventures.ts and can
+  // return once there is external evidence to link to.
 ];
 
 export const closing = {

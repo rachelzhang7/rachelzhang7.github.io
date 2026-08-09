@@ -115,12 +115,8 @@ export default function Home() {
         <SectionHead
           eyebrow={workIntro.eyebrow}
           headline={workIntro.headline}
-          terminus="04 threads"
-        >
-          <p className="measure mt-6 text-base leading-relaxed text-secondary">
-            {workIntro.body}
-          </p>
-        </SectionHead>
+          terminus={`${territories.length} pillars`}
+        />
 
         <div className="mt-16">
           {territories.map((t, i) => (
@@ -131,26 +127,29 @@ export default function Home() {
                 className="group block border-t border-hair py-10 transition-colors duration-150 hover:border-accent-rule"
               >
                 <div className="grid gap-6 lg:grid-cols-[6rem_1fr_auto] lg:items-baseline lg:gap-10">
+                  {/* The dimension is the thing to remember, so it is set
+                      larger than the site's standard mono label and carries
+                      the accent — it is the framework, not metadata. */}
                   <div className="flex items-baseline gap-4 lg:block">
-                    <span className="font-mono text-2xl text-tertiary transition-colors duration-150 group-hover:text-accent">
+                    <span className="font-mono text-2xl leading-none text-tertiary transition-colors duration-150 group-hover:text-accent">
                       {t.index}
                     </span>
-                    <span className="label mt-2 block text-accent">
+                    <span className="mt-3 block font-mono text-[0.8125rem] uppercase tracking-[0.18em] text-accent">
                       {t.dimension}
                     </span>
                   </div>
 
                   <div>
-                    {/* The explicit space matters: `ml-3` is a margin, not
-                        whitespace, so without it the accessible name and the
-                        indexed text read "AdTechBuilding inside the…". */}
                     <h3 className="display text-2xl text-primary sm:text-[1.75rem]">
-                      {t.title}{" "}
-                      <span className="ml-3 align-middle text-base text-tertiary">
-                        {t.headline}
-                      </span>
+                      {t.title}
                     </h3>
-                    <p className="measure mt-4 text-sm leading-relaxed text-secondary sm:text-base">
+                    {/* The claim, on its own line rather than trailing the
+                        title inline — one idea per line reads faster and the
+                        accessible name stays clean. */}
+                    <p className="mt-3 text-base text-tertiary sm:text-lg">
+                      {t.headline}
+                    </p>
+                    <p className="measure mt-5 text-sm leading-relaxed text-secondary sm:text-base">
                       {t.body}
                     </p>
                   </div>

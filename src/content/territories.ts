@@ -30,18 +30,18 @@ export const territories: Territory[] = [
     title: "AdTech",
     dimension: "Depth",
     href: "/adtech/",
-    headline: "Building inside the machinery of digital advertising.",
-    body: "Products across commerce, signals, creative AI, automation, and advertiser experience — shaped by years working on advertising systems at scale.",
+    headline: "I know a domain deeply.",
+    body: "Years spent building inside the machinery of digital advertising — across the systems that connect data, intelligence, creative, and automation.",
     cta: "Explore AdTech",
   },
   {
     key: "experiments",
     index: "02",
     title: "Experiments",
-    dimension: "Making",
+    dimension: "Building",
     href: "/experiments/",
-    headline: "Ideas become clearer when you build them.",
-    body: "Hackathons, prototypes, and technical experiments exploring agents, multimodal AI, trust, evaluation, interfaces, and new ways humans work with intelligent systems.",
+    headline: "I build. Repeatedly.",
+    body: "Hackathons and rapid experiments where I turn ideas into working products — often under extreme time constraints.",
     cta: "Explore Experiments",
   },
   {
@@ -50,22 +50,12 @@ export const territories: Territory[] = [
     title: "Creative AI",
     dimension: "Taste",
     href: "/creative-ai/",
-    headline: "AI is not only a tool. It's becoming a medium.",
-    body: "Experiments in music, visual storytelling, design, and generative creativity — exploring what happens when technology expands what an individual can express.",
+    headline: "I explore and develop taste.",
+    body: "Music, video, visual storytelling, and design — exploring AI not only as a tool, but as a new creative medium.",
     cta: "Explore Creative AI",
-  },
-  {
-    key: "ventures",
-    index: "04",
-    title: "Future Ventures",
-    dimension: "Ownership",
-    href: "/future-ventures/",
-    headline: "From building products to building possibilities.",
-    body: "Independent products and early-stage ventures where I'm testing whether an idea can become something people genuinely want.",
-    cta: "Explore Ventures",
   },
 ];
 
 export const territoryByKey = Object.fromEntries(
   territories.map((t) => [t.key, t]),
-) as Record<Exclude<TerritoryKey, "identity">, Territory>;
+) as Record<"adtech" | "experiments" | "creative", Territory>;

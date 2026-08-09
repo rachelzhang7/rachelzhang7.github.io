@@ -21,7 +21,7 @@ export const site = {
    * keyword density — this is often the first sentence an investor ever reads.
    */
   description:
-    "Rachel Zhang builds products at the intersection of technology, creativity, and human behavior — advertising systems at scale, AI prototypes, creative experiments, and early-stage ventures.",
+    "Rachel Zhang builds at the intersection of advertising, AI, and creativity — products across advertising data, commerce, creative and automation, alongside hands-on AI experiments and generative creative work.",
 } as const;
 
 export type NavItem = {
@@ -31,13 +31,17 @@ export type NavItem = {
   territory?: TerritoryKey;
 };
 
+/**
+ * Four items, deliberately. The three pillars plus home.
+ *
+ * About is not a primary destination — it lives at the bottom of the homepage.
+ * Future Ventures is not part of this architecture.
+ */
 export const navItems: NavItem[] = [
   { label: "Home", href: "/" },
   { label: "AdTech", href: "/adtech/", territory: "adtech" },
   { label: "Experiments", href: "/experiments/", territory: "experiments" },
   { label: "Creative AI", href: "/creative-ai/", territory: "creative" },
-  { label: "Future Ventures", href: "/future-ventures/", territory: "ventures" },
-  { label: "About", href: "/about/" },
 ];
 
 export type TerritoryKey =
