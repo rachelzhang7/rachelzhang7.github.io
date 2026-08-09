@@ -11,6 +11,7 @@ export const metadata: Metadata = {
   title: "Creative AI",
   description: creativeIntro.body[0],
   alternates: { canonical: "/creative-ai/" },
+  openGraph: { url: "/creative-ai/" },
 };
 
 /**

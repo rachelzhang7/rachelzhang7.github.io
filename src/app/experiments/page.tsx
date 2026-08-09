@@ -33,6 +33,7 @@ export const metadata: Metadata = {
   title: "Experiments",
   description: territoryByKey.experiments.body,
   alternates: { canonical: "/experiments/" },
+  openGraph: { url: "/experiments/" },
 };
 
 /**

@@ -16,6 +16,8 @@ import { SystemSpine } from "./SystemSpine";
 export const metadata: Metadata = {
   title: "AdTech",
   description: adtechIntro.body[0],
+  alternates: { canonical: "/adtech/" },
+  openGraph: { url: "/adtech/" },
 };
 
 /**

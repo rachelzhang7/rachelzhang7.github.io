@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Newsreader, Archivo, IBM_Plex_Mono } from "next/font/google";
-import { site } from "@/content/site";
+import { site, socials } from "@/content/site";
 import "./globals.css";
 
 /**
@@ -59,19 +59,20 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: site.name, url: site.url }],
   creator: site.name,
-  alternates: { canonical: "/" },
+  // No `alternates.canonical` here on purpose. A default of "/" is inherited by
+  // any page that doesn't override it, which told search engines that /adtech
+  // and /about were duplicates of the homepage and suppressed them. Each route
+  // sets its own.
   openGraph: {
     type: "website",
-    url: site.url,
     siteName: site.name,
-    title: `${site.name} — ${site.role}`,
-    description: site.description,
     locale: "en_US",
+    // title/description/url are deliberately omitted so Next derives them from
+    // each page's own metadata. Setting them here made all eight pages share
+    // the homepage's card.
   },
   twitter: {
     card: "summary_large_image",
-    title: `${site.name} — ${site.role}`,
-    description: site.description,
   },
   robots: {
     index: true,
@@ -104,6 +105,11 @@ const personSchema = {
     "Generative AI",
     "Commerce platforms",
   ],
+  // "Rachel Zhang" is a high-collision name. sameAs is what lets a search
+  // engine bind this page to the same person as these profiles.
+  sameAs: socials
+    .filter((s) => !s.placeholder && s.href.startsWith("http"))
+    .map((s) => s.href),
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

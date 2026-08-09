@@ -7,6 +7,34 @@ import { WorkVisual } from "@/components/WorkVisual";
 import { territories } from "@/content/territories";
 import { closing, credentials, hero, selectedWork, workIntro } from "@/content/home";
 
+/**
+ * Close the trailing gap in the Selected Work grid.
+ *
+ * The feature card occupies 2×2 of the three-column grid, so the last row only
+ * fills exactly when (4 + the remaining cards) is a multiple of three. With the
+ * current five items it lands on eight, leaving one visibly empty cell. Rather
+ * than hard-coding a span that breaks the next time a project is added or
+ * removed, stretch the final card by whatever the shortfall happens to be.
+ *
+ * Class names are written out in full because Tailwind cannot see the output of
+ * a template literal.
+ */
+const lgCells = 4 + Math.max(selectedWork.length - 1, 0);
+const lgGap = (3 - (lgCells % 3)) % 3;
+const mdGap = selectedWork.length % 2 === 0 ? 0 : 1;
+
+const trailingFill = [
+  ["", "md:col-span-2"][mdGap],
+  ["", "lg:col-span-2", "lg:col-span-3"][lgGap],
+]
+  .filter(Boolean)
+  .join(" ");
+
+export const metadata = {
+  alternates: { canonical: "/" },
+  openGraph: { url: "/" },
+};
+
 export default function Home() {
   return (
     <PageShell territory="identity">
@@ -113,8 +141,11 @@ export default function Home() {
                   </div>
 
                   <div>
+                    {/* The explicit space matters: `ml-3` is a margin, not
+                        whitespace, so without it the accessible name and the
+                        indexed text read "AdTechBuilding inside the…". */}
                     <h3 className="display text-2xl text-primary sm:text-[1.75rem]">
-                      {t.title}
+                      {t.title}{" "}
                       <span className="ml-3 align-middle text-base text-tertiary">
                         {t.headline}
                       </span>
@@ -152,14 +183,14 @@ export default function Home() {
         />
 
         <div className="mt-14 grid gap-px border border-hair bg-hair md:grid-cols-2 lg:grid-cols-3">
-          {selectedWork.map((work) => (
+          {selectedWork.map((work, i) => (
             <Link
               key={work.title}
               href={work.href}
               data-territory={work.territory}
               className={`group flex flex-col bg-canvas p-6 transition-colors duration-150 hover:bg-raised ${
                 work.feature ? "lg:col-span-2 lg:row-span-2" : ""
-              }`}
+              } ${i === selectedWork.length - 1 ? trailingFill : ""}`}
             >
               <WorkVisual
                 variant={work.visual}

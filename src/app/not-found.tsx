@@ -6,6 +6,10 @@ import { territories } from "@/content/territories";
 export const metadata = {
   title: "Not found",
   description: "That page doesn't exist.",
+  // The root layout opts the site into indexing; this page must opt back out,
+  // or 404.html emits both `noindex` and `index, follow` and search engines
+  // pick whichever they like.
+  robots: { index: false, follow: false },
 };
 
 /**

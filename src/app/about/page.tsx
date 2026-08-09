@@ -8,6 +8,8 @@ import { socials } from "@/content/site";
 export const metadata: Metadata = {
   title: "About",
   description: aboutIntro.body[0],
+  alternates: { canonical: "/about/" },
+  openGraph: { url: "/about/" },
 };
 
 /**

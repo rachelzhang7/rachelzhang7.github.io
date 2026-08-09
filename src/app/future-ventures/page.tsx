@@ -30,6 +30,7 @@ export const metadata: Metadata = {
   title: "Future Ventures",
   description: territoryByKey.ventures.body,
   alternates: { canonical: "/future-ventures/" },
+  openGraph: { url: "/future-ventures/" },
 };
 
 /** Fixed order — the ledger's columns never reshuffle based on what's in it. */

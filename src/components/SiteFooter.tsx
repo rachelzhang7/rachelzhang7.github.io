@@ -72,7 +72,10 @@ export function SiteFooter() {
           <p className="label">
             © {year} {site.name}
           </p>
-          <p className="label text-quiet">
+          {/* Not `text-quiet` — at 11px that token is 3.69:1, which fails
+              WCAG AA and breaks the token's own rule (non-text, or >=24px).
+              `.label`'s default tertiary is 4.71:1 and passes at any size. */}
+          <p className="label">
             Built from scratch · Next.js · GitHub Pages
           </p>
         </div>

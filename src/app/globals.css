@@ -188,7 +188,21 @@
    UTILITIES
    ========================================================================== */
 
-@layer utilities {
+/* ==========================================================================
+   COMPONENT CLASSES
+
+   These MUST live in `components`, not `utilities`. They set defaults that a
+   utility is expected to override at the call site — `.label` sets a colour,
+   `.display` sets a line-height, `.measure` sets a max-width. Tailwind sorts
+   `components` before `utilities`, so `text-accent`, `leading-*` and `max-w-*`
+   win as intended.
+
+   When these lived in `@layer utilities` they had equal specificity and simply
+   came later in the sheet, so `.label` silently beat `.text-accent` and the
+   entire per-territory accent system computed to grey on every page.
+   ========================================================================== */
+
+@layer components {
   /* The mono metadata label. Used for every measurement on the site. */
   .label {
     font-family: var(--font-plex-mono), ui-monospace, monospace;
