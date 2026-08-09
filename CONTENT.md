@@ -40,10 +40,16 @@ out until you fill them.
 
 | Where | What's needed |
 | --- | --- |
-| `site.ts` → `socials` | Real LinkedIn and X URLs. Both are marked `placeholder: true` and the build warns about them. |
 | `experiments.ts` | Two empty scaffold entries (`placeholder-multimodal`, `placeholder-eval`). Fill in and set `published: true`, or delete them. |
 | `creative.ts` | Each work renders generated artwork. Add a real image under `public/media/` and set `image: "/media/your-file.jpg"` to override. |
 | `home.ts` → `credentials` | Confirm the "5× AI hackathon winner, 2024–2026" line is how you want it stated. |
+
+### Adding a contact link
+
+`site.ts` → `socials`. Any entry marked `placeholder: true` is filtered out of
+the footer and the About page rather than shipping as a dead link, and CI fails
+the build if a `REPLACE-ME` URL ever reaches the exported HTML. Drop the flag
+once the URL is real and the link appears.
 
 ### Two headline options
 

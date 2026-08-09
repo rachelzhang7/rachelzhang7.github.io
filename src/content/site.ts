@@ -67,9 +67,8 @@ export const socials: SocialLink[] = [
   },
   {
     label: "LinkedIn",
-    href: "https://www.linkedin.com/in/REPLACE-ME",
-    handle: "/in/REPLACE-ME",
-    placeholder: true,
+    href: "https://www.linkedin.com/in/rachel-zhang/",
+    handle: "/in/rachel-zhang",
   },
   {
     label: "GitHub",
@@ -78,8 +77,7 @@ export const socials: SocialLink[] = [
   },
   {
     label: "X",
-    href: "https://x.com/REPLACE-ME",
-    handle: "@REPLACE-ME",
-    placeholder: true,
+    href: "https://x.com/RachelZ2154",
+    handle: "@RachelZ2154",
   },
 ];
