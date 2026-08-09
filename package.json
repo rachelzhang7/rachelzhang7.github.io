@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "lint": "eslint",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "next typegen && tsc --noEmit",
     "preview": "npx --yes serve@latest out -l 3001",
     "verify": "node scripts/verify-export.mjs"
   },
