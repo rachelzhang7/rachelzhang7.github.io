@@ -64,7 +64,7 @@ export default function AdTech() {
                     href={`#${item.id}`}
                     className="group flex items-baseline gap-3 py-4 pr-4 transition-colors duration-150"
                   >
-                    <span className="label transition-colors duration-150 group-hover:text-accent">
+                    <span className="label transition-colors duration-150 group-hover:text-accent-2">
                       {item.mark}
                     </span>
                     <span className="text-sm text-secondary transition-colors duration-150 group-hover:text-primary">
@@ -113,10 +113,10 @@ export default function AdTech() {
         <div className="mt-14">
           {caseStudies.map((study, i) => (
             <Reveal key={study.slug} delay={Math.min(i, 4) * 60}>
-              <article className="group border-t border-hair py-10 transition-colors duration-150 hover:border-accent-rule">
+              <article className="group border-t border-hair py-10 transition-colors duration-150 hover:border-accent-2-rule">
                 <div className="grid gap-x-8 gap-y-6 lg:grid-cols-[3rem_14rem_minmax(0,1fr)_9rem]">
                   {/* index */}
-                  <p className="font-mono text-2xl leading-none text-tertiary transition-colors duration-150 group-hover:text-accent">
+                  <p className="font-mono text-2xl leading-none text-tertiary transition-colors duration-150 group-hover:text-accent-2">
                     {study.index}
                   </p>
 

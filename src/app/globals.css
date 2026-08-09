@@ -3,11 +3,15 @@
 /* ==========================================================================
    TOKENS
 
-   The site commits to a single dark look. There is no light mode: two of the
-   territory accents fail AA on white and would have to be re-derived rather
-   than inverted, and a personal site does not need to be two designs.
+   Dark editorial x restrained futuristic x product-led.
 
-   Contrast ratios below are measured against --bg-base (#090A0D).
+   The site commits to a single dark look; a personal site does not need to be
+   two designs. Contrast ratios below are measured against --bg-base (#090A0D).
+
+   Accents encode ROLE, not PLACE. `data-territory` still marks up which
+   section a link belongs to, but it no longer changes any colour – the three
+   pillar pages deliberately share one visual identity, and their differences
+   come from content, imagery and composition.
    ========================================================================== */
 
 :root {
@@ -28,30 +32,34 @@
   --text-tertiary: #767c86; /* mono metadata – 4.7:1, AA at any size */
   --text-quiet: #656b75; /* 3.7:1 – non-text only, or >=24px */
 
-  /* --- territory accents ----------------------------------------------
-     Desaturated one to two steps below the default Tailwind ramps on
-     purpose: the saturated versions are exactly the hues that read as
-     AI-startup. Every value clears 4.5:1 so an accent is legal as small
-     mono text without an exception. */
-  --acc-identity: #9b8cff; /* violet – home            7.2:1 */
-  --acc-adtech: #4da8ff; /* electric blue            7.9:1 */
-  --acc-experiments: #a6c93c; /* acid lime, olive-shifted 10.4:1 */
-  --acc-creative: #ec6a9c; /* magenta-rose             6.7:1 */
-  --acc-ventures: #f0a03c; /* amber                    9.2:1 */
+  /* --- accents: roles, not places --------------------------------------
+     Colour encodes emphasis and interaction, never which page you are on.
+     AdTech, Experiments and Creative AI share one identity; their
+     differences come from content, imagery and composition.
 
-  /* Exactly one accent is live per route. Set on <html data-territory>.
-     No component below that line may reference a territory hex. */
-  --accent: var(--acc-identity);
+     Desaturated a step or two below the default Tailwind ramps on purpose:
+     the saturated versions are exactly the hues that read as AI-startup.
+     Both accents clear 4.5:1, so either is legal as small mono text. */
+  --accent: #9b8cff; /* violet – primary: emphasis, active   7.2:1 */
+  --accent-2: #4da8ff; /* electric blue – links, hover        7.9:1 */
+  --accent-hi: #ebc85a; /* warm yellow – rare punctuation     11.4:1 */
 
   /* --- derived, never hand-authored ------------------------------------ */
   --accent-ring: color-mix(in oklab, var(--accent) 10%, transparent);
   --accent-rule: color-mix(in oklab, var(--accent) 45%, var(--line-hair));
   --accent-select: color-mix(in oklab, var(--accent) 22%, transparent);
+  --accent-2-rule: color-mix(in oklab, var(--accent-2) 45%, var(--line-hair));
 
-  /* --- layout ---------------------------------------------------------- */
-  --content-max: 1240px;
+  /* Atmospheric depth. One per page, behind the largest empty region,
+     never behind text. Deliberately below the threshold of notice. */
+  --glow: color-mix(in oklab, var(--accent) 9%, transparent);
+
+  /* --- layout ----------------------------------------------------------
+     Narrower measure and a wider gutter than before: the page should read
+     as expansive, and margins are what create that, not extra sections. */
+  --content-max: 1160px;
   --rail-w: 72px;
-  --page-gutter: clamp(1.25rem, 5vw, 2.5rem);
+  --page-gutter: clamp(1.5rem, 6vw, 5rem);
 
   /* --- motion ---------------------------------------------------------- */
   --dur-micro: 120ms;
@@ -64,10 +72,6 @@
   --ease-settle: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-[data-territory="adtech"] { --accent: var(--acc-adtech); }
-[data-territory="experiments"] { --accent: var(--acc-experiments); }
-[data-territory="creative"] { --accent: var(--acc-creative); }
-[data-territory="ventures"] { --accent: var(--acc-ventures); }
 
 /* ==========================================================================
    TAILWIND THEME MAPPING
@@ -96,8 +100,11 @@
   --color-quiet: var(--text-quiet);
 
   --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
+  --color-accent-hi: var(--accent-hi);
   --color-accent-ring: var(--accent-ring);
   --color-accent-rule: var(--accent-rule);
+  --color-accent-2-rule: var(--accent-2-rule);
 
   /* Three voices, one rule that makes the system self-enforcing:
      a MEASUREMENT is mono, a CLAIM is serif, an ARGUMENT is sans. */
@@ -248,6 +255,26 @@
     width: 100%;
     background-color: var(--line-hair);
     border: 0;
+  }
+
+  /* Atmospheric depth. One per page, placed behind the largest empty region
+     and never behind text. It should read as the ground being lit rather than
+     as a visible gradient – if you can point at where it starts, it is too
+     strong. Sits under everything and takes no pointer events. */
+  .atmosphere {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .atmosphere::before {
+    content: "";
+    position: absolute;
+    inset: -20% -10% auto auto;
+    width: min(46rem, 80vw);
+    aspect-ratio: 1;
+    background: radial-gradient(circle at 60% 40%, var(--glow), transparent 68%);
   }
 }
 

@@ -2,134 +2,117 @@ import Link from "next/link";
 import { territories } from "@/content/territories";
 
 /**
- * The homepage hero: a single trace on a graticule.
+ * The hero's visual signature: one thin line rising across the field, marked
+ * at three points.
  *
- * The concept the client's mockup carried – many signals converging into
- * understanding, then into expression – rebuilt as an instrument readout
- * rather than the AI-generated particle-network image, which is both
- * unusable and the single most tired visual in this genre.
+ * It is a trajectory, not a readout. The line ascends left to right through
+ * Depth, Building and Taste, and the three marks are real links into those
+ * territories – so the drawing carries the site's argument rather than
+ * decorating it.
  *
- * Three things keep this from being ornament:
- *  1. The four markers ARE the navigation to the four territories. If they
- *     were decorative dots on a pretty wave, a sophisticated visitor would
- *     clock it as styling pretending to be information.
- *  2. The path is deterministic and computed at build time, so it serialises
- *     into the HTML as a static `d` string. No runtime maths, no canvas, no
- *     requestAnimationFrame, no layout shift.
- *  3. It sweeps once on load and then stops. No idle shimmer – that restraint
- *     is most of what separates this from a crypto dashboard.
+ * Everything that made this read as instrumentation is deliberately gone: no
+ * graticule, no channel numbers, no sweep label, no invented metrics. A grid
+ * of measurement lines behind a meaningless waveform is technological costume,
+ * and this audience looks at real dashboards for a living.
  *
- * All type lives in HTML rather than inside the SVG. Text set in viewBox units
- * scales with the drawing, so at 375px the labels rendered around 4px and were
- * illegible. As HTML they stay real text: legible, selectable, and reachable by
- * a screen reader and the keyboard.
+ * The path is computed at build time and serialises into the HTML as a static
+ * `d` string – no runtime maths, no canvas, no layout shift, and byte-identical
+ * across builds.
  */
 
 const W = 1000;
-const H = 300;
-const MID = H / 2;
+const H = 200;
 
 /**
- * Deterministic waveform. Four sine components – no Math.random, so every build
- * produces a byte-identical path and the diff stays clean.
+ * Two cubic segments forming one long eased arc: nearly flat on the left, then
+ * accelerating upward and easing again at the top.
+ *
+ * A deliberately drawn curve rather than a plotted one. Evenly-spaced rising
+ * points produce a straight diagonal, which reads as a chart axis – the shape
+ * has to carry the energy itself.
  */
-function traceY(x: number): number {
-  const t = x / W;
-  return (
-    MID -
-    46 * Math.sin(t * Math.PI * 2.1) -
-    21 * Math.sin(t * Math.PI * 6.3 + 0.9) -
-    9 * Math.sin(t * Math.PI * 13.7 + 2.2) -
-    3 * Math.sin(t * Math.PI * 31.1 + 1.1)
-  );
+const SEGMENTS: Array<[number, number][]> = [
+  [
+    [0, 178],
+    [230, 176],
+    [400, 150],
+    [520, 112],
+  ],
+  [
+    [520, 112],
+    [640, 74],
+    [790, 40],
+    [W, 22],
+  ],
+];
+
+const tracePath = `M${SEGMENTS[0][0][0]},${SEGMENTS[0][0][1]} ${SEGMENTS.map(
+  (s) => `C${s[1][0]},${s[1][1]} ${s[2][0]},${s[2][1]} ${s[3][0]},${s[3][1]}`,
+).join(" ")}`;
+
+/** Point on a cubic bezier at parameter t. */
+function cubicAt(seg: [number, number][], t: number): [number, number] {
+  const u = 1 - t;
+  const [a, b, c, d] = seg;
+  return [
+    u * u * u * a[0] + 3 * u * u * t * b[0] + 3 * u * t * t * c[0] + t * t * t * d[0],
+    u * u * u * a[1] + 3 * u * u * t * b[1] + 3 * u * t * t * c[1] + t * t * t * d[1],
+  ];
 }
 
-const tracePath = (() => {
-  const points: string[] = [];
-  for (let x = 0; x <= W; x += 4) {
-    points.push(`${x},${traceY(x).toFixed(2)}`);
-  }
-  return `M${points.join(" L")}`;
-})();
-
 /**
- * Markers sit at the centre of each quarter, which is exactly where the four
- * columns of the label grid below centre – so the drawing and the type line up
- * without any absolute positioning.
+ * Sample the curve so a mark can be placed at an exact x. The marks sit at the
+ * centres of the three label columns below, which is what lets the drop-lines
+ * go: alignment alone makes it obvious which point belongs to which pillar.
  */
-const markers = territories.map((territory, i) => {
-  const x = (W / 8) * (2 * i + 1);
-  return { territory, x, y: traceY(x) };
+const samples: Array<[number, number]> = [];
+for (const seg of SEGMENTS) {
+  for (let i = 0; i <= 240; i++) samples.push(cubicAt(seg, i / 240));
+}
+
+function yAt(x: number): number {
+  let best = samples[0];
+  for (const s of samples) {
+    if (Math.abs(s[0] - x) < Math.abs(best[0] - x)) best = s;
+  }
+  return best[1];
+}
+
+const marks = territories.map((territory, i) => {
+  const x = (W / 6) * (2 * i + 1); // centres of the three columns below
+  return { territory, x, y: yAt(x) };
 });
 
 export function HeroTrace() {
   return (
     <div>
-      {/* Corner readouts, in the positions scope UI puts them. */}
-      <div className="flex items-baseline justify-between">
-        {/* Derived, not hard-coded: this is a readout, and a readout that
-            disagrees with what is on screen is worse than no readout. */}
-        <span className="label">
-          CH.01–{String(territories.length).padStart(2, "0")}
-        </span>
-        <span className="label">Sweep: auto</span>
-      </div>
-
       <svg
         viewBox={`0 0 ${W} ${H}`}
-        className="mt-3 block w-full"
+        className="block w-full overflow-visible"
         style={{ aspectRatio: `${W} / ${H}` }}
         role="img"
-        aria-label="A single waveform crossing four marked points, one for each area of work."
+        aria-label="A rising line marked at three points, one for each of the three pillars."
       >
         <defs>
-          <filter id="hero-bloom" x="-20%" y="-60%" width="140%" height="220%">
-            <feGaussianBlur stdDeviation="5" />
+          <filter id="trace-glow" x="-10%" y="-80%" width="120%" height="260%">
+            <feGaussianBlur stdDeviation="7" />
           </filter>
         </defs>
 
-        {/* Graticule: 12 × 6 divisions, the convention of a scope screen.
-            Static and server-rendered, so the hero is legible before any
-            JavaScript runs. */}
-        <g shapeRendering="crispEdges">
-          {Array.from({ length: 11 }, (_, i) => (
-            <line
-              key={`v${i}`}
-              x1={((i + 1) * W) / 12}
-              y1={0}
-              x2={((i + 1) * W) / 12}
-              y2={H}
-              stroke="var(--line-hair)"
-              opacity={0.55}
-            />
-          ))}
-          {Array.from({ length: 5 }, (_, i) => (
-            <line
-              key={`h${i}`}
-              x1={0}
-              y1={((i + 1) * H) / 6}
-              x2={W}
-              y2={((i + 1) * H) / 6}
-              stroke="var(--line-hair)"
-              opacity={0.55}
-            />
-          ))}
-          <line x1={0} y1={MID} x2={W} y2={MID} stroke="var(--line-strong)" />
-        </g>
-
-        {/* Phosphor bloom – applied once, never animated. */}
+        {/* Violet bloom beneath the line. This is the only glow in the hero,
+            and it exists to give the ground depth, not to be seen directly. */}
         <path
           d={tracePath}
           pathLength={1}
           fill="none"
-          stroke="var(--acc-identity)"
-          strokeWidth={2}
-          opacity={0.22}
-          filter="url(#hero-bloom)"
+          stroke="var(--accent)"
+          strokeWidth={3}
+          opacity={0.45}
+          filter="url(#trace-glow)"
           className="trace-draw"
         />
 
-        {/* The trace itself. */}
+        {/* The line itself. */}
         <path
           d={tracePath}
           pathLength={1}
@@ -137,56 +120,40 @@ export function HeroTrace() {
           stroke="var(--text-primary)"
           strokeWidth={1.25}
           strokeLinecap="round"
-          strokeLinejoin="round"
-          opacity={0.72}
+          opacity={0.82}
           className="trace-draw"
         />
 
-        {/* Markers and their leader lines down to the labels. */}
-        {markers.map(({ territory, x, y }, i) => (
-          <g key={territory.key} data-territory={territory.key}>
-            <line
-              x1={x}
-              y1={y + 9}
-              x2={x}
-              y2={H}
-              stroke="var(--line-hair)"
-            />
-            {/* Neutral at rest. Rendering all four territory accents at once
-                turns this into a colour-coded navigation menu – the exact
-                "beautiful navigation dashboard" this site is trying not to be.
-                The accent appears on interaction instead, so a visitor still
-                learns the colour system, one territory at a time. */}
-            <rect
-              x={x - 3}
-              y={y - 3}
-              width={6}
-              height={6}
-              fill="none"
-              stroke="var(--line-strong)"
-              strokeWidth={1.5}
-              className="marker"
-              style={{ animationDelay: `${900 + i * 70}ms` }}
-            />
-          </g>
+        {/* Three marks sitting on the line. No drop-lines: vertical rules down
+            to a baseline are what made this read as a bar chart. Alignment
+            with the labels below does that job silently. */}
+        {marks.map(({ territory, x, y }, i) => (
+          <circle
+            key={territory.key}
+            cx={x}
+            cy={y}
+            r={3.5}
+            fill="var(--bg-base)"
+            stroke="var(--line-hover)"
+            strokeWidth={1.25}
+            className="marker"
+            style={{ animationDelay: `${820 + i * 90}ms` }}
+          />
         ))}
       </svg>
 
-      {/* The four markers as real links. On phones they fall to two columns and
-          stop tracking the marker positions, which is the honest trade – the
-          labels stay legible instead of staying aligned. */}
-      <ul className="grid grid-cols-2 border-t border-hair sm:grid-cols-4">
+      {/* The three marks as real links, aligned under their points. */}
+      <ul className="grid grid-cols-3 border-t border-hair">
         {territories.map((t) => (
           <li key={t.key}>
             <Link
               href={t.href}
-              data-territory={t.key}
-              className="group flex h-full flex-col gap-1 px-1 py-4 text-center transition-colors sm:items-center"
+              className="group flex h-full flex-col gap-1.5 py-5 text-center"
             >
-              <span className="label transition-colors group-hover:text-accent group-focus-visible:text-accent">
+              <span className="font-mono text-[0.6875rem] tracking-[0.14em] text-quiet transition-colors duration-200 group-hover:text-accent-2 group-focus-visible:text-accent-2">
                 {t.index}
               </span>
-              <span className="text-sm text-tertiary transition-colors group-hover:text-primary group-focus-visible:text-primary">
+              <span className="text-sm text-tertiary transition-colors duration-200 group-hover:text-primary group-focus-visible:text-primary">
                 {t.title}
               </span>
             </Link>

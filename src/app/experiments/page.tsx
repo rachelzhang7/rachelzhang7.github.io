@@ -118,7 +118,7 @@ export default function ExperimentsPage() {
                   className="group flex flex-wrap items-baseline gap-x-6 gap-y-1 py-4"
                 >
                   <span className="label w-8 shrink-0 text-accent">{idx(i)}</span>
-                  <span className="text-sm text-primary transition-colors duration-150 group-hover:text-accent">
+                  <span className="text-sm text-primary transition-colors duration-150 group-hover:text-accent-2">
                     {e.title}
                   </span>
                   <span className="label ml-auto transition-colors duration-150 group-hover:text-primary">
@@ -246,7 +246,7 @@ export default function ExperimentsPage() {
           </p>
           <Link
             href={nextPillar.href}
-            className="group mt-8 inline-flex items-center gap-3 border border-dashed border-strong px-5 py-3 text-sm text-secondary transition-colors duration-150 hover:border-accent-rule hover:text-primary"
+            className="group mt-8 inline-flex items-center gap-3 border border-dashed border-strong px-5 py-3 text-sm text-secondary transition-colors duration-150 hover:border-accent-2-rule hover:text-primary"
           >
             {nextPillar.cta}
             <span

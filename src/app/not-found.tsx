@@ -38,9 +38,9 @@ export default function NotFound() {
               <Link
                 href={t.href}
                 data-territory={t.key}
-                className="group flex items-baseline gap-6 border-b border-hair py-5 transition-colors hover:border-accent-rule"
+                className="group flex items-baseline gap-6 border-b border-hair py-5 transition-colors hover:border-accent-2-rule"
               >
-                <span className="font-mono text-sm text-tertiary transition-colors group-hover:text-accent">
+                <span className="font-mono text-sm text-tertiary transition-colors group-hover:text-accent-2">
                   {t.index}
                 </span>
                 <span className="display text-xl text-primary">{t.title}</span>

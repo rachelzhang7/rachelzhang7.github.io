@@ -116,7 +116,7 @@ export default function About() {
                       {...(external
                         ? { target: "_blank", rel: "me noopener noreferrer" }
                         : { rel: "me" })}
-                      className="group flex items-baseline justify-between gap-6 border-t border-hair py-5 transition-colors duration-150 hover:border-accent-rule"
+                      className="group flex items-baseline justify-between gap-6 border-t border-hair py-5 transition-colors duration-150 hover:border-accent-2-rule"
                     >
                       <span className="min-w-0">
                         <span className="block text-base text-primary">
@@ -125,7 +125,7 @@ export default function About() {
                         {/* Deliberately not `.label`: a handle is a mono
                             measurement, but uppercasing an address would
                             misrepresent it. */}
-                        <span className="mt-2 block truncate font-mono text-xs tracking-[0.04em] text-tertiary transition-colors duration-150 group-hover:text-accent">
+                        <span className="mt-2 block truncate font-mono text-xs tracking-[0.04em] text-tertiary transition-colors duration-150 group-hover:text-accent-2">
                           {s.handle}
                         </span>
                       </span>

@@ -50,8 +50,11 @@ export function SectionHead({
         {terminus && <p className="label">{terminus}</p>}
       </div>
       <div className="hairline rule-draw mt-3" />
+      {/* Deliberately modest. A section heading names a region; the work
+          inside it is the thing worth looking at. Nothing that labels a
+          section may be set larger than what it labels. */}
       {headline && (
-        <h2 className="display mt-8 text-balance text-3xl text-primary sm:text-4xl lg:text-[2.75rem]">
+        <h2 className="display mt-7 text-balance text-2xl text-primary sm:text-[1.875rem]">
           {headline}
         </h2>
       )}

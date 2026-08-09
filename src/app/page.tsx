@@ -41,7 +41,12 @@ export default function Home() {
       {/* ---------------------------------------------------------------
           HERO – positioning, answered in 10–15 seconds.
           --------------------------------------------------------------- */}
-      <Section mark="01 · Identity" className="pt-16 sm:pt-24">
+      <Section mark="01 · Identity" className="relative pt-16 sm:pt-24">
+        {/* The page's single atmospheric moment, sitting in the empty upper
+            right and never behind text. It gives the ground depth; it should
+            not be identifiable as a gradient. */}
+        <div className="atmosphere" aria-hidden="true" />
+
         <p className="label beat beat-1 text-accent">{hero.eyebrow}</p>
 
         <h1 className="display beat beat-2 mt-8 text-[clamp(2.5rem,7vw,4.75rem)] leading-[1.08] text-primary">
@@ -90,14 +95,14 @@ export default function Home() {
           </div>
         </div>
 
-        {/* The trace is the hero's largest element, and it reads as one
-            instrument spanning the full measure. */}
+        {/* The visual counterweight to the headline: one rising line, marked
+            at the three pillars. Wide and thin so it gives the hero energy
+            without competing with the type above it. */}
         <div className="beat beat-4 mt-14">
           <HeroTrace />
         </div>
 
-        {/* Credibility strip, sitting on the trace's baseline rule so it reads
-            as part of the same instrument rather than a floating widget. */}
+        {/* Credibility strip, hung on the rule that closes the hero. */}
         <dl className="beat beat-5 grid grid-cols-1 gap-px border-y border-hair bg-hair sm:grid-cols-3">
           {credentials.map((c) => (
             <div key={c.value} className="flex items-baseline gap-3 bg-canvas px-1 py-4">
@@ -109,7 +114,7 @@ export default function Home() {
       </Section>
 
       {/* ---------------------------------------------------------------
-          THE WORK – four editorial panels, not a card grid.
+          THE WORK – three territories, not a card grid.
           --------------------------------------------------------------- */}
       <Section mark="02 · The work" className="mt-32 sm:mt-44">
         <SectionHead
@@ -124,23 +129,24 @@ export default function Home() {
               <Link
                 href={t.href}
                 data-territory={t.key}
-                className="group block border-t border-hair py-10 transition-colors duration-150 hover:border-accent-rule"
+                className="group block border-t border-hair py-10 transition-colors duration-150 hover:border-accent-2-rule"
               >
                 <div className="grid gap-6 lg:grid-cols-[6rem_1fr_auto] lg:items-baseline lg:gap-10">
-                  {/* The dimension is the thing to remember, so it is set
-                      larger than the site's standard mono label and carries
-                      the accent – it is the framework, not metadata. */}
-                  <div className="flex items-baseline gap-4 lg:block">
-                    <span className="font-mono text-2xl leading-none text-tertiary transition-colors duration-150 group-hover:text-accent">
+                  {/* Large numbering, but neutral: the figure gives the row
+                      its scale and rhythm, not its colour. The dimension
+                      label is the one word worth remembering, so it carries
+                      the violet. */}
+                  <div className="flex items-baseline gap-5 lg:block">
+                    <span className="font-mono text-[2.75rem] leading-[0.85] text-quiet transition-colors duration-200 group-hover:text-tertiary sm:text-[3.5rem]">
                       {t.index}
                     </span>
-                    <span className="mt-3 block font-mono text-[0.8125rem] uppercase tracking-[0.18em] text-accent">
+                    <span className="mt-4 block font-mono text-[0.8125rem] uppercase tracking-[0.18em] text-accent">
                       {t.dimension}
                     </span>
                   </div>
 
                   <div>
-                    <h3 className="display text-2xl text-primary sm:text-[1.75rem]">
+                    <h3 className="display text-[2rem] text-primary sm:text-[2.5rem]">
                       {t.title}
                     </h3>
                     {/* The claim, on its own line rather than trailing the
@@ -209,7 +215,7 @@ export default function Home() {
                 {work.blurb}
               </p>
 
-              <span className="label mt-6 inline-flex items-center gap-2 text-tertiary transition-colors duration-150 group-hover:text-accent">
+              <span className="label mt-6 inline-flex items-center gap-2 text-tertiary transition-colors duration-150 group-hover:text-accent-2">
                 {work.cta}
                 <span
                   aria-hidden="true"
@@ -263,7 +269,7 @@ export default function Home() {
                   </span>
                   <span
                     aria-hidden="true"
-                    className="text-tertiary transition-all duration-200 group-hover:translate-x-1 group-hover:text-accent"
+                    className="text-tertiary transition-all duration-200 group-hover:translate-x-1 group-hover:text-accent-2"
                   >
                     →
                   </span>
