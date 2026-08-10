@@ -19,10 +19,14 @@ import "./globals.css";
  * main job is loading fast on a phone from a search result, that trade is
  * worth more than optical sizing.
  */
+// Italic is loaded for one job: the emphasised word in the Experiments
+// headline. Synthesised obliques look wrong on a display serif, and this is the
+// page's signature line, so the real cut is worth the extra file.
 const newsreader = Newsreader({
   subsets: ["latin"],
   variable: "--font-newsreader",
   weight: ["400"],
+  style: ["normal", "italic"],
   display: "swap",
 });
 

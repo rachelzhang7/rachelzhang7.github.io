@@ -24,6 +24,8 @@ export type Experiment = {
   award?: string;
   /** Only where a real link exists. */
   href?: string;
+  /** The question the build was actually testing. Featured entries only. */
+  question?: string;
 };
 
 export type Year = {
@@ -36,10 +38,39 @@ export type Year = {
 
 export const experimentsIntro = {
   eyebrow: "Experiments · Prototypes · Hackathons",
-  headline: "I build to understand.",
-  body: "I use hackathons and prototypes to explore new technologies by turning ideas into working products – quickly, repeatedly, and often under tight constraints.",
-  note: "Some experiments become products. Others become lessons. Both shape what I build next.",
+  /** Split so the emphasised word can carry italic and the accent. */
+  headline: { lead: "I build to", emphasis: "understand" },
+  body: [
+    "GenAI has shortened the distance between a product idea and something real.",
+    "Building has become part of how I do product discovery.",
+  ],
 };
+
+/**
+ * The product loop, and how much of it is now hers to own. `active` marks the
+ * stage GenAI changed most – the reason the rest of the page exists.
+ */
+export const buildLoop = {
+  stages: ["Problem", "Design", "Build", "Test", "Learn"],
+  active: "Build",
+  caption: "Expanding how much of the loop I can own.",
+};
+
+/** What the building has actually taught. Three claims, no more. */
+export const principles = [
+  {
+    title: "Ideas become evidence faster.",
+    body: "I can make an assumption tangible in hours or days, put it in front of people, and learn from reality instead of debating it in the abstract.",
+  },
+  {
+    title: "Building got cheaper. Judgment didn't.",
+    body: "What to build, for whom, and why it should exist matter more when implementation is abundant.",
+  },
+  {
+    title: "Prototype speed isn't product quality.",
+    body: "AI compresses implementation, but coherence, reliability, UX, and taste still require iteration and judgment.",
+  },
+];
 
 /**
  * Years render newest first. Adding a year means adding an entry here – the
@@ -56,9 +87,11 @@ export const years: Year[] = [
         headline:
           "Personalized intelligence for people navigating AI × advertising.",
         description:
-          "Ad AI Pulse turns a noisy stream of AI and advertising signals into role-aware, project-aware intelligence – helping practitioners understand what changed, why it matters to their work, and what to do next.",
+          "Personalized intelligence for people navigating AI × advertising.",
         footer: "AI Intelligence · AdTech",
         image: "/media/experiments/ad-ai-pulse.jpg",
+        question:
+          "Can AI turn an overwhelming information stream into decisions that matter to someone's work?",
       },
       {
         slug: "beam",
@@ -66,9 +99,11 @@ export const years: Year[] = [
         headline:
           "Turn an idea into something people can react to – before building the product.",
         description:
-          "Beam turns early product ideas into audience-specific narrative and video artifacts, puts them in front of real people, captures their feedback, and uses that feedback to generate a better next version.",
+          "Turn an early idea into something people can react to before building the full product.",
         footer: "AI Storytelling · Feedback Loops",
         image: "/media/experiments/beam.jpg",
+        question:
+          "Can AI-generated artifacts make product validation faster and more concrete?",
       },
       {
         slug: "creative-war-room",
@@ -76,9 +111,11 @@ export const years: Year[] = [
         headline:
           "What if AI didn't just generate creative – but argued about what was worth making?",
         description:
-          "Creative War Room puts specialized AI agents – strategist, creative director, copywriter, performance marketer, brand guardian, and legal reviewer – into a shared campaign room where they debate, challenge, veto, score, and refine ideas before they ship.",
+          "A multi-agent system for debating and refining creative ideas.",
         footer: "Multi-Agent Systems · Creative AI",
         image: "/media/experiments/creative-war-room.jpg",
+        question:
+          "When generation becomes cheap, can multiple AI perspectives improve judgment rather than just produce more options?",
       },
     ],
     more: [
@@ -113,6 +150,11 @@ export const years: Year[] = [
     ],
   },
 ];
+
+/** The page ends on this. The final mark carries the accent. */
+export const experimentsClosing = {
+  lead: "Build to bring ideas closer to reality",
+};
 
 /**
  * The thesis behind Creative War Room. Surfaced quietly beside the project
