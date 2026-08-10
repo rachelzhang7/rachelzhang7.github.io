@@ -1,69 +1,191 @@
 /**
- * Creative AI – taste and curiosity.
+ * Creative AI – taste.
  *
- * This page is a small gallery, not a portfolio. The organising question is not
- * "what business impact did this have" but "what happens when AI becomes a
- * medium for human expression". Copy stays short on purpose: a title, the
- * artifact, and at most two sentences.
+ * A small digital gallery, organised by medium rather than by year: music,
+ * visuals, ad creative. Year is contextual metadata, not the structure – the
+ * deliberate opposite of the Experiments page, where chronology leads.
+ *
+ * Everything here is real: real songs with real public links, real artwork,
+ * real video, real articles. Nothing is generated to fill a slot, and no claim
+ * is made about professional credentials, commercial deployment, client work or
+ * brand partnerships. This is personal creative experimentation.
  */
 
-export type Work = {
-  slug: string;
-  title: string;
-  /** Medium, shown as a mono label. */
-  medium: string;
-  /** Two sentences maximum. Resist explaining. */
-  note: string;
-  /**
-   * Visual treatment for the generated placeholder artwork. Each maps to a
-   * different generative pattern so the gallery doesn't read as one repeated
-   * texture. Swap for a real asset by setting `image`.
-   */
-  visual: "spectrum" | "bloom" | "strata" | "weave" | "orbit" | "grain";
-  /** Path under /public once a real asset exists. Overrides `visual`. */
-  image?: string;
-  /** Controls the masonry rhythm – the gallery is deliberately irregular. */
-  span: "tall" | "wide" | "square";
-  published: boolean;
-};
-
 export const creativeIntro = {
-  eyebrow: "Creative AI",
-  headline: "AI is not only a tool. It's becoming a medium.",
+  eyebrow: "Creative AI · 03",
+  headline: "I create to understand the medium.",
   body: [
-    "What happens when AI becomes a medium for human expression rather than a way to produce more content faster?",
-    "These are experiments in music, image, and story – made to find out what an individual can now express alone.",
+    "I'm interested in what happens when AI becomes a creative medium.",
+    "Generative AI is changing the cost of making things – music, imagery, advertising, and storytelling. What interests me isn't simply that these outputs are easier to produce. It's how the role of the creator changes when the medium itself can generate, remix, interpret, and respond.",
+    "I use these tools partly to make things I enjoy, and partly to understand what new products, workflows, and businesses become possible when creation becomes more programmable.",
   ],
+  /** Carries more visual weight than the paragraphs above it. */
+  anchor: "Making is how I study the medium.",
 };
 
-export const works: Work[] = [
-  {
-    slug: "music",
-    title: "Original Music",
-    medium: "Sound · Composition",
-    note: "Writing with AI as a collaborator rather than a generator. The interesting moments are the ones where it suggests something I wouldn't have chosen but can't argue with.",
-    visual: "spectrum",
-    span: "wide",
-    published: true,
-  },
-  {
-    slug: "visual",
-    title: "Visual Studies",
-    medium: "Image · Generative",
-    note: "Iterating on a single visual idea until the model and I converge on something neither of us started with.",
-    visual: "bloom",
-    span: "tall",
-    published: true,
-  },
-  {
-    slug: "storytelling",
-    title: "Storytelling",
-    medium: "Narrative · Multimodal",
-    note: "Short-form narrative built across text, image and sound, testing how far one person can carry a whole production.",
-    visual: "strata",
-    span: "square",
-    published: true,
-  },
+/** Three mediums, not a process. No arrows between them. */
+export const mediums = [
+  { name: "Music", note: "Expression" },
+  { name: "Visuals", note: "Aesthetic exploration" },
+  { name: "Ad Creative", note: "Applied creation" },
 ];
 
-export const publishedWorks = works.filter((w) => w.published);
+export type Track = {
+  title: string;
+  description: string;
+  href: string;
+};
+
+export const music = {
+  label: "Music · 2026",
+  headline: "Turning experiences into songs.",
+  intro:
+    "AI gave me a way to turn memories, transitions, and things I wanted to say into music – without needing to become a musician first.",
+  profile: "https://suno.com/@guavavida",
+  tracks: [
+    {
+      title: "La Vida Es La Vida",
+      description: "Mexico, friendship, and a phrase that stayed with me.",
+      href: "https://suno.com/song/28179a5e-7519-48a9-8b1c-0bde5164cee1",
+    },
+    {
+      title: "She Found Her Voice",
+      description:
+        "A personal story about finding confidence, independence, and a voice.",
+      href: "https://suno.com/song/babc54cb-8d1c-4cd1-88f1-d761f215ba7f",
+    },
+    {
+      title: "I Took Me Back",
+      description:
+        "Written after walking away from an environment where I had slowly stopped feeling like myself.",
+      href: "https://suno.com/song/86f8b021-3809-41c4-afd3-e7d55949e040",
+    },
+  ] as Track[],
+};
+
+export type Artwork = {
+  title: string;
+  description: string;
+  image: string;
+  width: number;
+  height: number;
+};
+
+export const visuals = {
+  label: "Visuals · 2026",
+  headline: "Exploring form, color, and feeling with generative tools.",
+  /** First entry is the feature; the other two stack beside it. */
+  works: [
+    {
+      title: "Red Throne",
+      description: "She sits at the center and dares you to look away.",
+      image: "/media/creative-ai/art-red-throne.jpg",
+      width: 1300,
+      height: 1171,
+    },
+    {
+      title: "Gathering",
+      description: "Something is pulling them together.",
+      image: "/media/creative-ai/art-gathering.jpg",
+      width: 950,
+      height: 1038,
+    },
+    {
+      title: "Midnight Garden",
+      description: "What grows when nobody's watching?",
+      image: "/media/creative-ai/art-midnight-garden.jpg",
+      width: 1050,
+      height: 1142,
+    },
+  ] as Artwork[],
+};
+
+export const adCreative = {
+  label: "Ad Creative · 2025–2026",
+  headline: "What happens when generation meets a commercial brief?",
+  izze: {
+    title: "IZZE Video Ad",
+    description:
+      "Exploring how quickly a product idea could move from a static brief into motion creative.",
+    /** Real asset. `preload="metadata"` keeps the 10MB off the initial load. */
+    video: "/media/creative-ai/izze-water.mp4",
+    tool: "RunwayML Gen-3 Alpha Turbo",
+  },
+  celsius: {
+    title: "Celsius Image Campaign",
+    description:
+      "Exploring product photography, composition, and campaign variation through generative imagery.",
+    /** One campaign, three frames – never three separate projects. */
+    frames: [
+      {
+        image: "/media/creative-ai/celsius-playa-vibe.jpg",
+        width: 900,
+        height: 1340,
+      },
+      {
+        image: "/media/creative-ai/celsius-dragon-fruit.jpg",
+        width: 1000,
+        height: 1250,
+      },
+      {
+        image: "/media/creative-ai/celsius-watermelon.jpg",
+        width: 1000,
+        height: 1777,
+      },
+    ],
+  },
+};
+
+/** A single line of breathing space between making and writing. */
+export const transition = "Making things changes how I see the tools.";
+
+export type Article = {
+  topic: "Video" | "Voice";
+  title: string;
+  href: string;
+  /**
+   * Publication year, shown as understated metadata. Left undefined where the
+   * supplied source carries no date – a year is never guessed.
+   */
+  year?: string;
+};
+
+export const notes = {
+  label: "03 · Notes from the frontier",
+  headline: "Notes from the frontier.",
+  intro:
+    "Generative models change quickly. I write to capture what I'm seeing while the technology is still moving.",
+  articles: [
+    {
+      topic: "Video",
+      title:
+        "What I Learned Building AI Videos on July 4th (And Why It Matters)",
+      href: "https://www.linkedin.com/pulse/what-i-learned-building-ai-videos-july-4th-why-matters-rachel-zhang-2hqjc/",
+    },
+    {
+      topic: "Video",
+      title:
+        "Stop Competing with AI Video Tools. Start Directing Them (Veo vs Seedance)",
+      href: "https://www.linkedin.com/pulse/stop-competing-ai-video-tools-start-directing-them-rachel-zhang-bsfuc/",
+    },
+    {
+      topic: "Voice",
+      title: "The Voice Quality Gap: Why AI Audio Still Breaks the Magic",
+      href: "https://www.linkedin.com/pulse/voice-quality-gap-why-ai-audio-still-breaks-magic-rachel-zhang-cgtlc/",
+    },
+    {
+      topic: "Voice",
+      title: "My Voice AI Journey: From Frustration to Fascination",
+      href: "https://www.linkedin.com/pulse/my-voice-ai-journey-from-frustration-fascination-rachel-zhang-qnifc/",
+    },
+  ] as Article[],
+};
+
+export const creativeClosing = {
+  lines: ["The tools will change.", "The impulse to make things won't."],
+  small: "Music · Visuals · Advertising · Whatever comes next.",
+  links: [
+    { label: "Suno", href: "https://suno.com/@guavavida" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/rachel-zhang/" },
+  ],
+};
