@@ -323,6 +323,36 @@
   animation: fade-in 300ms linear both;
 }
 
+/* The AdTech field. Filaments draw themselves once and stop; particles breathe
+   slowly and indefinitely, each around its OWN resting opacity carried in
+   `--o` – a shared value would make the whole field pulse in unison, which
+   reads as a loading state rather than as depth. */
+@keyframes spark {
+  0%,
+  100% { opacity: var(--o, 0.4); }
+  50% { opacity: calc(var(--o, 0.4) * 0.34); }
+}
+
+/* Signal streams in the Selected Work diagrams. Short, slow, and low contrast:
+   the dashes should register as movement only in peripheral vision. */
+@keyframes flow-dash {
+  to { stroke-dashoffset: -32; }
+}
+
+.filament {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: trace-sweep 1600ms var(--ease-instrument) both;
+}
+
+.spark {
+  animation: spark 5s ease-in-out infinite both;
+}
+
+.flow {
+  animation: flow-dash 1.8s linear infinite;
+}
+
 /* Above-the-fold entrance runs as pure CSS with animation-delay so it plays
    before hydration and never blocks LCP. */
 .beat {

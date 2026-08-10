@@ -1,11 +1,14 @@
 /**
  * AdTech – depth.
  *
- * One thesis, six proofs, one forward-looking question.
+ * The page makes three claims and lets the layout carry them:
+ *   1. real depth across several parts of advertising systems,
+ *   2. a trajectory – data foundations to intelligence to automation,
+ *   3. a point of view on where GenAI takes the industry.
  *
- * The whole page turns on a single mental model: DATA to INTELLIGENCE to
- * AUTOMATION. That is not a map of the advertising stack – it is the set of
- * layers this work actually touched, and the model that came out of it.
+ * Scope discipline: the hero deliberately names the four areas actually worked
+ * in. It must never be widened back to "across the advertising stack", which
+ * would claim every major ads subsystem.
  *
  * Disclosure rules for anything added here: no internal metrics, no unreleased
  * features, no roadmap, no proprietary implementation detail, no customer names.
@@ -14,153 +17,200 @@
  */
 
 export const adtechIntro = {
-  eyebrow: "AdTech · Commerce · AI",
-  headline: "From data to intelligence to automation.",
-  body: "I've worked across multiple layers of advertising systems – from signals and data infrastructure to Creative AI and increasingly automated commerce advertising. Across these systems, I've become interested in one question: how do we give machines enough context, intelligence, and trust to take on more of the work?",
+  eyebrow: "Ad Tech",
+  /** Split so the final word can carry the page's one blue emphasis. */
+  headline: {
+    lead: "I build advertising systems to understand how they",
+    emphasis: "decide",
+  },
+  body: "Working across signals, measurement, Creative AI, and commerce ads automation has given me different views into how advertising systems work – and made me increasingly interested in how better context, intelligence, and feedback can lead to better decisions.",
 };
 
 /**
- * Exactly three. Conceptual clarity, not completeness – auction, ranking,
- * billing and delivery are deliberately absent, because this describes where
- * the work happened rather than diagramming the industry.
+ * Three lessons, one horizontal band. Each is a claim (serif) plus the
+ * observation behind it (sans). One word in each carries the accent, and those
+ * three words – signals, system, judgment – are the page's argument in
+ * miniature.
  */
-export type Layer = {
-  index: string;
-  name: string;
-  claim: string;
-  scope: string;
+export type Lesson = {
+  /** Selects the glyph drawn beside the claim. */
+  glyph: "field" | "system" | "rise";
+  lead: string;
+  emphasis: string;
+  tail: string;
+  body: string;
 };
 
-export const layers: Layer[] = [
+export const lessons: Lesson[] = [
+  {
+    glyph: "field",
+    lead: "Better learning starts with better ",
+    emphasis: "signals",
+    tail: ".",
+    body: "What the system can observe shapes what it can learn.",
+  },
+  {
+    glyph: "system",
+    lead: "Performance is a ",
+    emphasis: "system",
+    tail: " property.",
+    body: "Creative, delivery, auction, optimization, and conversion interact.",
+  },
+  {
+    glyph: "rise",
+    lead: "Automation depends on context and ",
+    emphasis: "judgment",
+    tail: ".",
+    body: "Better context expands what machines can decide well.",
+  },
+];
+
+/**
+ * Selected work – three chapters, not six cards. The column order IS the
+ * argument, so nothing here may be sorted by recency or importance.
+ */
+export type Chapter = {
+  index: string;
+  name: string;
+  /** observe -> understand -> act. Three words is the whole trajectory. */
+  idea: string;
+  /** Names the visual component rendered above the projects. */
+  visual: "data" | "intelligence" | "automation";
+  /** Read by screen readers in place of the diagram. */
+  alt: string;
+  projects: { title: string; body: string }[];
+};
+
+export const chapters: Chapter[] = [
   {
     index: "01",
     name: "Data",
-    claim: "Give the system better context.",
-    scope: "Signals · Measurement · Infrastructure",
+    idea: "Help the system observe.",
+    visual: "data",
+    alt: "Browser events from web and app, together with server-side events, converge into a stream of signals feeding ad platforms such as Meta Ads and TikTok Ads, which in turn feed ads models, optimization and delivery.",
+    projects: [
+      {
+        title: "Server-Side Signals",
+        body: "Reliable, controllable signal sharing.",
+      },
+      {
+        title: "Events API Gateway",
+        body: "Making server-side signal adoption more accessible.",
+      },
+    ],
   },
   {
     index: "02",
     name: "Intelligence",
-    claim: "Turn context into better decisions and creative.",
-    scope: "Generation · Evaluation · Decisioning",
+    idea: "Help the system understand.",
+    visual: "intelligence",
+    alt: "A single beverage product enters an AI generation step, which fans out into several distinct ad creatives – beach, sky and tropical scenes, some still and some video.",
+    projects: [
+      {
+        title: "AI Creative Generation",
+        body: "Turning merchant context into creative possibilities.",
+      },
+      {
+        title: "AI Evaluation Systems",
+        body: "Building better feedback for generated creative.",
+      },
+    ],
   },
   {
     index: "03",
     name: "Automation",
-    claim: "Turn those decisions into actions.",
-    scope: "Commerce Systems · AI Copilots · Agentic Workflows",
+    idea: "Help the system act.",
+    visual: "automation",
+    alt: "A merchant channel-app workflow showing automatically generated creative options, campaign objective, budget and targeting, and a publish action – beside a conversational AI copilot answering a question about last week's ad performance.",
+    projects: [
+      {
+        title: "AI Copilot × Ads",
+        body: "Bringing richer business context into advertising assistance.",
+      },
+      {
+        title: "Commerce Ads Automation",
+        body: "Moving merchant intent toward ready-to-review ads.",
+      },
+    ],
   },
 ];
 
-/** The one explicit lesson on the page. The six projects supply the rest. */
-export const thesis = {
-  statement: "Better automation rarely starts with automation.",
-  body: "It starts with better data, better intelligence, and clearer boundaries for what machines should decide.",
-};
-
-export type Project = {
-  slug: string;
-  /** Which layer of the model this is evidence for. Drives the grid column. */
-  layer: "Data" | "Intelligence" | "Automation";
+/** Every paper below is a real, published, externally linked source. */
+export type Paper = {
   title: string;
-  /** One substantive description. Depth comes from specificity, not length. */
-  description: string;
-  /** Small footer metadata. Not a tag list. */
-  meta: string;
-  /** Present only where the work is ongoing. */
-  status?: string;
-  /** Names the asset that will eventually replace the placeholder. */
-  media: string;
-  /** Path under /public once a real capture exists. */
-  image?: string;
+  authors: string;
+  year: string;
+  href: string;
 };
 
 /**
- * Ordered for a three-column grid filling row by row, so the columns read
- * Data | Intelligence | Automation and the layout reinforces the model instead
- * of the copy restating it.
- *
- * Each project answers a different product question, and they must not collapse
- * back into generic capability buckets:
- *   Server-Side Signals   – how does stronger signal infrastructure reach more
- *                           advertisers through ecosystem distribution?
- *   Events API Gateway    – what is the right tradeoff between implementation
- *                           ease and reliability, transparency and control?
- *   AI Creative Generation– how little input can become enough context?
- *   AI Evaluation Systems – how do we align machine evaluation with human
- *                           judgment and real outcomes?
- *   AI Copilot × Ads      – how does richer context move an LLM from retrieval
- *                           toward reasoning?
- *   Commerce Ads Automation – how much decision-making can the system absorb?
+ * Ordered to trace the trajectory being watched, not by date:
+ * retrieval and ranking -> generative recommendation -> recommendation as
+ * generation.
  */
-export const projects: Project[] = [
+export const papers: Paper[] = [
   {
-    slug: "server-side-signals",
-    layer: "Data",
-    title: "Server-Side Signals",
-    description:
-      "Making signal sharing more reliable and controllable through server-side integrations – while lowering adoption barriers through partner integrations such as Shopify and Google Tag Manager.",
-    meta: "Server-Side Signals · Partner Integrations",
-    media: "Signal flow",
+    title: "Generative Recommendation for Large-Scale Advertising (GR4AD)",
+    authors: "Ben Xue et al.",
+    year: "2026",
+    href: "https://arxiv.org/abs/2602.22732",
   },
   {
-    slug: "ai-creative-generation",
-    layer: "Intelligence",
-    title: "AI Creative Generation",
-    description:
-      "Generating multiple ad-ready creative variants from a single merchant URL – using business context and platform intelligence to reduce the creative expertise, production resources, and manual work required to start advertising.",
-    meta: "Creative AI · Generation Systems",
-    media: "URL to variants",
+    title:
+      "Recommendation as Generation: Unifying Personalized Video Generation and Recommendation at Industrial Scale",
+    authors: "Yanhua Cheng et al.",
+    year: "2026",
+    href: "https://arxiv.org/abs/2606.25496",
   },
   {
-    slug: "ai-copilot-ads",
-    layer: "Automation",
-    title: "AI Copilot × Ads",
-    description:
-      "Giving an AI copilot richer context from merchant business data and advertising performance – evolving from natural-language retrieval and Q&A toward an intelligence layer that can reason about how a merchant grows.",
-    meta: "AI Copilot · Context & Reasoning",
-    status: "Now",
-    media: "Copilot interface",
-  },
-  {
-    slug: "events-api-gateway",
-    layer: "Data",
-    title: "Events API Gateway",
-    description:
-      "Creating a middle path between browser pixels and full server-to-server integrations – combining easier cloud deployment with greater reliability, transparency, and control over what data is shared.",
-    meta: "Cloud Signals · Partner Infrastructure",
-    media: "Architecture tradeoff",
-  },
-  {
-    slug: "ai-evaluation-systems",
-    layer: "Intelligence",
-    title: "AI Evaluation Systems",
-    description:
-      "Building evaluation systems that combine granular quality dimensions, human ratings, automated scorers, and real-world performance signals – improving human–machine alignment and feeding better evaluation back into model learning.",
-    meta: "AI Evaluation · Human–Machine Alignment",
-    media: "Evaluation loop",
-  },
-  {
-    slug: "commerce-ads-automation",
-    layer: "Automation",
-    title: "Commerce Ads Automation",
-    description:
-      "Generating ready-to-review ads directly from merchant catalog data – creating creative and selecting key setup decisions automatically, while preserving the option to customize before submission.",
-    meta: "Commerce Ads · Automated Creation",
-    status: "Now",
-    media: "Catalog to review",
+    title: "LLM Retrieval for Stable and Predictable Ad Recommendations",
+    authors: "Vinodh Kumar Sunkara et al.",
+    year: "2026",
+    href: "https://arxiv.org/abs/2605.21969",
   },
 ];
 
-export const whatsNext = {
-  eyebrow: "What I'm exploring next",
-  headline: "From automating tasks to automating reasoning.",
-  body: "The previous generation of advertising products automated tasks. I'm interested in what happens as they begin to automate reasoning – understanding a business, diagnosing constraints, considering possible actions, and helping decide what should happen next.",
-  /** The page ends on the question. Nothing follows it. */
-  question: {
-    lead: "The question becomes less",
-    less: "What can we automate?",
-    join: "and more",
-    more: "What should the system understand, decide, and act on – and what should remain with the human?",
-  },
+/**
+ * Industry trends – perspective, not evidence. Deliberately lighter than
+ * Selected Work: one claim, one diagram, one line. No paragraphs.
+ */
+export const trends = {
+  intro: "What I'm watching as AI reshapes advertising.",
+  items: [
+    {
+      index: "01",
+      title: "Creative becomes part of the optimization space.",
+      note: "Generation expands what the system can explore.",
+      alt: "One creative expands into a grid of generated variants, which resolves into a single adaptive creative.",
+    },
+    {
+      index: "02",
+      title: "From choosing what exists to generating what should exist.",
+      alt: "A four-step progression: retrieve, choose candidates; rank, choose what fits; generate, create new possibilities; recommend and generate, decide what should exist.",
+    },
+    {
+      index: "03",
+      title: "AI creates a new path between intent and conversion.",
+      note: "What happens to signal, attribution, and measurement when AI sits between intent and conversion?",
+      alt: "Intent enters an AI assistant, which branches out to discovering, recommending, comparing and buying.",
+    },
+  ],
+};
+
+/**
+ * Writing. A list from the start so a second row can be added later without
+ * touching the layout, and the year stays small metadata beside the title
+ * rather than a heading of its own.
+ */
+export const writing = {
+  label: "Writing",
+  entries: [
+    {
+      title: "GenAI Era Ad Platforms – Hype vs. Reality: What I Really Think",
+      year: "2025",
+      meta: "Perspective · Generative AI · Advertising",
+      href: "https://www.linkedin.com/pulse/genai-era-ad-platforms-hype-reality-what-i-really-think-rachel-zhang-klcuc/?trackingId=8FS%2BHjRWRVypjFTEQ7zOrA%3D%3D",
+      cta: "Read on LinkedIn",
+    },
+  ],
 };
