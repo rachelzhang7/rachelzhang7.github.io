@@ -8,10 +8,9 @@
    The site commits to a single dark look; a personal site does not need to be
    two designs. Contrast ratios below are measured against --bg-base (#090A0D).
 
-   Accents encode ROLE, not PLACE. `data-territory` still marks up which
-   section a link belongs to, but it no longer changes any colour – the three
-   pillar pages deliberately share one visual identity, and their differences
-   come from content, imagery and composition.
+   Accents encode ROLE, not PLACE. Territories normally share this identity;
+   Creative AI is the single controlled exception, with a cooler violet system
+   that lets its creative work feel more expressive without changing layout.
    ========================================================================== */
 
 :root {
@@ -33,9 +32,9 @@
   --text-quiet: #656b75; /* 3.7:1 – non-text only, or >=24px */
 
   /* --- accents: roles, not places --------------------------------------
-     Colour encodes emphasis and interaction, never which page you are on.
-     AdTech, Experiments and Creative AI share one identity; their
-     differences come from content, imagery and composition.
+     Colour encodes emphasis and interaction, never a flat page background.
+     AdTech and Experiments share this base identity; Creative AI refines it
+     below while retaining these same semantic roles.
 
      Desaturated a step or two below the default Tailwind ramps on purpose:
      the saturated versions are exactly the hues that read as AI-startup.
@@ -70,6 +69,30 @@
   --ease-instrument: cubic-bezier(0.22, 0.61, 0.36, 1);
   --ease-precise: cubic-bezier(0.65, 0, 0.35, 1);
   --ease-settle: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Creative AI is the expressive territory, but its interface stays quiet so
+   the supplied artwork—not the chrome—carries the saturated color. */
+[data-territory="creative"] {
+  --bg-base: #08090d;
+  --bg-raised: #101118;
+  --bg-raised-hi: #14151d;
+  --bg-sunken: #07080c;
+  --line-hair: #252832;
+  --line-strong: #30333e;
+  --line-hover: #3a3e4b;
+  --text-primary: #f1eee8;
+  --text-secondary: #a7a8b0;
+  --text-tertiary: #737681;
+  --text-quiet: #4d505a;
+  --accent: #a98cff;
+  --accent-2: #9b7bff;
+  --accent-hi: #f2d34f;
+  --accent-ring: color-mix(in oklab, var(--accent-2) 10%, transparent);
+  --accent-rule: color-mix(in oklab, var(--accent-2) 42%, var(--line-hair));
+  --accent-select: color-mix(in oklab, var(--accent-2) 22%, transparent);
+  --accent-2-rule: color-mix(in oklab, var(--accent-2) 42%, var(--line-hair));
+  --glow: color-mix(in oklab, #5b3fa3 7%, transparent);
 }
 
 
