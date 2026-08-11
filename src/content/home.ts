@@ -1,133 +1,102 @@
-import type { TerritoryKey } from "./site";
-
 /**
  * Homepage – identity.
  *
  * The job of this page is positioning, answered in 10–15 seconds: a product
- * builder working across AI, AdTech and Creative AI, with unusual depth in
- * advertising but ambitions broader than advertising. It is not a catalogue.
+ * builder with years inside advertising systems, now widening the part of the
+ * product work she can own herself. It is a statement of direction, not a
+ * catalogue – the three pillar pages carry the evidence.
  */
 
 export const hero = {
   /** Where she operates. The pillars below say what makes it distinctive. */
-  eyebrow: "Advertising × AI × Creativity",
+  eyebrow: "Product Builder",
   /**
-   * Split so the display type breaks exactly where it should, and so one
-   * phrase can carry the accent underline.
+   * Two sentences, set as one serif block. The first states the record; the
+   * second states the direction.
    */
   headline: {
-    lead: "I build at the intersection of",
-    emphasis: "advertising, AI,",
-    trail: "and creativity.",
+    lead: "I've spent my career shaping products – what to build, why it matters, and how it reaches people.",
+    trail: "Now I'm learning to build more of them myself.",
   },
   /** One paragraph. No company names, no skill lists, no years. */
-  body: [
-    "I've built products across advertising data, commerce, creative, and automation – alongside hands-on experiments with AI products and generative creativity.",
-  ],
+  body: "My work spans product, AI, advertising, and technology. GenAI is expanding how much of the product journey I can now own – from identifying the problem and shaping the experience to prototyping, building, and testing it.",
   actions: [
-    { label: "Explore my work", href: "/adtech/", primary: true },
-    { label: "Let's connect", href: "/about/#connect", primary: false },
+    { label: "Let's connect", href: "/about/#connect", primary: true },
   ],
 };
 
-/** Small credibility strip under the hero. Kept to three, kept factual. */
-export const credentials = [
-  { value: "Ex-TikTok", label: "Product leadership" },
-  { value: "5× AI hackathon winner", label: "2024 – 2026" },
-  { value: "Builder", label: "Prototypes to products" },
-];
-
 /**
- * The three pillars are the site's mental model. The heading states it as the
- * framework rather than describing it, because the thing a visitor should
- * remember is the framework itself.
- *
- * No intro paragraph: these exist for orientation, not explanation. The
- * evidence lives on the three destination pages.
+ * What the work is moving toward. The three statements are the direction; the
+ * paragraph is the ground; the three links are the evidence, in the site's own
+ * pillar order – depth, then agency, then taste.
  */
-export const workIntro = {
-  eyebrow: "The work",
-  headline: "Depth × Building × Taste.",
+export const workingToward = {
+  eyebrow: "What I'm working toward",
+  statements: [
+    "Know a domain deeply.",
+    "Build products with taste.",
+    "Develop judgment – not just specify.",
+  ],
+  body: "AdTech is where I've spent years. I'm widening the part of the product work to sharpen creative judgment – learning how complex systems can behave, and what feels useful, clear, and worth making.",
+  pillars: [
+    { index: "01", label: "Depth", href: "/adtech/" },
+    { index: "02", label: "Agency", href: "/experiments/" },
+    { index: "03", label: "Taste", href: "/creative-ai/" },
+  ],
 };
 
 /**
- * Exactly three, one per pillar.
- *
- * The homepage shows evidence, not an inventory – the three destination pages
- * carry the full body of work. Each entry should say what the artifact is and
- * why it matters, in one sentence. Anything longer belongs on its own page.
+ * The three threads currently being explored. Each column states what the
+ * exploration is, then names the page that carries the evidence.
  */
-export type SelectedWork = {
-  title: string;
-  /** Which pillar this is evidence for. Drives the mono tag on the artifact. */
-  territory: TerritoryKey;
-  /** What kind of thing it is – not a skill list. */
-  kind: string;
-  blurb: string;
-  href: string;
-  cta: string;
-  /** Drives which generated schematic stands in until a real capture exists. */
-  visual: "conversation" | "receipt" | "pulse" | "gallery" | "lattice";
-  /**
-   * Path under /public once a real screenshot, still or mockup exists.
-   * A real artifact should always replace the schematic – see CONTENT.md.
-   */
-  image?: string;
+export const exploring = {
+  eyebrow: "What I'm exploring now",
+  columns: [
+    {
+      title: "Advertising",
+      note: "How generative AI changes how advertising systems work – and how businesses interact with advertising systems.",
+      cta: "Explore AdTech",
+      href: "/adtech/",
+    },
+    {
+      title: "Product Building",
+      note: "How product tools change what's testable – and how automation and optimization keep expanding what a small team can build.",
+      cta: "See Experiments",
+      href: "/experiments/",
+    },
+    {
+      title: "Creative AI",
+      note: "How generative tools change the role of the creator – and what still depends on human taste.",
+      cta: "Explore Creative AI",
+      href: "/creative-ai/",
+    },
+  ],
 };
 
-export const selectedWork: SelectedWork[] = [
-  {
-    title: "AI Copilot × Commerce",
-    territory: "adtech",
-    kind: "Product · Shipped",
-    blurb:
-      "Conversational intelligence inside the merchant workflow, turning a complex campaign system into something navigable in plain language.",
-    href: "/adtech/",
-    cta: "See the work",
-    visual: "conversation",
-  },
-  {
-    title: "Trust Receipt",
-    territory: "experiments",
-    kind: "Prototype",
-    blurb:
-      "A way to make an AI answer inspectable: what was checked, what supports it, and what is still uncertain.",
-    href: "/experiments/",
-    cta: "See the build",
-    visual: "receipt",
-  },
-  {
-    title: "Original Music",
-    territory: "creative",
-    kind: "Sound · Composition",
-    blurb:
-      "Writing with AI as a collaborator rather than a generator, and keeping the parts neither of us would have reached alone.",
-    href: "/creative-ai/",
-    cta: "See the work",
-    visual: "gallery",
-  },
-  // One per pillar, deliberately. Ad AI Pulse and the rest live on their own
-  // pages; Aubric is absent because Future Ventures is not part of this
-  // architecture, and its entry is preserved in src/content/ventures.ts.
-];
+/** Four statements, one argument: building is cheap now, judgment isn't. */
+export const learned = {
+  eyebrow: "What I've learned",
+  statements: [
+    "Building faster makes better systems.",
+    "AI expands what can be generated.",
+    "Taste decides what's worth keeping.",
+    "Context matters more, not less.",
+  ],
+};
+
+/** What lies outside the work. One paragraph, one door. */
+export const beyond = {
+  eyebrow: "Beyond products",
+  body: "Outside product and technology, I'm drawn to architecture, art, music, especially languages, and the ways culture shapes how people create and live.",
+  cta: "More about me",
+  href: "/about/",
+};
 
 export const closing = {
-  /**
-   * The most important copy on the site. It's the reason the other four pages
-   * cohere into an argument rather than five buckets.
-   */
-  quote: "AI is shrinking the distance between having an idea and making it real.",
-  body: [
-    "For most of my career, my job was deciding what should be built and working with teams to make it real.",
-    "A product person can now move much further across the stack – from an observation to a prototype, from a prototype to an experience, and sometimes from an experience to a business.",
-    "That's the direction I'm exploring now.",
-  ],
+  /** The most important copy on the site. One line, then one door. */
+  quote:
+    "I like meeting people who are building, thinking deeply, and exploring what comes next.",
   actions: [
-    {
-      label: "More about me",
-      note: "My background, principles, and how I think.",
-      href: "/about/",
-    },
     {
       label: "Let's connect",
       note: "Always excited to meet builders, thinkers, and curious people.",
