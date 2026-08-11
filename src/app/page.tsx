@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { PageShell } from "@/components/PageShell";
 import { Section } from "@/components/Section";
+import { MediaFrame } from "@/components/MediaFrame";
 import { Reveal } from "@/components/Reveal";
 import { cn } from "@/lib/cn";
 import {
@@ -29,10 +30,39 @@ function Arrow() {
   );
 }
 
+/**
+ * Renders a sentence with the words named in `emph` set in the accent blue,
+ * the way the mockup emphasises the key verbs.
+ */
+function EmphText({
+  text,
+  emph,
+}: {
+  text: string;
+  emph: string[];
+}) {
+  const parts = text.split(/(\s+)/);
+  return (
+    <>
+      {parts.map((part, i) => {
+        const word = part.replace(/[^A-Za-z'’]/g, "");
+        const hit = emph.some(
+          (e) => e.toLowerCase() === word.toLowerCase(),
+        );
+        return (
+          <span key={i} className={hit ? "text-accent-2" : undefined}>
+            {part}
+          </span>
+        );
+      })}
+    </>
+  );
+}
+
 /** The section label that every section on this page shares. */
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
-    <p className="label border-t border-hair pt-6">
+    <p className="label border-t border-hair pt-6 text-accent-2">
       {children}
     </p>
   );
@@ -46,34 +76,46 @@ export default function Home() {
           Nothing competes with it: no composition, no strip, no buttons.
           --------------------------------------------------------------- */}
       <Section mark="01 · Identity" className="pt-12 sm:pt-20">
-        <div className="max-w-[36rem]">
-          <p className="label beat beat-1 text-accent">{hero.eyebrow}</p>
+        <div className="grid gap-10 lg:grid-cols-[1.05fr_1fr] lg:items-start lg:gap-14">
+          <div className="max-w-[36rem]">
+            <p className="label beat beat-1 text-accent-2">{hero.eyebrow}</p>
 
-          <h1 className="display beat beat-2 mt-8 text-[clamp(2.5rem,5.5vw,4.5rem)] leading-[1.06] text-primary">
-            {hero.headline.lead}
-            <span className="mt-4 block">{hero.headline.trail}</span>
-          </h1>
+            <h1 className="display beat beat-2 mt-8 text-[clamp(2rem,4.75vw,3.5rem)] leading-[1.06] text-primary">
+              <EmphText text={hero.headline.lead} emph={hero.headline.emph.lead} />
+              <span className="mt-4 block">
+                <EmphText text={hero.headline.trail} emph={hero.headline.emph.trail} />
+              </span>
+            </h1>
 
-          <p className="beat beat-3 measure mt-10 text-base leading-relaxed text-secondary sm:text-lg">
-            {hero.body}
-          </p>
+            <p className="beat beat-3 measure mt-10 text-base leading-relaxed text-secondary sm:text-lg">
+              {hero.body}
+            </p>
 
-          <div className="beat beat-4 mt-10">
-            {hero.actions.map((action) => (
-              <Link
-                key={action.href}
-                href={action.href}
-                className={
-                  action.primary
-                    ? "group inline-flex items-center gap-3 border border-accent px-5 py-3 text-sm text-primary transition-colors duration-150 hover:bg-accent-ring"
-                    : "group inline-flex items-center gap-3 border border-strong px-5 py-3 text-sm text-secondary transition-colors duration-150 hover:border-line-hover hover:text-primary"
-                }
-              >
-                {action.label}
-                <Arrow />
-              </Link>
-            ))}
+            <div className="beat beat-4 mt-10">
+              {hero.actions.map((action) => (
+                <Link
+                  key={action.href}
+                  href={action.href}
+                  className={
+                    action.primary
+                      ? "group inline-flex items-center gap-3 border border-accent px-5 py-3 text-sm text-primary transition-colors duration-150 hover:bg-accent-ring"
+                      : "group inline-flex items-center gap-3 border border-strong px-5 py-3 text-sm text-secondary transition-colors duration-150 hover:border-line-hover hover:text-primary"
+                  }
+                >
+                  {action.label}
+                  <Arrow />
+                </Link>
+              ))}
+            </div>
           </div>
+
+          <MediaFrame
+            label="Hero"
+            ratio="3 / 4"
+            src={hero.image.src}
+            alt={hero.image.alt}
+            className="beat beat-2 lg:mt-1"
+          />
         </div>
       </Section>
 
@@ -117,7 +159,7 @@ export default function Home() {
                   i > 0 && "sm:border-l",
                 )}
               >
-                <span className="label text-accent">{pillar.index}</span>
+                <span className="label text-accent-2">{pillar.index}</span>
                 <span className="display flex-1 text-[1.375rem] text-primary transition-colors duration-150 group-hover:text-accent-2">
                   {pillar.label}
                 </span>
@@ -150,7 +192,7 @@ export default function Home() {
                   i === 0 && "sm:pr-8",
                 )}
               >
-                <p className="font-mono text-[0.8125rem] uppercase tracking-[0.18em] text-accent">
+                <p className="font-mono text-[0.8125rem] uppercase tracking-[0.18em] text-secondary">
                   {column.title}
                 </p>
                 <p className="measure mt-4 text-sm leading-relaxed text-secondary sm:text-base">
@@ -204,16 +246,24 @@ export default function Home() {
         </Reveal>
 
         <Reveal className="mt-10">
-          <div className="grid gap-8 lg:grid-cols-[1.4fr_1fr] lg:items-baseline lg:gap-16">
-            <p className="measure text-base leading-relaxed text-secondary sm:text-lg">
-              {beyond.body}
-            </p>
-            <Link
-              href={beyond.href}
-              className="group label inline-flex items-center gap-2 text-tertiary transition-colors duration-150 hover:text-accent-2"
-            >
-              {beyond.cta} <Arrow />
-            </Link>
+          <div className="grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-center lg:gap-16">
+            <div className="flex flex-col gap-6">
+              <p className="measure text-base leading-relaxed text-secondary sm:text-lg">
+                {beyond.body}
+              </p>
+              <Link
+                href={beyond.href}
+                className="group label inline-flex items-center gap-2 text-accent-2 transition-colors duration-150 hover:text-accent"
+              >
+                {beyond.cta} <Arrow />
+              </Link>
+            </div>
+            <MediaFrame
+              label="Beyond"
+              ratio="3 / 4"
+              src={beyond.image.src}
+              alt={beyond.image.alt}
+            />
           </div>
         </Reveal>
       </Section>

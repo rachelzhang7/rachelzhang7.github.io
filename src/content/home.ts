@@ -12,17 +12,27 @@ export const hero = {
   eyebrow: "Product Builder",
   /**
    * Two sentences, set as one serif block. The first states the record; the
-   * second states the direction.
+   * second states the direction. Words listed under `emph` render in the
+   * accent blue, per the mockup.
    */
   headline: {
     lead: "I've spent my career shaping products – what to build, why it matters, and how it reaches people.",
     trail: "Now I'm learning to build more of them myself.",
+    emph: {
+      lead: ["why", "how"],
+      trail: ["build"],
+    },
   },
   /** One paragraph. No company names, no skill lists, no years. */
   body: "My work spans product, AI, advertising, and technology. GenAI is expanding how much of the product journey I can now own – from identifying the problem and shaping the experience to prototyping, building, and testing it.",
   actions: [
     { label: "Let's connect", href: "/about/#connect", primary: true },
   ],
+  /** Photo on the right of the hero. Real asset under /public/media/home. */
+  image: {
+    src: "/media/home/hero.webp",
+    alt: "Rachel Zhang",
+  },
 };
 
 /**
@@ -90,6 +100,11 @@ export const beyond = {
   body: "Outside product and technology, I'm drawn to architecture, art, music, especially languages, and the ways culture shapes how people create and live.",
   cta: "More about me",
   href: "/about/",
+  /** Wide photo beside the paragraph. Real asset under /public/media/home. */
+  image: {
+    src: "/media/home/beyond.webp",
+    alt: "Photo from Rachel's life outside product work",
+  },
 };
 
 export const closing = {
