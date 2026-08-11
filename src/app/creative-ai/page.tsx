@@ -46,33 +46,52 @@ export default function CreativeAI() {
           01 WHY – why I create with AI.
           --------------------------------------------------------------- */}
       <Section mark="01 · Why" className="pt-14 sm:pt-20">
-        <p className="label beat beat-1 text-accent-2">{creativeIntro.eyebrow}</p>
+        <div className="grid gap-8 sm:gap-10 lg:grid-cols-[0.86fr_1.14fr] lg:items-center lg:gap-16">
+          <div>
+            <p className="label beat beat-1 text-accent-2">{creativeIntro.eyebrow}</p>
 
-        <h1 className="display beat beat-2 mt-6 text-[clamp(2.5rem,6vw,4.5rem)] leading-[1.06] text-primary">
-          <EmphText text={creativeIntro.headline} emph={["medium"]} />
-        </h1>
+            <h1 className="display beat beat-2 mt-6 max-w-[8ch] text-[clamp(2.75rem,5.6vw,4.6rem)] leading-[0.98] text-primary">
+              <EmphText text={creativeIntro.headline} emph={["medium"]} />
+            </h1>
 
-        <div className="beat beat-3 mt-10 flex max-w-2xl flex-col gap-4">
-          {creativeIntro.body.map((paragraph) => (
-            <p
-              key={paragraph.slice(0, 24)}
-              className="text-base leading-relaxed text-secondary sm:text-lg"
-            >
-              {paragraph}
+            <div className="beat beat-3 mt-8 flex max-w-xl flex-col gap-4">
+              {creativeIntro.body.map((paragraph) => (
+                <p
+                  key={paragraph.slice(0, 24)}
+                  className="text-base leading-relaxed text-secondary sm:text-[1.05rem]"
+                >
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+
+            <p className="display beat beat-4 mt-10 text-balance text-[clamp(1.75rem,3vw,2.5rem)] leading-[1.12] text-accent-2">
+              {creativeIntro.anchor}
             </p>
-          ))}
-        </div>
+          </div>
 
-        {/* The anchor line. Deliberately the loudest thing in the hero. */}
-        <p className="display beat beat-4 mt-14 text-balance text-[clamp(1.75rem,3.6vw,2.75rem)] leading-[1.12] text-accent-2">
-          {creativeIntro.anchor}
-        </p>
+          <div className="beat beat-2 relative min-h-72 overflow-hidden border border-white/[0.06] bg-sunken sm:min-h-[32rem]">
+            {/* This is a deliberately cropped gallery preview: it gives the
+                page an immediate visual thesis without inventing a synthetic
+                hero asset that doesn't exist in the portfolio. */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/media/creative-ai/art-gathering.jpg"
+              alt="A vivid generative artwork made of overlapping abstract figures"
+              width={950}
+              height={1038}
+              className="absolute inset-0 h-full w-full scale-110 object-cover saturate-125"
+            />
+            <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(110deg,rgba(5,6,10,0.76)_0%,transparent_58%),linear-gradient(0deg,rgba(5,6,10,0.5),transparent_45%)]" />
+            <p className="label absolute bottom-5 left-5 text-primary/70">Visual studies · 2026</p>
+          </div>
+        </div>
       </Section>
 
       {/* ---------------------------------------------------------------
           02 WORK – three mediums as one index, then each in turn.
           --------------------------------------------------------------- */}
-      <Section mark="02 · Work" className="mt-24 sm:mt-32">
+      <Section mark="02 · Work" className="mt-16 sm:mt-20">
         {/* The medium index: three columns, one rule each. */}
         <Reveal>
           <div className="grid grid-cols-1 border-t border-hair sm:grid-cols-3">
@@ -80,7 +99,7 @@ export default function CreativeAI() {
               <div
                 key={m.name}
                 className={cn(
-                  "py-5",
+                  "border-b border-hair py-4 last:border-b-0 sm:border-b-0 sm:py-5",
                   i > 0 && "sm:border-l sm:border-hair sm:pl-8",
                   i === 0 && "sm:pr-8",
                 )}
@@ -95,8 +114,8 @@ export default function CreativeAI() {
         </Reveal>
 
         {/* MUSIC – one paragraph on the left, three numbered tracks across. */}
-        <Reveal className="mt-16">
-          <div className="grid gap-10 border-t border-hair pt-8 lg:grid-cols-[1fr_2.2fr] lg:gap-16">
+        <Reveal className="mt-12">
+          <div className="grid gap-8 border-t border-hair pt-8 lg:grid-cols-[0.9fr_2.3fr] lg:gap-16">
             <div>
               <p className="label text-accent-2">{music.label}</p>
               <p className="measure-tight mt-4 text-sm leading-relaxed text-secondary sm:text-base">
@@ -111,7 +130,7 @@ export default function CreativeAI() {
               </a>
             </div>
 
-            <div className="grid gap-10 sm:grid-cols-3 sm:gap-8">
+            <div className="grid gap-6 sm:grid-cols-3 sm:gap-8">
               {music.tracks.map((track, i) => (
                 <div key={track.href} className="group flex flex-col">
                   <MediaFrame
@@ -144,8 +163,8 @@ export default function CreativeAI() {
         </Reveal>
 
         {/* VISUALS – one line on the left, two artworks side by side. */}
-        <Reveal className="mt-16">
-          <div className="grid gap-10 border-t border-hair pt-8 lg:grid-cols-[1fr_2.2fr] lg:gap-16">
+        <Reveal className="mt-12">
+          <div className="grid gap-8 border-t border-hair pt-8 lg:grid-cols-[1fr_2.2fr] lg:gap-16">
             <div>
               <p className="label text-accent-2">{visuals.label}</p>
               <p className="measure-tight mt-4 text-sm leading-relaxed text-secondary sm:text-base">
@@ -153,9 +172,12 @@ export default function CreativeAI() {
               </p>
             </div>
 
-            <div className="grid gap-10 sm:grid-cols-2 sm:gap-8">
-              {visuals.works.map((w) => (
-                <figure key={w.title} className="group">
+            <div className="grid gap-4 sm:grid-cols-2 sm:grid-rows-2 sm:gap-6">
+              {visuals.works.map((w, i) => (
+                <figure
+                  key={w.title}
+                  className={cn("group", i === 0 && "sm:row-span-2")}
+                >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={w.image}
@@ -164,7 +186,10 @@ export default function CreativeAI() {
                     height={w.height}
                     loading="lazy"
                     decoding="async"
-                    className="block h-auto w-full"
+                    className={cn(
+                      "block w-full object-cover",
+                      i === 0 ? "h-full min-h-72" : "aspect-[1.8/1]",
+                    )}
                   />
                   <figcaption className="mt-4">
                     <span className="label block normal-case tracking-[0.08em] text-tertiary">
@@ -181,8 +206,8 @@ export default function CreativeAI() {
         </Reveal>
 
         {/* AD CREATIVE – the video and the campaign, beside the question. */}
-        <Reveal className="mt-16">
-          <div className="grid gap-10 border-t border-hair pt-8 lg:grid-cols-[1fr_3fr] lg:gap-16">
+        <Reveal className="mt-12">
+          <div className="grid gap-8 border-t border-hair pt-8 lg:grid-cols-[1fr_3fr] lg:gap-16">
             <div>
               <p className="label text-accent-2">{adCreative.label}</p>
               <p className="measure-tight mt-4 text-sm leading-relaxed text-secondary sm:text-base">
@@ -190,10 +215,10 @@ export default function CreativeAI() {
               </p>
             </div>
 
-            {/* The clip and the campaign side by side, tops aligned. The
-                portrait clip is fixed to a compact size so it never runs
-                taller than the campaign strip. */}
-            <div className="grid items-start gap-10 sm:grid-cols-2 sm:gap-10">
+            {/* The clip and campaign sit side by side. The video keeps a
+                landscape frame so the motion work reads at the same visual
+                scale as the campaign strip. */}
+            <div className="grid items-start gap-8 sm:grid-cols-[0.88fr_1.12fr] sm:gap-10">
               {/* IZZE – the real clip. Metadata-only preload keeps the file
                   off the initial page load; it downloads on play. */}
               <div>
@@ -201,7 +226,7 @@ export default function CreativeAI() {
                   controls
                   preload="metadata"
                   playsInline
-                  className="block h-56 w-32 bg-sunken object-contain"
+                  className="block aspect-video h-auto w-full bg-sunken object-cover"
                 >
                   <source src={adCreative.izze.video} type="video/mp4" />
                 </video>
@@ -248,7 +273,7 @@ export default function CreativeAI() {
       {/* ---------------------------------------------------------------
           03 NOTES – field notes, not a blog CMS. Four columns, one rule.
           --------------------------------------------------------------- */}
-      <Section mark="03 · Notes" className="mt-24 sm:mt-32">
+      <Section mark="03 · Notes" className="mt-16 sm:mt-20">
         <Reveal>
           <div className="border-t border-hair pt-8">
             <p className="label text-accent-2">{notes.label}</p>
@@ -258,15 +283,25 @@ export default function CreativeAI() {
           </div>
         </Reveal>
 
-        <Reveal className="mt-12">
+        <Reveal className="mt-8">
           <div className="grid gap-x-10 sm:grid-cols-2 lg:grid-cols-4">
             {notes.articles.map((a) => (
               <a
                 key={a.href}
                 href={a.href}
                 {...EXTERNAL}
-                className="group flex flex-col border-t border-hair py-7"
+                className="group flex flex-col border-t border-hair py-6 sm:py-7"
               >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={a.image}
+                  alt={a.imageAlt}
+                  width={720}
+                  height={440}
+                  loading="lazy"
+                  decoding="async"
+                  className="mb-5 aspect-[1.45/1] w-full bg-sunken object-cover transition-transform duration-500 ease-[var(--ease-instrument)] group-hover:scale-[1.015]"
+                />
                 <span className="flex items-baseline gap-3">
                   <span className="label text-accent-2">{a.topic}</span>
                   {a.year && <span className="label text-quiet">{a.year}</span>}
@@ -287,7 +322,7 @@ export default function CreativeAI() {
       {/* ---------------------------------------------------------------
           CLOSING.
           --------------------------------------------------------------- */}
-      <Section mark="Closing" className="mt-24 sm:mt-32">
+      <Section mark="Closing" className="mt-16 sm:mt-20">
         <Reveal>
           <div className="border-t border-hair pt-12">
             <p className="display text-balance text-[clamp(1.75rem,3.8vw,2.75rem)] leading-[1.14] text-accent-2">

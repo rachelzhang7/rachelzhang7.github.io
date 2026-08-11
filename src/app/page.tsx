@@ -43,12 +43,10 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 export default function Home() {
   return (
     <PageShell territory="identity">
-      {/* ---------------------------------------------------------------
-          HERO – the record and the direction, as one long editorial line.
-          Nothing competes with it: no composition, no strip, no buttons.
-          --------------------------------------------------------------- */}
+      {/* The hero introduces the point of view beside the photograph that
+          grounds it in a real person, rather than an abstract product claim. */}
       <Section mark="01 · Identity" className="pt-12 sm:pt-20">
-        <div className="grid gap-10 lg:grid-cols-[1.05fr_1fr] lg:items-start lg:gap-14">
+        <div className="grid gap-8 sm:gap-10 lg:grid-cols-[0.92fr_1.18fr] lg:items-start lg:gap-14">
           <div className="max-w-[36rem]">
             <p className="label beat beat-1 text-accent-2">{hero.eyebrow}</p>
 
@@ -59,11 +57,11 @@ export default function Home() {
               </span>
             </h1>
 
-            <p className="beat beat-3 measure mt-10 text-base leading-relaxed text-secondary sm:text-lg">
+            <p className="beat beat-3 measure mt-8 text-base leading-relaxed text-secondary sm:mt-10 sm:text-lg">
               {hero.body}
             </p>
 
-            <div className="beat beat-4 mt-10">
+            <div className="beat beat-4 mt-8 sm:mt-10">
               {hero.actions.map((action) => (
                 <Link
                   key={action.href}
@@ -83,7 +81,7 @@ export default function Home() {
 
           <MediaFrame
             label="Hero"
-            ratio="3 / 4"
+            ratio="5 / 6"
             src={hero.image.src}
             alt={hero.image.alt}
             className="beat beat-2 lg:mt-1"
@@ -91,52 +89,34 @@ export default function Home() {
         </div>
       </Section>
 
-      {/* ---------------------------------------------------------------
-          WHAT I'M WORKING TOWARD – the direction, stated as three claims.
-          The three pillar links are the evidence, in the site's own order:
-          depth, then agency, then taste.
-          --------------------------------------------------------------- */}
-      <Section mark="02 · Working toward" className="mt-24 sm:mt-32">
+      {/* The three pillars work as a compact editorial index: each one names a
+          direction, explains it, and takes the reader to the evidence. */}
+      <Section mark="02 · Working toward" className="mt-16 sm:mt-20">
         <Reveal>
           <SectionLabel>{workingToward.eyebrow}</SectionLabel>
         </Reveal>
 
-        <Reveal className="mt-10">
-          <div className="flex flex-col gap-6">
-            {workingToward.statements.map((statement) => (
-              <p
-                key={statement}
-                className="display text-balance text-[clamp(1.625rem,3.2vw,2.375rem)] leading-[1.12] text-primary"
-              >
-                {statement}
-              </p>
-            ))}
-          </div>
-        </Reveal>
-
-        <Reveal className="mt-10">
-          <p className="measure text-base leading-relaxed text-secondary">
-            {workingToward.body}
-          </p>
-        </Reveal>
-
-        <Reveal className="mt-12">
-          <div className="grid grid-cols-1 border-t border-hair sm:grid-cols-3">
+        <Reveal className="mt-8">
+          <div className="grid grid-cols-1 border-y border-hair sm:grid-cols-3">
             {workingToward.pillars.map((pillar, i) => (
               <Link
                 key={pillar.href}
                 href={pillar.href}
                 className={cn(
-                  "group flex items-baseline gap-4 border-b border-hair py-5 transition-colors duration-150 hover:bg-raised sm:border-b-0",
-                  i > 0 && "sm:border-l",
+                  "group flex min-h-0 flex-col border-b border-hair px-0 py-6 transition-colors duration-150 last:border-b-0 hover:bg-raised sm:min-h-56 sm:border-b-0 sm:px-8 sm:py-7",
+                  i > 0 && "sm:border-l sm:border-hair",
+                  i === 0 && "sm:pr-8",
                 )}
               >
-                <span className="label text-accent-2">{pillar.index}</span>
-                <span className="display flex-1 text-[1.375rem] text-primary transition-colors duration-150 group-hover:text-accent-2">
-                  {pillar.label}
+                <span className="display text-[clamp(1.5rem,2.2vw,1.9rem)] leading-[1.12] text-primary transition-colors duration-150 group-hover:text-accent-2">
+                  {pillar.statement}
                 </span>
-                <span className="text-tertiary transition-all duration-200 group-hover:translate-x-1 group-hover:text-accent-2">
-                  →
+                <span className="mt-4 max-w-[27ch] text-sm leading-relaxed text-secondary">
+                  {pillar.note}
+                </span>
+                <span className="label mt-auto flex items-center gap-3 pt-6 text-accent-2">
+                  {pillar.index} <span aria-hidden="true">/</span> {pillar.label}
+                  <span className="ml-auto text-base transition-transform duration-200 group-hover:translate-x-1">→</span>
                 </span>
               </Link>
             ))}
@@ -144,32 +124,33 @@ export default function Home() {
         </Reveal>
       </Section>
 
-      {/* ---------------------------------------------------------------
-          WHAT I'M EXPLORING NOW – three threads, one grid. Each column
-          states the exploration, then names the page that proves it.
-          --------------------------------------------------------------- */}
-      <Section mark="03 · Exploring" className="mt-20 sm:mt-28">
+      {/* These are entry points, not cards: each image previews a different
+          kind of work before the reader commits to a destination. */}
+      <Section mark="03 · Exploring" className="mt-16 sm:mt-20">
         <Reveal>
           <SectionLabel>{exploring.eyebrow}</SectionLabel>
         </Reveal>
 
-        <Reveal className="mt-10">
-          <div className="grid gap-10 border-t border-hair pt-8 sm:grid-cols-3 sm:gap-0 sm:pt-0">
+        <Reveal className="mt-8">
+          <div className="grid gap-8 border-y border-hair py-7 sm:grid-cols-3 sm:gap-0 sm:py-0">
             {exploring.columns.map((column, i) => (
               <div
                 key={column.title}
                 className={cn(
-                  "flex flex-col",
-                  i > 0 && "sm:border-l sm:border-hair sm:px-8",
-                  i === 0 && "sm:pr-8",
+                  "group flex flex-col border-b border-hair pb-8 last:border-b-0 sm:border-b-0 sm:pb-0",
+                  i > 0 && "sm:border-l sm:border-hair sm:px-8 sm:py-7",
+                  i === 0 && "sm:pr-8 sm:py-7",
                 )}
               >
-                <p className="font-mono text-[0.8125rem] uppercase tracking-[0.18em] text-secondary">
-                  {column.title}
-                </p>
-                <p className="measure mt-4 text-sm leading-relaxed text-secondary sm:text-base">
-                  {column.note}
-                </p>
+                <MediaFrame
+                  label={column.title}
+                  src={column.image}
+                  alt={column.alt}
+                  ratio="4 / 3"
+                  className="mb-6"
+                />
+                <p className="display text-[1.45rem] text-primary">{column.title}</p>
+                <p className="measure mt-3 text-sm leading-relaxed text-secondary">{column.note}</p>
                 <Link
                   href={column.href}
                   className="group label mt-6 inline-flex items-center gap-2 text-tertiary transition-colors duration-150 hover:text-accent-2"
@@ -186,19 +167,19 @@ export default function Home() {
           WHAT I'VE LEARNED – four statements, one argument: building is
           cheap now, judgment isn't.
           --------------------------------------------------------------- */}
-      <Section mark="04 · Learned" className="mt-20 sm:mt-28">
+      <Section mark="04 · Learned" className="mt-16 sm:mt-20">
         <Reveal>
           <SectionLabel>{learned.eyebrow}</SectionLabel>
         </Reveal>
 
-        <Reveal className="mt-10">
-          <div className="grid gap-8 border-t border-hair pt-8 sm:grid-cols-2 sm:gap-10 lg:grid-cols-4 lg:gap-0 lg:pt-0">
+        <Reveal className="mt-8">
+          <div className="grid gap-0 border-y border-hair sm:grid-cols-3 sm:gap-0 sm:py-7">
             {learned.statements.map((statement, i) => (
               <p
                 key={statement}
                 className={cn(
-                  "display text-balance text-[1.25rem] leading-[1.25] text-primary sm:text-[1.375rem]",
-                  i > 0 && "lg:border-l lg:border-hair lg:pl-8",
+                  "display border-b border-hair py-6 text-balance text-[1.25rem] leading-[1.25] text-primary last:border-b-0 sm:border-b-0 sm:py-0 sm:text-[1.375rem]",
+                  i > 0 && "sm:border-l sm:border-hair sm:pl-8",
                 )}
               >
                 {statement}
@@ -212,14 +193,14 @@ export default function Home() {
           BEYOND PRODUCTS – the person outside the work. One paragraph,
           one door.
           --------------------------------------------------------------- */}
-      <Section mark="05 · Beyond" className="mt-20 sm:mt-28">
+      <Section mark="05 · Beyond" className="mt-16 sm:mt-20">
         <Reveal>
           <SectionLabel>{beyond.eyebrow}</SectionLabel>
         </Reveal>
 
-        <Reveal className="mt-10">
-          <div className="grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-center lg:gap-16">
-            <div className="flex flex-col gap-6">
+        <Reveal className="mt-8">
+          <div className="grid gap-8 sm:gap-10 lg:grid-cols-[0.8fr_1.7fr] lg:items-center lg:gap-16">
+            <div className="flex flex-col gap-6 lg:pr-4">
               <p className="measure text-base leading-relaxed text-secondary sm:text-lg">
                 {beyond.body}
               </p>
@@ -232,7 +213,7 @@ export default function Home() {
             </div>
             <MediaFrame
               label="Beyond"
-              ratio="3 / 4"
+              ratio="3.2 / 1"
               src={beyond.image.src}
               alt={beyond.image.alt}
             />
@@ -243,30 +224,25 @@ export default function Home() {
       {/* ---------------------------------------------------------------
           CLOSING – the reason the page is a direction, not a résumé.
           --------------------------------------------------------------- */}
-      <Section mark="Closing" className="mt-24 sm:mt-32">
+      <Section mark="Closing" className="mt-16 sm:mt-20">
         <Reveal>
           <div className="hairline rule-draw" />
-          <div className="mt-12 grid gap-10 lg:grid-cols-[1.4fr_1fr] lg:gap-16">
+          <div className="mt-8 grid gap-8 lg:grid-cols-[1.4fr_0.8fr] lg:items-center lg:gap-16">
             <blockquote>
               <p className="display text-balance text-[clamp(1.75rem,3.4vw,2.5rem)] text-primary">
                 {closing.quote}
               </p>
             </blockquote>
 
-            <div className="flex flex-col">
+            <div className="flex flex-col sm:border-l sm:border-hair sm:pl-8">
               {closing.actions.map((action) => (
                 <Link
                   key={action.href}
                   href={action.href}
-                  className="group flex items-start justify-between gap-6 border-t border-hair py-6 transition-colors duration-150 hover:border-accent-2-rule"
+                  className="group flex items-center justify-between gap-6 py-4 transition-colors duration-150 hover:text-accent-2"
                 >
                   <span>
-                    <span className="block text-base text-primary">
-                      {action.label}
-                    </span>
-                    <span className="mt-2 block text-sm leading-relaxed text-secondary">
-                      {action.note}
-                    </span>
+                    <span className="text-base text-primary">{action.label}</span>
                   </span>
                   <span
                     aria-hidden="true"
@@ -276,7 +252,6 @@ export default function Home() {
                   </span>
                 </Link>
               ))}
-              <div className="border-t border-hair" />
             </div>
           </div>
         </Reveal>

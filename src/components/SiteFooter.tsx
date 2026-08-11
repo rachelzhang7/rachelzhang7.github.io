@@ -12,9 +12,9 @@ export function SiteFooter() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="mt-40 border-t border-hair">
-      <div className="mx-auto max-w-[var(--content-max)] px-[var(--page-gutter)] py-16 lg:pl-[calc(var(--rail-w)+1rem)]">
-        <div className="grid gap-12 md:grid-cols-[1fr_auto]">
+    <footer className="mt-16 border-t border-hair sm:mt-20">
+      <div className="mx-auto max-w-[var(--content-max)] px-[var(--page-gutter)] py-10 sm:py-12 lg:pl-[calc(var(--rail-w)+1rem)]">
+        <div className="grid gap-10 md:grid-cols-[1fr_auto]">
           <div className="max-w-sm">
             <p className="font-mono text-[0.8125rem] font-medium uppercase tracking-[0.18em] text-primary">
               {site.name}
@@ -24,7 +24,7 @@ export function SiteFooter() {
             </p>
           </div>
 
-          <div className="grid gap-12 sm:grid-cols-2">
+          <div className="grid gap-10 sm:grid-cols-2">
             <nav aria-label="Footer">
               <p className="label">Sections</p>
               <ul className="mt-4 space-y-2.5">
@@ -68,7 +68,7 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-16 flex flex-col gap-3 border-t border-hair pt-6 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-12 flex flex-col gap-3 border-t border-hair pt-6 sm:flex-row sm:items-center sm:justify-between">
           <p className="label">
             © {year} {site.name}
           </p>

@@ -37,21 +37,33 @@ export const hero = {
 
 /**
  * What the work is moving toward. The three statements are the direction; the
- * paragraph is the ground; the three links are the evidence, in the site's own
- * pillar order – depth, then agency, then taste.
+ * three links are the evidence, in the site's own pillar order – depth, then
+ * agency, then taste.
  */
 export const workingToward = {
   eyebrow: "What I'm working toward",
-  statements: [
-    "Know a domain deeply.",
-    "Build products with taste.",
-    "Develop judgment – not just specify.",
-  ],
-  body: "AdTech is where I've spent years. I'm widening the part of the product work to sharpen creative judgment – learning how complex systems can behave, and what feels useful, clear, and worth making.",
   pillars: [
-    { index: "01", label: "Depth", href: "/adtech/" },
-    { index: "02", label: "Agency", href: "/experiments/" },
-    { index: "03", label: "Taste", href: "/creative-ai/" },
+    {
+      index: "01",
+      label: "Depth",
+      statement: "Know a domain deeply.",
+      note: "AdTech is where I've spent years learning how complex systems behave.",
+      href: "/adtech/",
+    },
+    {
+      index: "02",
+      label: "Agency",
+      statement: "Build, not just specify.",
+      note: "I'm widening the part of the product loop I can personally execute.",
+      href: "/experiments/",
+    },
+    {
+      index: "03",
+      label: "Taste",
+      statement: "Develop taste.",
+      note: "I use creative work to sharpen judgment about what feels clear, useful, and worth making.",
+      href: "/creative-ai/",
+    },
   ],
 };
 
@@ -67,30 +79,35 @@ export const exploring = {
       note: "How generative AI changes how advertising systems work – and how businesses interact with advertising systems.",
       cta: "Explore AdTech",
       href: "/adtech/",
+      image: "/media/experiments/ad-ai-pulse.jpg",
+      alt: "A blue generative advertising interface study",
     },
     {
       title: "Product Building",
       note: "How product tools change what's testable – and how automation and optimization keep expanding what a small team can build.",
       cta: "See Experiments",
       href: "/experiments/",
+      image: "/media/experiments/beam.jpg",
+      alt: "A product experiment visualized as a luminous system",
     },
     {
       title: "Creative AI",
       note: "How generative tools change the role of the creator – and what still depends on human taste.",
       cta: "Explore Creative AI",
       href: "/creative-ai/",
+      image: "/media/creative-ai/art-gathering.jpg",
+      alt: "A colorful generative artwork",
     },
   ],
 };
 
-/** Four statements, one argument: building is cheap now, judgment isn't. */
+/** Three statements, one argument: building is cheap now, judgment isn't. */
 export const learned = {
   eyebrow: "What I've learned",
   statements: [
-    "Building faster makes better systems.",
-    "AI expands what can be generated.",
-    "Taste decides what's worth keeping.",
-    "Context matters more, not less.",
+    "Better systems start with better context.",
+    "Building faster makes product judgment more important, not less.",
+    "AI expands what can be generated. Taste decides what is worth keeping.",
   ],
 };
 
