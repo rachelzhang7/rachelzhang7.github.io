@@ -20,6 +20,12 @@ export const creativeIntro = {
   ],
   /** Carries more visual weight than the paragraphs above it. */
   anchor: "Making is how I study the medium.",
+  hero: {
+    image: "/media/creative-ai/hero-creative-powder-burst.png",
+    alt: "An explosion of blue, violet, and coral powder on a black background",
+    width: 1536,
+    height: 1024,
+  },
 };
 
 /** Three mediums, not a process. No arrows between them. */
@@ -168,30 +174,30 @@ export const notes = {
       title:
         "What I Learned Building AI Videos on July 4th (And Why It Matters)",
       href: "https://www.linkedin.com/pulse/what-i-learned-building-ai-videos-july-4th-why-matters-rachel-zhang-2hqjc/",
-      image: "/media/experiments/creative-war-room.jpg",
-      imageAlt: "A colorful creative-workspace visual",
+      image: "/media/creative-ai/note-july-fourth-videos.png",
+      imageAlt: "A group of friends celebrating with sparklers at dusk",
     },
     {
       topic: "Video",
       title:
         "Stop Competing with AI Video Tools. Start Directing Them (Veo vs Seedance)",
       href: "https://www.linkedin.com/pulse/stop-competing-ai-video-tools-start-directing-them-rachel-zhang-bsfuc/",
-      image: "/media/experiments/ad-ai-pulse.jpg",
-      imageAlt: "A blue generative-advertising interface study",
+      image: "/media/creative-ai/note-stop-competing-video-tools.png",
+      imageAlt: "A cinematic AI video montage of a stormy house and dancer under stage lights",
     },
     {
       topic: "Voice",
       title: "The Voice Quality Gap: Why AI Audio Still Breaks the Magic",
       href: "https://www.linkedin.com/pulse/voice-quality-gap-why-ai-audio-still-breaks-magic-rachel-zhang-cgtlc/",
-      image: "/media/creative-ai/art-gathering.jpg",
-      imageAlt: "A colorful abstract generative artwork",
+      image: "/media/creative-ai/note-voice-quality.png",
+      imageAlt: "A studio microphone with a vivid AI audio waveform",
     },
     {
       topic: "Voice",
       title: "My Voice AI Journey: From Frustration to Fascination",
       href: "https://www.linkedin.com/pulse/my-voice-ai-journey-from-frustration-fascination-rachel-zhang-qnifc/",
-      image: "/media/creative-ai/art-midnight-garden.jpg",
-      imageAlt: "A dark abstract generative artwork",
+      image: "/media/creative-ai/note-voice-ai-journey.png",
+      imageAlt: "An AI technology montage across personal, automotive, education, and home settings",
     },
   ] as Article[],
 };

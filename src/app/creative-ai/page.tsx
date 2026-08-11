@@ -71,18 +71,16 @@ export default function CreativeAI() {
           </div>
 
           <div className="beat beat-2 relative min-h-72 overflow-hidden border border-white/[0.06] bg-sunken sm:min-h-[32rem]">
-            {/* This is a deliberately cropped gallery preview: it gives the
-                page an immediate visual thesis without inventing a synthetic
-                hero asset that doesn't exist in the portfolio. */}
+            {/* The supplied powder-burst image gives the hero the same visual
+                force as the reference without changing the written thesis. */}
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/media/creative-ai/art-gathering.jpg"
-              alt="A vivid generative artwork made of overlapping abstract figures"
-              width={950}
-              height={1038}
-              className="absolute inset-0 h-full w-full scale-110 object-cover saturate-125"
+              src={creativeIntro.hero.image}
+              alt={creativeIntro.hero.alt}
+              width={creativeIntro.hero.width}
+              height={creativeIntro.hero.height}
+              className="absolute inset-0 h-full w-full object-cover"
             />
-            <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(110deg,rgba(5,6,10,0.76)_0%,transparent_58%),linear-gradient(0deg,rgba(5,6,10,0.5),transparent_45%)]" />
             <p className="label absolute bottom-5 left-5 text-primary/70">Visual studies · 2026</p>
           </div>
         </div>
