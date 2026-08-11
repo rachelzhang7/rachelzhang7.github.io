@@ -78,7 +78,7 @@ export type Artwork = {
 export const visuals = {
   label: "Visuals · 2026",
   headline: "Exploring form, color, and feeling with generative tools.",
-  /** The two artworks, side by side. */
+  /** A main work with two companion pieces, arranged as a small gallery wall. */
   works: [
     {
       title: "Red Throne",
@@ -86,6 +86,13 @@ export const visuals = {
       image: "/media/creative-ai/art-red-throne.jpg",
       width: 1300,
       height: 1171,
+    },
+    {
+      title: "Gathering",
+      description: "Something is pulling them together.",
+      image: "/media/creative-ai/art-gathering.jpg",
+      width: 950,
+      height: 1038,
     },
     {
       title: "Midnight Garden",
@@ -140,6 +147,9 @@ export type Article = {
   topic: "Video" | "Voice";
   title: string;
   href: string;
+  /** A local visual cue for the field note, never an external thumbnail. */
+  image: string;
+  imageAlt: string;
   /**
    * Publication year, shown as understated metadata. Left undefined where the
    * supplied source carries no date – a year is never guessed.
@@ -158,22 +168,30 @@ export const notes = {
       title:
         "What I Learned Building AI Videos on July 4th (And Why It Matters)",
       href: "https://www.linkedin.com/pulse/what-i-learned-building-ai-videos-july-4th-why-matters-rachel-zhang-2hqjc/",
+      image: "/media/experiments/creative-war-room.jpg",
+      imageAlt: "A colorful creative-workspace visual",
     },
     {
       topic: "Video",
       title:
         "Stop Competing with AI Video Tools. Start Directing Them (Veo vs Seedance)",
       href: "https://www.linkedin.com/pulse/stop-competing-ai-video-tools-start-directing-them-rachel-zhang-bsfuc/",
+      image: "/media/experiments/ad-ai-pulse.jpg",
+      imageAlt: "A blue generative-advertising interface study",
     },
     {
       topic: "Voice",
       title: "The Voice Quality Gap: Why AI Audio Still Breaks the Magic",
       href: "https://www.linkedin.com/pulse/voice-quality-gap-why-ai-audio-still-breaks-magic-rachel-zhang-cgtlc/",
+      image: "/media/creative-ai/art-gathering.jpg",
+      imageAlt: "A colorful abstract generative artwork",
     },
     {
       topic: "Voice",
       title: "My Voice AI Journey: From Frustration to Fascination",
       href: "https://www.linkedin.com/pulse/my-voice-ai-journey-from-frustration-fascination-rachel-zhang-qnifc/",
+      image: "/media/creative-ai/art-midnight-garden.jpg",
+      imageAlt: "A dark abstract generative artwork",
     },
   ] as Article[],
 };
