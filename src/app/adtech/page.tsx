@@ -9,6 +9,7 @@ import {
   lessons,
   papers,
   trends,
+  trendsTimeline,
   writing,
   type Lesson,
 } from "@/content/adtech";
@@ -309,6 +310,46 @@ export default function AdTech() {
             </Reveal>
           ))}
         </div>
+
+        {/* The trajectory under the trends – one generated creative, then
+            generation at scale. The question it ends on is the page's thesis. */}
+        <Reveal className="mt-16 sm:mt-20">
+          <div className="border-t border-hair pt-8">
+            <p className="label text-accent-2">{trendsTimeline.caption}</p>
+
+            <div className="mt-8 grid gap-8 sm:grid-cols-3 sm:gap-0">
+              {trendsTimeline.stages.map((stage, i) => (
+                <div
+                  key={stage.label}
+                  className={cn(
+                    "relative",
+                    i > 0 && "sm:border-l sm:border-hair sm:pl-8",
+                  )}
+                >
+                  {i > 0 && (
+                    <span
+                      aria-hidden="true"
+                      className="label absolute -left-3 top-0 hidden text-quiet sm:block"
+                    >
+                      →
+                    </span>
+                  )}
+                  <span className="label text-quiet">{stage.year}</span>
+                  <p className="display mt-3 text-[1.25rem] leading-[1.25] text-primary sm:text-[1.375rem]">
+                    {stage.label}
+                  </p>
+                  <p className="measure mt-3 text-sm leading-relaxed text-secondary">
+                    {stage.note}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            <p className="display measure mt-12 text-balance text-[clamp(1.5rem,3vw,2.25rem)] leading-[1.15] text-primary">
+              {trendsTimeline.question}
+            </p>
+          </div>
+        </Reveal>
       </Section>
 
       {/* ---------------------------------------------------------------

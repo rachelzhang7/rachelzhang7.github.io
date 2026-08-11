@@ -18,12 +18,12 @@
 
 export const adtechIntro = {
   eyebrow: "Ad Tech",
-  /** Split so the final word can carry the page's one blue emphasis. */
+  /** Two sentences: the work, then the understanding it bought. */
   headline: {
-    lead: "I build advertising systems to understand how they",
-    emphasis: "decide",
+    lead: "I build advertising systems.",
+    emphasis: "I understand how they decide",
   },
-  body: "Working across signals, measurement, Creative AI, and commerce ads automation has given me different views into how advertising systems work – and made me increasingly interested in how better context, intelligence, and feedback can lead to better decisions.",
+  body: "Working across Creative AI, signals, measurement, commerce, and ads automation has given me different views into how advertising systems work – and made me increasingly interested in how better intelligence, context, and feedback lead to better decisions.",
 };
 
 /**
@@ -195,6 +195,35 @@ export const trends = {
       alt: "Intent enters an AI assistant, which branches out to discovering, recommending, comparing and buying.",
     },
   ],
+};
+
+/**
+ * The trajectory under the trends, drawn as a timeline. Where generation is
+ * headed: one creative optimised like a number, then the system generating
+ * what should exist, then generation at industrial scale. The question is the
+ * page's thesis – it is why the three trends sit together.
+ */
+export const trendsTimeline = {
+  caption: "Where generation is headed",
+  stages: [
+    {
+      label: "One generated creative",
+      note: "Creative becomes a variable the system optimizes.",
+      year: "Now",
+    },
+    {
+      label: "Recommendation generation",
+      note: "From choosing what exists to generating what should exist.",
+      year: "2026",
+    },
+    {
+      label: "Large-scale generation",
+      note: "AI sits between intent and conversion.",
+      year: "2028",
+    },
+  ],
+  question:
+    "What happens to signal, attribution, and measurement when AI sits between intent and conversion?",
 };
 
 /**
