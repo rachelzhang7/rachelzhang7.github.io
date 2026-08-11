@@ -116,8 +116,11 @@ export default function CreativeAI() {
           <div className="grid gap-8 border-t border-hair pt-8 lg:grid-cols-[0.9fr_2.3fr] lg:gap-16">
             <div>
               <p className="label text-accent-2">{music.label}</p>
-              <p className="measure-tight mt-4 text-sm leading-relaxed text-secondary sm:text-base">
-                {music.headline} {music.intro}
+              <p className="mt-4 max-w-[18ch] text-balance text-[1.25rem] font-medium leading-[1.14] tracking-[-0.025em] text-primary sm:text-[1.375rem]">
+                {music.headline}
+              </p>
+              <p className="measure-tight mt-5 text-sm leading-relaxed text-secondary">
+                {music.intro}
               </p>
               <a
                 href={music.profile}
@@ -165,7 +168,7 @@ export default function CreativeAI() {
           <div className="grid gap-8 border-t border-hair pt-8 lg:grid-cols-[1fr_2.2fr] lg:gap-16">
             <div>
               <p className="label text-accent-2">{visuals.label}</p>
-              <p className="measure-tight mt-4 text-sm leading-relaxed text-secondary sm:text-base">
+              <p className="mt-4 max-w-[18ch] text-balance text-[1.25rem] font-medium leading-[1.14] tracking-[-0.025em] text-primary sm:text-[1.375rem]">
                 {visuals.headline}
               </p>
             </div>
@@ -208,7 +211,7 @@ export default function CreativeAI() {
           <div className="grid gap-8 border-t border-hair pt-8 lg:grid-cols-[1fr_3fr] lg:gap-16">
             <div>
               <p className="label text-accent-2">{adCreative.label}</p>
-              <p className="measure-tight mt-4 text-sm leading-relaxed text-secondary sm:text-base">
+              <p className="mt-4 max-w-[18ch] text-balance text-[1.25rem] font-medium leading-[1.14] tracking-[-0.025em] text-primary sm:text-[1.375rem]">
                 {adCreative.headline}
               </p>
             </div>
@@ -275,7 +278,7 @@ export default function CreativeAI() {
         <Reveal>
           <div className="border-t border-hair pt-8">
             <p className="label text-accent-2">{notes.label}</p>
-            <p className="measure mt-5 text-sm leading-relaxed text-secondary sm:text-base">
+            <p className="mt-4 max-w-[28ch] text-balance text-[1.25rem] font-medium leading-[1.14] tracking-[-0.025em] text-primary sm:text-[1.375rem]">
               {notes.intro}
             </p>
           </div>
