@@ -15,7 +15,6 @@ export const creativeIntro = {
   eyebrow: "Creative AI · 03",
   headline: "I create to understand the medium.",
   body: [
-    "I'm interested in what happens when AI becomes a creative medium.",
     "Generative AI is changing the cost of making things – music, imagery, advertising, and storytelling. What interests me isn't simply that these outputs are easier to produce. It's how the role of the creator changes when the medium itself can generate, remix, interpret, and respond.",
     "I use these tools partly to make things I enjoy, and partly to understand what new products, workflows, and businesses become possible when creation becomes more programmable.",
   ],
@@ -74,7 +73,7 @@ export type Artwork = {
 export const visuals = {
   label: "Visuals · 2026",
   headline: "Exploring form, color, and feeling with generative tools.",
-  /** First entry is the feature; the other two stack beside it. */
+  /** The two artworks, side by side. */
   works: [
     {
       title: "Red Throne",
@@ -82,13 +81,6 @@ export const visuals = {
       image: "/media/creative-ai/art-red-throne.jpg",
       width: 1300,
       height: 1171,
-    },
-    {
-      title: "Gathering",
-      description: "Something is pulling them together.",
-      image: "/media/creative-ai/art-gathering.jpg",
-      width: 950,
-      height: 1038,
     },
     {
       title: "Midnight Garden",
