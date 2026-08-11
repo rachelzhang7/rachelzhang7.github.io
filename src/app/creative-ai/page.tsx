@@ -118,6 +118,8 @@ export default function CreativeAI() {
                     label={track.title}
                     tone="music"
                     ratio="1 / 1"
+                    src={track.image}
+                    alt={`Cover art for ${track.title}`}
                   />
                   <p className="label mt-5 text-accent-2">
                     {String(i + 1).padStart(2, "0")}
@@ -180,7 +182,7 @@ export default function CreativeAI() {
 
         {/* AD CREATIVE – the video and the campaign, beside the question. */}
         <Reveal className="mt-16">
-          <div className="grid gap-10 border-t border-hair pt-8 lg:grid-cols-[1fr_2.2fr] lg:gap-16">
+          <div className="grid gap-10 border-t border-hair pt-8 lg:grid-cols-[1fr_3fr] lg:gap-16">
             <div>
               <p className="label text-accent-2">{adCreative.label}</p>
               <p className="measure-tight mt-4 text-sm leading-relaxed text-secondary sm:text-base">
@@ -188,17 +190,18 @@ export default function CreativeAI() {
               </p>
             </div>
 
-            <div className="grid gap-10 sm:grid-cols-2 sm:gap-10">
+            {/* The clip and the campaign side by side, tops aligned. The
+                portrait clip is fixed to a compact size so it never runs
+                taller than the campaign strip. */}
+            <div className="grid items-start gap-10 sm:grid-cols-2 sm:gap-10">
               {/* IZZE – the real clip. Metadata-only preload keeps the file
                   off the initial page load; it downloads on play. */}
               <div>
-                {/* Portrait clip: capped so it does not run taller than the
-                    viewport and dwarf the campaign beside it. */}
                 <video
                   controls
                   preload="metadata"
                   playsInline
-                  className="block max-h-[34rem] w-full bg-sunken object-contain"
+                  className="block h-56 w-32 bg-sunken object-contain"
                 >
                   <source src={adCreative.izze.video} type="video/mp4" />
                 </video>
