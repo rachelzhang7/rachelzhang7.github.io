@@ -3,6 +3,7 @@ import { PageShell } from "@/components/PageShell";
 import { Section } from "@/components/Section";
 import { MediaFrame } from "@/components/MediaFrame";
 import { Reveal } from "@/components/Reveal";
+import { EmphText } from "@/components/EmphText";
 import { cn } from "@/lib/cn";
 import {
   beyond,
@@ -27,35 +28,6 @@ function Arrow() {
     >
       →
     </span>
-  );
-}
-
-/**
- * Renders a sentence with the words named in `emph` set in the accent blue,
- * the way the mockup emphasises the key verbs.
- */
-function EmphText({
-  text,
-  emph,
-}: {
-  text: string;
-  emph: string[];
-}) {
-  const parts = text.split(/(\s+)/);
-  return (
-    <>
-      {parts.map((part, i) => {
-        const word = part.replace(/[^A-Za-z'’]/g, "");
-        const hit = emph.some(
-          (e) => e.toLowerCase() === word.toLowerCase(),
-        );
-        return (
-          <span key={i} className={hit ? "text-accent-2" : undefined}>
-            {part}
-          </span>
-        );
-      })}
-    </>
   );
 }
 
