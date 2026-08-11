@@ -72,7 +72,7 @@
 }
 
 /* Creative AI is the expressive territory, but its interface stays quiet so
-   the supplied artwork—not the chrome—carries the saturated color. */
+   the supplied artwork, not the chrome, carries the saturated color. */
 [data-territory="creative"] {
   --bg-base: #08090d;
   --bg-raised: #101118;
