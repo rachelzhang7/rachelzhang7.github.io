@@ -33,6 +33,8 @@ export type Track = {
   title: string;
   description: string;
   href: string;
+  /** Local cover art, so the page never depends on Suno's CDN. */
+  image: string;
 };
 
 export const music = {
@@ -46,18 +48,21 @@ export const music = {
       title: "La Vida Es La Vida",
       description: "Mexico, friendship, and a phrase that stayed with me.",
       href: "https://suno.com/song/28179a5e-7519-48a9-8b1c-0bde5164cee1",
+      image: "/media/creative-ai/track-la-vida.webp",
     },
     {
       title: "She Found Her Voice",
       description:
         "A personal story about finding confidence, independence, and a voice.",
       href: "https://suno.com/song/babc54cb-8d1c-4cd1-88f1-d761f215ba7f",
+      image: "/media/creative-ai/track-she-found-her-voice.webp",
     },
     {
       title: "I Took Me Back",
       description:
         "Written after walking away from an environment where I had slowly stopped feeling like myself.",
       href: "https://suno.com/song/86f8b021-3809-41c4-afd3-e7d55949e040",
+      image: "/media/creative-ai/track-i-took-me-back.webp",
     },
   ] as Track[],
 };
